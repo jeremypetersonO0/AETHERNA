@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherPedia Rest</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherpedia2.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+<!-- HEADER -->
+<header class="header">
+<h1>AetherPedia</h1>
+
+<div class="header-right">
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search articles..." />
+</div>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+
+</div>
+</header>
+
+
+<!-- CATEGORY -->
+<section class="category">
+
+<span onclick="location.href='aetherpedia2.html'">All</span>
+<span onclick="location.href='aetherpedia_rest.html'">Rest</span>
+<span onclick="location.href='aetherpedia_excercise.html'">Exercise</span>
+<span onclick="location.href='aetherpedia_nutrition.html'">Nutrition</span>
+<span class="active">Health</span>
+<span onclick="location.href='aetherpedia_mindset.html'">Mental Wellness</span>
+
+</section>
+
+
+
+<!-- CONTENT -->
+<section class="content">
+
+<!-- LEFT -->
+<div class="left">
+
+<h2 class="highlight-title">
+- Recomended For You -
+</h2>
+
+<div class="highlight" 
+onclick="openArticle(
+'Why You Feel Tired During Teenage Years',
+'Yuan Ge',
+'Teen Health',
+'Teenagers often feel tired because their bodies are going through constant changes. During adolescence, growth happens quickly, and the body uses more energy than usual to support physical development. Hormonal changes can also affect sleep patterns, mood, and overall energy levels, making it feel like you are always a bit drained even after resting. On top of that, daily habits play a big role in how energetic you feel. Staying up late, spending too much time on screens, skipping meals, or not drinking enough water can slowly reduce your energy without you realizing it. Even mental stress from school or social life can make your body feel physically tired. The good news is that energy levels can be improved with small, consistent changes. Getting enough sleep, eating balanced meals, staying hydrated, and taking short breaks during the day can help your body recover better. Understanding your limits and listening to your body is the key to managing fatigue in a healthier way.',
+'image/aetherpedia_health/a.jpg'
+)">
+
+<img src="image/aetherpedia_health/a.jpg" class="highlight-img">
+
+<h3>Why You Feel Tired During Teenage Years</h3>
+
+<p>
+Teenagers often feel tired due to growth, hormones, and daily habits. 
+Learn why your body feels exhausted and how to manage your energy.
+</p>
+
+<div class="meta">
+  <span class="category-tag">Teen Health</span>
+  <span class="dot">•</span>
+  <span class="author-name">Yuan Ge</span>
+</div>
+
+</div>
+
+<!-- GRID kosong -->
+<div class="grid">
+
+<div class="card">
+  <img src="image/aetherpedia_health/b.jpg">
+  <h4>Why You Feel Dizzy Sometimes</h4>
+  <p>Feeling dizzy can happen for many reasons like dehydration, lack of 
+  sleep, or stress. Learn the common causes and what to do.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Common Symptoms</span>
+    <span class="dot">•</span>
+    <span class="card-author">B</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_health/c.jpg">
+  <h4>Body Changes During Puberty</h4>
+  <p>Puberty brings physical and emotional changes. Understanding these 
+  changes helps you manage them better.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Teen Health</span>
+    <span class="dot">•</span>
+    <span class="card-author">Big Bang</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_health/d.jpg">
+  <h4>Why Your Body Feels Tired</h4>
+  <p>Your body needs more energy during growth. Learn why fatigue is 
+  common and how to stay energized.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Energy & Health</span>
+    <span class="dot">•</span>
+    <span class="card-author">Yumi</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_health/e.jpg">
+  <h4>Headaches And Daily Habits</h4>
+  <p>Headaches can be caused by stress, dehydration, or too much screen 
+  time. Learn simple ways to reduce them.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Common Symptoms</span>
+    <span class="dot">•</span>
+    <span class="card-author">T</span>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- RIGHT -->
+<div class="right">
+
+<h3 class="popular-title">
+Most Popular
+</h3>
+
+<!-- popular kosong -->
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Why Teenagers Need More Sleep</h4>
+  <div class="meta">
+    <span class="category-tag">Teen Health</span>
+    <span class="dot">•</span>
+    <span class="author-name">Dinda Karlina</span>
+  </div>
+</div>
+
+<img src="image/aetherpedia_health/f.jpg" class="popular-img">
+
+</div>
+
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Why You Feel Weak Sometimes</h4>
+  <div class="meta">
+    <span class="category-tag">Common Symptoms</span>
+    <span class="dot">•</span>
+    <span class="author-name">Tsabita</span>
+  </div>
+</div>
+
+<img src="image/aetherpedia_health/g.jpg" class="popular-img">
+
+</div>
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Understanding Puberty Changes</h4>
+  <div class="meta">
+    <span class="category-tag">Teen Health</span>
+    <span class="dot">•</span>
+    <span class="author-name">Andre Benedict</span>
+  </div>
+</div>
+
+<img src="image/aetherpedia_health/h.jpg" class="popular-img">
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+searchInput.addEventListener("input", (e) => {
+const value = e.target.value.toLowerCase().trim();
+
+cards.forEach((card) => {
+const title = card.querySelector("h4").textContent.toLowerCase();
+const desc = card.querySelector("p").textContent.toLowerCase();
+
+const match = title.includes(value) || desc.includes(value);
+
+card.classList.toggle("hidden", !match);
+});
+});
+</script>
+
+</div>
+
+<script>
+function openArticle(title, author, category, text, image){
+
+document.getElementById("popupTitle").textContent = title;
+document.getElementById("popupAuthor").textContent = author;
+document.getElementById("popupCategory").textContent = category;
+document.getElementById("popupText").textContent = text;
+document.getElementById("popupImage").src = image;
+
+document.getElementById("articlePopup").style.display = "flex";
+document.body.classList.add("modal-open");
+
+}
+
+function closeArticle(){
+document.getElementById("articlePopup").style.display = "none";
+
+document.body.classList.remove("modal-open"); 
+}
+
+function shareArticle(){
+navigator.clipboard.writeText(window.location.href);
+alert("Link copied!");
+}
+</script>
+
+<div id="articlePopup" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeArticle()">&times;</span>
+        
+        <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
+        
+        <div class="modal-body">
+            <span id="popupCategory" class="category-tag"></span>
+            <h2 id="popupTitle"></h2>
+            <p class="author">By <span id="popupAuthor"></span></p>
+            <hr>
+            <p id="popupText"></p>
+        </div>
+
+        <div class="modal-footer">
+            <button onclick="shareArticle()" class="share-btn">🔗 Share Link</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

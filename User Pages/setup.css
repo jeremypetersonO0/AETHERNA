@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-color: #ffffff; /* Dasar putih agar tetap cerah */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    background:
+        url("backgroundfinal.png") no-repeat center,
+        linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-size: 1270px, cover;
+}
+
+/* TOMBOL BACK BULAT (MATTE GUNDUKAN) */
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #555;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+    color: #93C001;
+}
+
+/* CONTAINER */
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    background: #ffffff; 
+    padding: 40px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: #333;
+}
+
+.subtitle {
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* INPUT GROUP */
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+    color: #555;
+    padding-left: 10px;
+}
+
+/* INPUT EFEK MASUK KE DALAM (INSET) */
+.input-group input, .box input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background: #f0f0f0;
+    box-shadow: inset 5px 5px 10px #d1d1d1, inset -5px -5px 10px #ffffff;
+    color: #333;
+    font-weight: 500;
+    margin-top: 5px; 
+}
+
+/* STATS BOXES */
+.stats {
+    display: flex;
+    gap: 20px;
+}
+
+.box {
+    flex: 1;
+    background: #f0f0f0;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    /* Box stat juga dibuat masuk ke dalam agar seragam */
+    box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+}
+
+.box input {
+    background: transparent;
+    box-shadow: none;
+    font-size: 24px;   
+    font-weight: 800;
+    text-align: center; 
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+
+.box span {
+    display: block;   
+    font-size: 12px;
+    font-weight: 700;
+    color: #93C001;
+    text-align: center;
+}
+
+.next-btn {
+    width: 100%;
+    margin-top: 20px;
+    background: #93C001; /* Pakai warna hijau tema kamu */
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Bayangan abu-abu solid (Matte Outset) */
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.next-btn:hover {
+    background: #82ab01;
+    transform: translateY(-3px);
+    box-shadow: 8px 8px 16px #bababa, -8px -8px 16px #ffffff;
+}
+
+.next-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 4px 4px 8px #82ab01, inset -4px -4px 8px #ffffff;
+}

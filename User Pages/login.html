@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AETHERNA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+
+<body>
+
+<a href="sign-up.html" class="back-btn">
+    <span>←</span>
+</a>
+
+<div class="container">
+    <div class="card">
+
+        <div class="logo">
+            <img src="Group 39.png" alt="logo">
+        </div>
+
+        <h2>Welcome back!</h2>
+
+        <button class="google-btn">
+            <span class="g-icon">G</span>
+            Sign in with Google
+        </button>
+
+        <div class="divider">
+            <span>or</span>
+        </div>
+
+        <form id="loginForm">
+            <label>Your Email</label>
+            <input type="email" placeholder="your.email@example.com">
+
+            <label>Password</label>
+            <input type="password">
+
+            <a href="forgotpass1.html" class="forgot">Oops, forgot your password?</a>
+
+            <button type="submit" class="signin-btn">Sign in</button>
+        </form>
+
+        <p class="signup-text">
+            Don't have an account? <a href="sign-up.html">Sign up</a>
+        </p>
+
+    </div>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault(); // biar ga reload
+
+    // nanti bisa tambah validasi di sini
+
+    // pindah ke dashboard
+    window.location.href = "dashborad.html";
+});
+</script>
+
+</body>
+</html>

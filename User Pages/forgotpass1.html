@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - AETHERNA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="forgotpass1.css">
+</head>
+<body>
+
+<a href="login.html" class="back-btn">
+    <span>←</span>
+</a>
+
+<div class="forgot-container">
+    <div class="forgot-box">
+        <!-- Logo Aetherna -->
+        <img src="Group 39.png" alt="Aetherna Logo" class="logo">
+
+        <h2>Forgot your password?</h2>
+        <p>No worries! Where should we send the reset link?</p>
+
+        <form id="forgotForm">
+            <input type="email" placeholder="your.email@example.com" required>
+            <button type="submit">Send reset link</button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+document.getElementById('forgotForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const email = this.querySelector('input').value;
+    alert('Reset link has been sent to ' + email + '!');
+    window.location.href = "forgotpass2.html";
+});
+</script>
+
+</body>
+</html>

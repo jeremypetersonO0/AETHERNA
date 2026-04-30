@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherPedia Rest</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherpedia2.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+<!-- HEADER -->
+<header class="header">
+<h1>AetherPedia</h1>
+
+<div class="header-right">
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search articles..." />
+</div>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+
+</div>
+</header>
+
+
+<!-- CATEGORY -->
+<section class="category">
+
+<span onclick="location.href='aetherpedia2.html'">All</span>
+<span onclick="location.href='aetherpedia_rest.html'">Rest</span>
+<span class="active">Exercise</span>
+<span onclick="location.href='aetherpedia_nutrition.html'">Nutrition</span>
+<span onclick="location.href='aetherpedia_movement.html'">Health</span>
+<span onclick="location.href='aetherpedia_mindset.html'">Mental Wellness</span>
+
+</section>
+
+
+
+<!-- CONTENT -->
+<section class="content">
+
+<!-- LEFT -->
+<div class="left">
+
+<h2 class="highlight-title">
+- Recomended For You -
+</h2>
+
+<div class="highlight" 
+onclick="openArticle(
+'Start Exercising Without Burning Out',
+'Chen Yi',
+'Exercise',
+'Starting exercise doesn’t mean pushing too hard. Many people think they need intense workouts from the beginning, but this often leads to burnout, soreness, and losing motivation quickly. The most important thing is to start at a comfortable level so your body can gradually adapt without feeling overwhelmed. Building sustainable habits is more effective than doing everything at once. Simple activities like walking, light stretching, or short workout sessions are enough to begin with. When exercise fits naturally into your daily routine, it becomes easier to stay consistent without feeling pressured. Over time, these small and steady efforts will make a big difference. Instead of forcing extreme routines, focus on making movement a regular part of your lifestyle. This way, exercise supports your health in a long-term and balanced way.',
+'image/aetherpedia_excercise/7a.jpg'
+)">
+
+<img src="image/aetherpedia_excercise/7a.jpg" class="highlight-img">
+
+<h3>Start Exercising Without Burning Out</h3>
+
+<p>
+Starting exercise doesn't mean pushing too hard. Build sustainable habits, 
+avoid burnout, and make movement part of your daily routine.
+</p>
+
+<div class="meta">
+  <span class="category-tag">Exercise</span>
+  <span class="dot">•</span>
+  <span class="author-name">Chen Yi</span>
+</div>
+
+</div>
+
+<!-- GRID kosong -->
+<div class="grid">
+
+<div class="card">
+  <img src="image/aetherpedia_excercise/1a.jpg">
+  <h4>Start Small With Exercise</h4>
+  <p>You don't need intense workouts to get started. Small and consistent movements can help build long-term exercise habits.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Beginner</span>
+    <span class="dot">•</span>
+    <span class="card-author">Yuan Ge</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_excercise/2a.jpg">
+  <h4>How Much Exercise Do You Need</h4>
+  <p>Not sure how often you should work out? Learn how much exercise your body needs to stay healthy and energized.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Basics</span>
+    <span class="dot">•</span>
+    <span class="card-author">Dinda K.</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_excercise/3a.jpg">
+  <h4>Build A Simple Workout Routine</h4>
+  <p>Creating a simple workout routine makes exercise easier to maintain. Start with realistic goals and build gradually.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Workout Routine</span>
+    <span class="dot">•</span>
+    <span class="card-author">Sofia</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_excercise/4a.jpg">
+  <h4>Exercise Without Going To Gym</h4>
+  <p>You don’t need a gym to stay active. Try simple exercises you can do at home without special equipment.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Home Workout</span>
+    <span class="dot">•</span>
+    <span class="card-author">Patel</span>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- RIGHT -->
+<div class="right">
+
+<h3 class="popular-title">
+Most Popular
+</h3>
+
+<!-- popular kosong -->
+<div class="popular">
+<div class="popular-text">
+  <h4>Why Exercise Boosts Energy ???</h4>
+  <div class="meta">
+    <span class="category-tag">Excercise</span>
+    <span class="dot">•</span>
+    <span class="author-name">Ian Scaffer</span>
+  </div>
+</div>
+
+<img src="image/aetherpedia_excercise/5a.jpg" class="popular-img">
+
+</div>
+
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Beginner Friendly Workouts</h4>
+  <div class="meta">
+    <span class="category-tag">Beginner</span>
+    <span class="dot">•</span>
+    <span class="author-name">Carmen L.</span>
+  </div>
+</div>
+
+
+<img src="image/aetherpedia_excercise/6a.jpg" class="popular-img">
+
+</div>
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Exercise and Sports For Busy People</h4>
+  <div class="meta">
+    <span class="category-tag">Lifestyle</span>
+    <span class="dot">•</span>
+    <span class="author-name">Banana Kim</span>
+  </div>
+</div>
+
+<img src="image/aetherpedia_excercise/8a.jpg" class="popular-img">
+
+</div>
+
+
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+searchInput.addEventListener("input", (e) => {
+const value = e.target.value.toLowerCase().trim();
+
+cards.forEach((card) => {
+const title = card.querySelector("h4").textContent.toLowerCase();
+const desc = card.querySelector("p").textContent.toLowerCase();
+
+const match = title.includes(value) || desc.includes(value);
+
+card.classList.toggle("hidden", !match);
+});
+});
+</script>
+
+</div>
+
+<script>
+function openArticle(title, author, category, text, image){
+
+document.getElementById("popupTitle").textContent = title;
+document.getElementById("popupAuthor").textContent = author;
+document.getElementById("popupCategory").textContent = category;
+document.getElementById("popupText").textContent = text;
+document.getElementById("popupImage").src = image;
+
+document.getElementById("articlePopup").style.display = "flex";
+document.body.classList.add("modal-open");
+
+}
+
+function closeArticle(){
+document.getElementById("articlePopup").style.display = "none";
+
+document.body.classList.remove("modal-open"); 
+}
+
+function shareArticle(){
+navigator.clipboard.writeText(window.location.href);
+alert("Link copied!");
+}
+</script>
+
+<div id="articlePopup" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeArticle()">&times;</span>
+        
+        <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
+        
+        <div class="modal-body">
+            <span id="popupCategory" class="category-tag"></span>
+            <h2 id="popupTitle"></h2>
+            <p class="author">By <span id="popupAuthor"></span></p>
+            <hr>
+            <p id="popupText"></p>
+        </div>
+
+        <div class="modal-footer">
+            <button onclick="shareArticle()" class="share-btn">🔗 Share Link</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

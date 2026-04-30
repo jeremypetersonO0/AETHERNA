@@ -1,0 +1,186 @@
+.hero-card {
+    height: 82vh;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #A8D8FF 0%, #D8F9B1 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    margin-top: 25px;
+}
+
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.hero-card h1 {
+    font-size: 38px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.hero-card span {
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* CHAT */
+
+.chat-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chat-messages {
+    width: 85%;
+    max-width: 750px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 9px;
+    padding-right: 25px;
+}
+
+.bot-message {
+    background: white;
+    padding: 10px 16px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.user-message {
+    background: #7cc6ff;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    width: fit-content;
+}
+
+/* INPUT */
+
+.chat-box {
+    background: white;
+    width: 85%;
+    max-width: 750px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.chat-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    gap: 20px;
+}
+
+.chat-box button {
+    background: #7cc6ff;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+html, body {
+height: 100%;
+overflow: hidden;
+}
+
+/* Scrollbar keseluruhan */
+.chat-messages::-webkit-scrollbar {
+width: 8px;
+}
+
+/* Background scrollbar */
+.chat-messages::-webkit-scrollbar-track {
+margin: 10px 0;   
+border-radius: 10px;
+}
+
+/* Scrollbar batang */
+.chat-messages::-webkit-scrollbar-thumb {
+background: #cfd8dc;
+border-radius: 10px;
+}
+
+/* Hover */
+.chat-messages::-webkit-scrollbar-thumb:hover {
+background: #b0bec5;
+}
+
+.chat-box button {
+background: #7cc6ff;
+border: none;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+font-size: 20px;
+line-height: 3;  
+padding: 2px;
+
+transition: all 0.3s ease;
+}
+
+/* Hover */
+.chat-box button:hover {
+transform: translateY(-3px) rotate(5deg);
+background:  #7cc6ff;
+}
+
+/* Klik */
+.chat-box button:active {
+transform: scale(0.85);
+}
+
+.upload-btn {
+background: #f1f3f5;
+border: none;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+font-size: 20px;
+transition: 0.3s;
+}
+
+.upload-btn:hover {
+background: #e0e0e0;
+transform: scale(1.05);
+}
+
+.upload-btn:active {
+transform: scale(0.9);
+}

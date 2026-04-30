@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    /* GRADASI 135 DERAJAT */
+    background:
+        url("backgroundfinal.png") no-repeat center,
+        linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-size: 1270px, cover;
+
+    background-attachment: fixed;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Card */
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.logo {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Title */
+h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Google Button */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid #eee;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+}
+
+.google-btn:hover {
+    background: #fdfdfd;
+    transform: translateY(-3px); 
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Divider */
+.divider {
+    margin: 10px 0;
+    font-size: 12px;
+    color: #2C7CF9;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+form label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* INPUT (EFEK MASUK KE DALAM) */
+form input {
+    padding: 12px;      
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 15px;
+    
+    border: none; 
+    
+    background: #fdfdfd; 
+    
+    box-shadow: 
+        inset 5px 5px 10px rgba(0, 0, 0, 0.05),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.1);
+    
+    margin-bottom: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    color: #333;
+}
+
+/* EFEK SAAT DI-KLIK (FOCUS) */
+form input:focus {
+      box-shadow: 
+        inset 7px 7px 15px rgba(0, 0, 0, 0.08),
+        inset -7px -7px 15px rgba(255, 255, 255, 1);
+    
+    background: #ffffff;
+}
+
+form input::placeholder {
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* Forgot password */
+.forgot {
+    font-size: 10px;
+    color: #5aa1ff;
+    text-align: right;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+/* Sign in button */
+.signin-btn {
+    background: #ff6b6b;
+    border: none;
+    padding: 12px;
+    border-radius: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    width: 100%;
+}
+
+.signin-btn:hover {
+    background: #ff4b4b;
+    transform: translateY(-4px); /* Efek naik ke atas */
+    box-shadow: 0 15px 25px rgba(255, 107, 107, 0.4);
+}
+
+.signin-btn: :active{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(255, 107, 107, 0.2);
+}
+
+/* Bottom text */
+.signup-text {
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: lighter;
+     color: #5aa1ff;
+}
+
+.signup-text a {
+    color: #2C7CF9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CONTAINER LOGO */
+.logo {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    margin-bottom: 20px;     
+    width: 100%;            
+}
+
+/* PENGATURAN GAMBAR LOGO */
+.logo img {
+    width: 80px;            
+    height: auto;           
+    
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+    
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* TOMBOL BACK BULAT (GUNDUKAN) */
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: #ffffff; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #555;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 100;
+    
+    
+    transition: all 0.3s ease;
+}
+
+/* EFEK HOVER */
+.back-btn:hover {
+    transform: scale(1.1); 
+    color: #93C001;      
+}
+
+/* EFEK SAAT DIPENCET */
+.back-btn:active {
+    transform: scale(0.95);
+    box-shadow: inset 4px 4px 8px #d9d9d9, inset -4px -4px 8px #ffffff;
+}
+
+.back-btn span {
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover span {
+    transform: translateX(-3px);
+}

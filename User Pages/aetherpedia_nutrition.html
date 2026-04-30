@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherPedia Rest</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherpedia2.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+<!-- HEADER -->
+<header class="header">
+<h1>AetherPedia</h1>
+
+<div class="header-right">
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search articles..." />
+</div>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+
+</div>
+</header>
+
+
+<!-- CATEGORY -->
+<section class="category">
+
+<span onclick="location.href='aetherpedia2.html'">All</span>
+<span onclick="location.href='aetherpedia_rest.html'">Rest</span>
+<span onclick="location.href='aetherpedia_excercise.html'">Exercise</span>
+<span class="active">Nutrition</span>
+<span onclick="location.href='aetherpedia_movement.html'">Health</span>
+<span onclick="location.href='aetherpedia_mindset.html'">Mental Wellness</span>
+
+</section>
+
+
+
+<!-- CONTENT -->
+<section class="content">
+
+<!-- LEFT -->
+<div class="left">
+
+<h2 class="highlight-title">
+- Recomended For You -
+</h2>
+
+<div class="highlight" 
+onclick="openArticle(
+'Understanding Nutrients In Your Food',
+'Yuan Ge',
+'Nutrition Basics',
+'Food is more than just calories because every meal you eat contains different nutrients that your body needs to function properly. These nutrients, such as carbohydrates, proteins, fats, vitamins, and minerals, all play important roles in keeping your body active, growing, and healthy. Without a balanced intake of these nutrients, your body may feel weak or lack energy even if you are eating enough food. Each type of nutrient has a specific function. Carbohydrates are the main source of energy, proteins help build and repair muscles, and fats support brain function and long-term energy storage. Meanwhile, vitamins and minerals help regulate body processes like immunity, digestion, and bone health. When these nutrients work together, your body becomes more efficient and energized. Understanding what you eat can help you make better food choices every day. Instead of focusing only on eating a lot, it is more important to eat balanced meals that include different food groups. This helps your body stay energized, improves focus, and supports long-term health.',
+'image/aetherpedia_nutrition/1aa.jpg'
+)">
+
+<img src="image/aetherpedia_nutrition/1aa.jpg" class="highlight-img">
+
+<h3>Understanding Nutrients In Your Food</h3>
+
+<p>
+Food is more than just calories. Learn about essential nutrients and 
+how they help your body stay energized and healthy.
+</p>
+
+<div class="meta">
+  <span class="category-tag">Nutrition Basics</span>
+  <span class="dot">•</span>
+  <span class="author-name">Yuan Ge</span>
+</div>
+
+</div>
+
+<!-- GRID kosong -->
+<div class="grid">
+
+<div class="card">
+  <img src="image/aetherpedia_nutrition/2.jpg">
+  <h4>Protein, Carbs, And Fats Explained</h4>
+  <p>Understanding macronutrients helps you make better food choices. 
+    Learn how protein, carbs, and fats support your body.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Nutrition Basics</span>
+    <span class="dot">•</span>
+    <span class="card-author">Li</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_nutrition/3.jpg">
+  <h4>Foods That Boost Your Energy</h4>
+  <p>Some foods help maintain stable energy levels throughout the day. Discover what to eat for better productivity.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Energy Nutrition</span>
+    <span class="dot">•</span>
+    <span class="card-author">Dinda</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_nutrition/7.jpg">
+  <h4>Healthy Eating Made Simple</h4>
+  <p>Healthy eating doesn't need to be complicated. Learn simple ways 
+    to improve your daily meals.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Healthy Eating</span>
+    <span class="dot">•</span>
+    <span class="card-author">Gege</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/aetherpedia_nutrition/5.jpg">
+  <h4>Understanding Food Labels</h4>
+  <p>Food labels contain important nutrition information. Learn how to read them and make smarter choices.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Nutrition Basics</span>
+    <span class="dot">•</span>
+    <span class="card-author">Tania</span>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- RIGHT -->
+<div class="right">
+
+<h3 class="popular-title">
+Most Popular
+</h3>
+
+<!-- popular kosong -->
+<div class="popular">
+<div class="popular-text">
+  <h4>What Makes A Balanced Meal</h4>
+  <div class="meta">
+    <span class="category-tag">Healthy Eating</span>
+    <span class="dot">•</span>
+    <span class="author-name">Matt Scaffer</span>
+  </div>
+</div>
+
+<img src="image/aetherpedia_nutrition/6.jpg" class="popular-img">
+
+</div>
+
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Foods That Keep You Full Longer</h4>
+  <div class="meta">
+    <span class="category-tag">Nutrition</span>
+    <span class="dot">•</span>
+    <span class="author-name">Aelita S.</span>
+  </div>
+</div>
+
+
+<img src="image/aetherpedia_nutrition/7a.jpg" class="popular-img">
+
+</div>
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Simple and Healthy Food Choices</h4>
+  <div class="meta">
+    <span class="category-tag">Healthy Eating</span>
+    <span class="dot">•</span>
+    <span class="author-name">Andre B.</span>
+  </div>
+</div>
+
+<img src="image/aetherpedia_nutrition/8.jpg" class="popular-img">
+
+</div>
+
+
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+searchInput.addEventListener("input", (e) => {
+const value = e.target.value.toLowerCase().trim();
+
+cards.forEach((card) => {
+const title = card.querySelector("h4").textContent.toLowerCase();
+const desc = card.querySelector("p").textContent.toLowerCase();
+
+const match = title.includes(value) || desc.includes(value);
+
+card.classList.toggle("hidden", !match);
+});
+});
+</script>
+
+</div>
+
+<script>
+function openArticle(title, author, category, text, image){
+
+document.getElementById("popupTitle").textContent = title;
+document.getElementById("popupAuthor").textContent = author;
+document.getElementById("popupCategory").textContent = category;
+document.getElementById("popupText").textContent = text;
+document.getElementById("popupImage").src = image;
+
+document.getElementById("articlePopup").style.display = "flex";
+document.body.classList.add("modal-open");
+
+}
+
+function closeArticle(){
+document.getElementById("articlePopup").style.display = "none";
+
+document.body.classList.remove("modal-open"); 
+}
+
+function shareArticle(){
+navigator.clipboard.writeText(window.location.href);
+alert("Link copied!");
+}
+</script>
+
+<div id="articlePopup" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeArticle()">&times;</span>
+        
+        <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
+        
+        <div class="modal-body">
+            <span id="popupCategory" class="category-tag"></span>
+            <h2 id="popupTitle"></h2>
+            <p class="author">By <span id="popupAuthor"></span></p>
+            <hr>
+            <p id="popupText"></p>
+        </div>
+
+        <div class="modal-footer">
+            <button onclick="shareArticle()" class="share-btn">🔗 Share Link</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherAssist</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherassits.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+<header class="header">
+<h1>AetherAssist</h1>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+</header>
+
+
+<section class="hero-card">
+
+
+<h1>
+Hey User, <span>aetherassist here!</span><br>
+What's on your mind today?
+</h1>
+
+
+<!-- CHAT -->
+<div class="chat-container">
+
+<div class="chat-messages" id="chatMessages">
+
+<div class="bot-message">
+Hello! I'm AetherAssist. How can I help you today?
+</div>
+
+</div>
+
+
+<div class="chat-box">
+
+<button class="upload-btn" 
+onclick="document.getElementById('fileInput').click()">
++
+</button>
+
+<input 
+type="text" 
+id="chatInput" 
+placeholder="Ask Aetherna..." 
+/>
+
+<button onclick="sendMessage()">➤</button>
+
+</div>
+
+
+<input 
+type="file" 
+id="fileInput" 
+hidden 
+onchange="showFile(this)"
+>
+
+</div>
+
+</section>
+
+</main>
+</div>
+
+
+<script>
+
+function sendMessage(){
+
+let input = document.getElementById("chatInput");
+let messages = document.getElementById("chatMessages");
+
+if(input.value.trim() === "") return;
+
+
+/* USER MESSAGE */
+let userMsg = document.createElement("div");
+userMsg.className = "user-message";
+userMsg.innerText = input.value;
+messages.appendChild(userMsg);
+
+
+/* BOT MESSAGE */
+let botMsg = document.createElement("div");
+botMsg.className = "bot-message";
+botMsg.innerText = "Thinking...";
+messages.appendChild(botMsg);
+
+
+setTimeout(()=>{
+botMsg.innerText = "I'm still learning, but I'll help you soon ✨";
+},1000);
+
+
+input.value = "";
+
+messages.scrollTop = messages.scrollHeight;
+
+}
+
+
+/* FILE UPLOAD */
+function showFile(input){
+
+let messages = document.getElementById("chatMessages");
+
+let fileMsg = document.createElement("div");
+fileMsg.className = "user-message";
+fileMsg.innerText = "📎 " + input.files[0].name;
+
+messages.appendChild(fileMsg);
+
+messages.scrollTop = messages.scrollHeight;
+
+}
+
+
+/* ENTER KEY */
+document.getElementById("chatInput").addEventListener("keypress", function(e){
+if(e.key === "Enter"){
+sendMessage();
+}
+});
+
+</script>
+
+</body>
+</html>

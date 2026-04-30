@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aware Today - Ahead By Tomorrow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<nav class="top-navbar">
+    <div class="nav-left">
+        <img src="Group 39.png" alt="Logo">
+        <span class="brand">AETHERNA</span>
+    </div>
+
+    <div class="nav-right">
+        <a href="#about" class="nav-pill blue">ABOUT US</a>
+        <a href="#features" class="nav-pill orange">FEATURES</a>
+        <a href="#team" class="nav-pill green">OUR TEAM</a>
+    </div>
+</nav>
+
+<div class="image-food-container">
+    <img src="plate 1.png" alt="Breakfast">
+</div>
+
+
+<main class="container">
+<header class="header-text">
+<h2 class="subtitle">Your Daily Dose of Better</h2>
+<h1 class="main-title">
+Aware Today<br>
+Ahead By Tomorrow
+</h1>
+
+<button class="btn-register" onclick="window.location.href='sign-up.html'">REGISTER</button>
+
+</header>
+
+<section class="bottom-section">
+
+
+<div class="image-sport-container">
+<img src="image 21.png" alt="Basketball Action">
+</div>
+
+</section>
+
+</main>
+
+
+
+<section id="about" class="about-section">
+
+
+<div class="about-content">
+
+<h3>OUR STORY</h3>
+
+<p>
+Students today face packed schedules that push personal health aside
+leading to irregular sleep, minimal exercise, and poor hydration.
+We created AETHERNA to make healthy habits simple, trackable,
+and actually sustainable.
+</p>
+
+
+<div class="about-grid">
+
+<div class="grid-text-left">
+<p>
+A world where every student has the support to live healthier,
+more balanced lives.
+</p>
+</div>
+
+<div class="logo-box">
+<img src="Group 39.png" alt="Aetherna Logo">
+</div>
+
+<div class="grid-text-right">
+<p>
+Empower students with tools, knowledge & motivation
+to make wellness a natural part of daily life.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="leaf-background">
+    <img src="daun.png" alt="Decorative Leaf">
+</div>
+
+</section>
+
+
+
+<script>
+
+function handleRegister(){
+alert("Pendaftaran Berhasil!");
+}
+
+function showMessage(section){
+console.log("Menuju ke: " + section);
+}
+
+</script>
+
+
+<section id="features" class="features-section">
+
+<div class = "background-tambah">
+    <img src="Tambah1.png" class="tambah-1">
+    <img src="Tambah2.png" class="tambah-2">
+</div>
+
+<div class="features-header">
+<h1>FEATURES</h1>
+</div>
+
+<div class="carousel-container">
+
+<button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+
+<div class="carousel-wrapper">
+
+<div class="carousel-track" id="track">
+
+<div class="feature-card">
+<h2>AETHERFLOW</h2>
+<img src="image 27.png" alt="Aetherflow">
+<p>Learn proper workout techniques and videos to move safely.</p>
+</div>
+
+<div class="feature-card">
+<h2>AETHERLOG</h2>
+<img src="image 25.png" alt="Aetherlog">
+<p>Track your daily habits and understand your lifestyle through meaningful data.</p>
+</div>
+
+<div class="feature-card">
+<h2>AETHERPEDIA</h2>
+<img src="image 26.png" alt="Aetherpedia">
+<p>Curated health articles and tips to empower your daily life.</p>
+</div>
+
+<div class="feature-card">
+<h2>AETHERASSITS</h2>
+<img src="image 28.png" alt="Aetherassits">
+<p>Curated health articles and tips to empower your daily life.</p>
+</div>
+
+<div class="feature-card">
+<h2>AETHERPLAY</h2>
+<img src="image 29.png" alt="Aetherplay">
+<p>Curated health articles and tips to empower your daily life.</p>
+</div>
+
+</div>
+
+</div>
+
+<button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+<section id="team" class="team-section">
+    <div class="background-bawah">
+        <img src="background_bawah.png" class="bg-bawah" alt="hiasan bawah">
+    </div>
+
+    <div class="team-header">
+        <h1>GET IN TOUCH</h1>
+    </div>
+
+    <div class="team-container">
+        <div class="team-wrapper" id="teamTrack">
+            <div class="team-card">
+                <div class="member-photo">
+                    <img src="andre.jpeg" alt="Team Member 1">
+                </div>
+                <div class="member-info">
+                    <h3>ANDRE BENEDICT</h3>
+                    <p class="role">Lead Developer</p>
+                    <div class="member-contact">
+                        <a href="tel:+6281327580505" class="contact-item">
+                            <span>📞 +62 813-2758-0505</span>
+                        </a>
+                        <a href="mailto:andrecepu2019@gmai.com" class="contact-item">
+                            <span>✉️ andrecepu2019@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="member-photo">
+                    <img src="bita.png" alt="Team Member 2">
+                </div>
+                <div class="member-info">
+                    <h3>TSABITA 'SYAHRI</h3>
+                    <p class="role">User Interface Designer</p>
+                    <div class="member-contact">
+                        <a href="tel:+62 81249768441" class="contact-item">
+                            <span>📞 +62 812-4976-8441</span>
+                        </a>
+                        <a href="mailto:tsabitasyahri@gmail.com" class="contact-item">
+                            <span>✉️ tsabitasyahri@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="member-photo">
+                    <img src="dinda.jpeg" alt="Team Member 3">
+                </div>
+                <div class="member-info">
+                    <h3>DINDA KARLINA</h3>
+                    <p class="role">Project Manager</p>
+                    <div class="member-contact">
+                        <a href="tel:+6281216009249" class="contact-item">
+                            <span>📞 +62 812-1600-9249</span>
+                        </a>
+                        <a href="mailto:dikalikarlina@gmail.com" class="contact-item">
+                            <span>✉️ dikalikarlina@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

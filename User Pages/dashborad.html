@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetherna Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <img src="Group 39.png" alt="Aetherna Logo" class="logo-img">
+            <h3>AETHERNA</h3>
+        </div>
+
+        <nav>
+            <p class="menu-title">Feature</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="dashborad.html"><span>🏠</span> Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <a href="aetherlog.html"><span>📄</span>aetherlog</a>
+                </li>
+                <li class="menu-item">
+                    <a href="aetherpedia2.html"><span>📘</span> aetherpedia</a>
+                </li>
+                <li class="menu-item">
+                    <a href="aetherflow.html"><span>🏃</span> aetherflow</a>
+                </li>
+                <li class="menu-item">
+                    <a href="aetherassist.html"><span>🧠</span> aetherassist</a>
+                </li>
+                <li class="menu-item">
+                    <a href="aetherplay.html">🎮 aetherplay</a></li>
+            </ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>Dashboard</h1>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+        </header>
+
+        <section class="dashboard-card">
+
+            <div class="stats-container">
+
+                <!-- AVATAR -->
+                <div class="avatar-section">
+                    <div class="currency">
+                        <span>🎮 play</span>
+                        <div class="coin-box">
+                            🪙 <span class="coin-value">0</span>
+                            <span class="coin-float">+500</span>
+                        </div>
+                    </div>
+
+                    <div class="character-box">
+                        <img src="Default Character.png" alt="Avatar">
+                    </div>
+
+                    <div class="level-bar-container">
+
+                        <p class="level">Level 01</p>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+
+                        <p class="exp-text">0 / 200 EXP</p>
+
+                    </div>
+                </div>
+
+                <!-- CENTER -->
+                <div>
+
+                    <!-- WIN HEADER (yang kamu minta) -->
+                    <div class="win-header">
+                        <h2>Let’s earn a few wins today 🏆</h2>
+                        <p>Complete habits and collect your rewards</p>
+                    </div>
+
+                    <!-- HABIT -->
+                    <div class="habit-container">
+
+                        <div class="habit-item green" data-max="8">
+                            <div class="habit-progress"></div>
+
+                            <span>🛏️ 8 hour of sleep</span>
+                            <span class="count">
+                                <span class="number">0</span>/8
+                                <button class="plus">+</button>
+                            </span>
+                        </div>
+
+                        <div class="habit-item gray" data-max="30">
+                            <div class="habit-progress"></div>
+
+                            <span>↔️ 30 minute of exercise</span>
+                            <span class="count">
+                                <span class="number">0</span>/30
+                                <button class="plus">+</button>
+                            </span>
+                        </div>
+
+                        <div class="habit-item green" data-max="8">
+                            <div class="habit-progress"></div>
+
+                            <span>☕ 8 glass water</span>
+                            <span class="count">
+                                <span class="number">0</span>/8
+                                <button class="plus">+</button>
+                            </span>
+                        </div>
+
+                        <div class="habit-item lime" data-max="5">
+                            <div class="habit-progress"></div>
+
+                            <span>🏃 Move at least 5 times today</span>
+                            <span class="count">
+                                <span class="number">0</span>/5
+                                <button class="plus">+</button>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="meal-section">
+
+                    <h4>🍴 What's in your plate?</h4>
+
+                    <div class="tags-container">
+                        <span class="tag">Protein</span>
+                        <span class="tag">Fruits</span>
+                        <span class="tag">Vegetables</span>
+                        <span class="tag">Fast Food</span>
+                        <span class="tag">Rice & Carbs</span>
+                        <span class="tag">Sugary Drinks</span>
+                        <span class="tag">Sweets</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIDEO -->
+        <section class="video-promo">
+            <div class="promo-content">
+                <h2>Hey, [Username]!</h2>
+                <p>Let's take a look at your week in Aetherna</p>
+                <button class="play-btn">▶</button>
+            </div>
+        </section>
+
+        <div id="wrappedModal" class="modal">
+    <div class="modal-box">
+
+        <button class="close-btn">✖</button>
+
+        <!-- INDICATOR -->
+        <div class="indicator">
+            <div class="bar active"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <img id="wrappedImage" src="wrapped_1.png" alt="wrapped">
+
+    </div>
+</div>
+
+    </main>
+</div>
+
+<!-- JS FIX -->
+<script>
+document.querySelectorAll(".plus").forEach(button => {
+
+button.addEventListener("click", function(){
+
+let habit = this.closest(".habit-item")
+let number = habit.querySelector(".number")
+let progress = habit.querySelector(".habit-progress")
+
+let max = parseInt(habit.getAttribute("data-max"))
+let current = parseInt(number.innerText)
+
+if(current < max){
+    current++
+    number.innerText = current
+
+    let percent = (current / max) * 100
+
+    if(progress){
+        progress.style.width = percent + "%"
+    }
+}
+
+})
+
+})
+</script>
+
+<script src="dashboard.js"></script>
+
+<div class="coin-popup" id="coinPopup">+500 💰</div>
+
+</body>
+</html>

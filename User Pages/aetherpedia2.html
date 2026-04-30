@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherPedia</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherpedia2.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+<!-- HEADER -->
+<header class="header">
+<h1>AetherPedia</h1>
+
+<div class="header-right">
+
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search articles..." />
+  </div>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+
+</div>
+
+
+</header>
+
+
+<!-- CATEGORY -->
+<section class="category">
+
+<span class="active"><a href="aetherpedia2.html">All</a></span>
+<span><a href="aetherpedia_rest.html">Rest</a></span>
+<span><a href="aetherpedia_excercise.html">Exercise</a></span>
+<span><a href="aetherpedia_nutrition.html">Nutrition</a></span>
+<span><a href="aetherpedia_movement.html">Health</a></span>
+<span><a href="aetherpedia_mindset.html">Mental Wellness</a></span>
+
+</section>
+
+
+
+<!-- CONTENT -->
+<section class="content">
+
+
+<!-- LEFT -->
+<div class="left">
+
+<h2 class="highlight-title">
+- Highlighted For You -
+</h2>
+
+
+<div class="highlight" 
+onclick="openArticle(
+'Start Running Without Burning Out',
+'Ethan Walker',
+'Exercise',
+'Running doesn’t have to be intense. You don’t need to be fast, and you don’t need to go far to call yourself a runner. What actually matters is showing up consistently, even if it’s just for a few minutes. A lot of people quit early because they think running has to feel exhausting or extreme. In reality, running works best when it feels manageable. When you keep it light and sustainable, it becomes something you can actually stick with. Running is powerful because it supports multiple aspects of your health at once. It improves heart health, builds stamina, and even helps clear your mind after a long day. That “post-run” feeling? That’s your body and brain resetting. If you’re just starting out, the best thing you can do is start small. Instead of running non-stop, try mixing it with walking. For example, you can:run for 2 minutes, walk for 1 minute, and repeat this for 10–15 minutes. This makes running feel less intimidating and helps your body adjust gradually. Keep your pace comfortable — you should still be able to talk while running. To make it easier to stay consistent, focus on building a simple routine. You don’t need perfect gear or a detailed plan. Just: pick a time that works for you (morning or evening) wear something comfortable let go of the pressure to go far or fast When running feels easy, you’re more likely to come back to it. A simple starting plan could look like this: run 2–3 times a week for 10–15 minutes. If it feels good, you can slowly increase the duration the following week. There’s no rush — progress doesn’t have to be fast to be real. At the end of the day, running isn’t about perfection. Slow runs still count. Short runs still count. What matters most is that you keep going, one step at a time. So if you’re thinking about starting, don’t overthink it. Just put on your shoes, step outside, and begin. Even a 5-minute run is already a win 🏃‍♂️✨',
+'image/running.png'
+)">
+
+<img src="image/running.png" class="highlight-img">
+
+<h3>Start Running Without Burning Out</h3>
+
+<p>
+Running doesn’t have to be intense. Start slow, build steady, and make it enjoyable.
+Running is one of the simplest ways to stay active — but many people quit too fast
+</p>
+
+<div class="meta">
+  <span class="category-tag">Exercise</span>
+  <span class="dot">•</span>
+  <span class="author-name">Ethan Walker</span>
+</div>
+
+
+</div>
+
+<!-- GRID -->
+<div class="grid">
+
+<div class="card">
+  <img src="image/food.png">
+  <h4>Eat Better Without Overthinking</h4>
+  <p>Healthy eating doesn’t have to be complicated. Start with simple combinations that actually work</p>
+
+  <div class="card-meta">
+    <span class="card-category">Nutrition</span>
+    <span class="dot">•</span>
+    <span class="card-author">Andre B. </span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/sleep.png">
+  <h4>Why Sleep Matters More</h4>
+  <p>Sleep isn’t just rest — it’s recovery.  Here’s why your body needs it more than you realize.....</p>
+
+  <div class="card-meta">
+    <span class="card-category">Rest</span>
+    <span class="dot">•</span>
+    <span class="card-author">Dinda Karlina</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/barbel.png">
+  <h4>Move Without Working Out</h4>
+  <p>You don’t need the gym to stay active.  Small movements throughout the day add up.....</p>
+
+  <div class="card-meta">
+    <span class="card-category">Movement</span>
+    <span class="dot">•</span>
+    <span class="card-author">Sofia M.</span>
+  </div>
+</div>
+
+<div class="card">
+  <img src="image/water.png">
+  <h4>Are You Drinking Enough Water</h4>
+  <p>Hydration affects your energy, focus, and mood. Most people don’t drink enough — here’s how to fix it.</p>
+
+  <div class="card-meta">
+    <span class="card-category">Nutrition</span>
+    <span class="dot">•</span>
+    <span class="card-author">Dr. Lina Patel</span>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- RIGHT -->
+<div class="right">
+
+<h3 class="popular-title">
+Most Popular
+</h3>
+
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Why Small Habits Actually Work</h4>
+  <div class="meta">
+    <span class="category-tag">Mindset</span>
+    <span class="dot">•</span>
+    <span class="author-name">Ethan Walker</span>
+  </div>
+</div>
+
+<img src="image/habit.png" class="popular-img">
+
+</div>
+
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>Getting Started With Workouts</h4>
+  <div class="meta">
+    <span class="category-tag">Exercise</span>
+    <span class="dot">•</span>
+    <span class="author-name">Ryan Kim</span>
+  </div>
+</div>
+
+
+<img src="image/workout.png" class="popular-img">
+
+</div>
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>It's Okay To Enjoy Treats</h4>
+  <div class="meta">
+    <span class="category-tag">Nutrition</span>
+    <span class="dot">•</span>
+    <span class="author-name">Marcus Lee</span>
+  </div>
+</div>
+
+<img src="image/treat.png" class="popular-img">
+
+</div>
+
+<div class="popular">
+
+<div class="popular-text">
+  <h4>How long should we sleep?</h4>
+  <div class="meta">
+    <span class="category-tag">Rest</span>
+    <span class="dot">•</span>
+    <span class="author-name">Xiao Gege</span>
+  </div>
+</div>
+
+<img src="image/turu.jpg" class="popular-img">
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+</body>
+
+<script>
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase().trim();
+
+  cards.forEach((card) => {
+    const title = card.querySelector("h4").textContent.toLowerCase();
+    const desc = card.querySelector("p").textContent.toLowerCase();
+
+    const match = title.includes(value) || desc.includes(value);
+
+    card.classList.toggle("hidden", !match);
+  });
+});
+</script>
+
+</div>
+
+<script>
+function openArticle(title, author, category, text, image){
+
+document.getElementById("popupTitle").textContent = title;
+document.getElementById("popupAuthor").textContent = author;
+document.getElementById("popupCategory").textContent = category;
+document.getElementById("popupText").textContent = text;
+document.getElementById("popupImage").src = image;
+
+document.getElementById("articlePopup").style.display = "flex";
+document.body.classList.add("modal-open");
+
+}
+
+function closeArticle(){
+document.getElementById("articlePopup").style.display = "none";
+
+document.body.classList.remove("modal-open"); 
+}
+
+function shareArticle(){
+navigator.clipboard.writeText(window.location.href);
+alert("Link copied!");
+}
+</script>
+
+<div id="articlePopup" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeArticle()">&times;</span>
+        
+        <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
+        
+        <div class="modal-body">
+            <span id="popupCategory" class="category-tag"></span>
+            <h2 id="popupTitle"></h2>
+            <p class="author">By <span id="popupAuthor"></span></p>
+            <hr>
+            <p id="popupText"></p>
+        </div>
+
+        <div class="modal-footer">
+            <button onclick="shareArticle()" class="share-btn">🔗 Share Link</button>
+        </div>
+    </div>
+</div>
+
+
+</html>

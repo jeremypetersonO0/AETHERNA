@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - Profile</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="profile.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+
+<p class="menu-title">Feature</p>
+
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+<p class="menu-title">General</p>
+
+<ul class="menu">
+<li class="menu-item">
+<a href="logout.html">
+<span>⏻</span> Log Out
+</a>
+</li>
+</ul>
+
+</nav>
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+<header class="header">
+<h1>Your Profile</h1>
+</header>
+
+<section class="profile-container">
+
+
+<!-- USERNAME POPUP -->
+<div class="popup-overlay" id="usernamePopup">
+<div class="popup-box">
+
+<h2>Change Username</h2>
+
+<label>New Username</label>
+<input type="text" id="newUsername">
+
+<p class="note">
+Username must be unique and contain only letters, numbers, or underscores.
+</p>
+
+<div class="popup-buttons">
+<button class="cancel-btn" onclick="closePopup()">Cancel</button>
+<button class="save-btn" onclick="saveUsername()">Save</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PASSWORD POPUP -->
+<div class="popup-overlay" id="passwordPopup">
+<div class="popup-box">
+
+<h2>Change Password</h2>
+
+<label>New Password</label>
+<input type="password" id="newPassword">
+
+<label>Confirm Password</label>
+<input type="password" id="confirmPassword">
+
+<p class="note">
+Password must be at least 8 characters long.
+</p>
+
+<div class="popup-buttons">
+<button class="cancel-btn" onclick="closePassword()">Cancel</button>
+<button class="save-btn" onclick="updatePassword()">Update Password</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- DELETE POPUP -->
+<div class="popup-overlay" id="deletePopup">
+<div class="popup-box">
+
+<h2>Delete Account</h2>
+
+<p class="delete-desc">
+Are you sure you want to permanently delete your account?
+</p>
+
+<p class="delete-warning">
+All your data, progress, and rewards will be lost and cannot be recovered.
+</p>
+
+<div class="popup-buttons">
+<button class="cancel-btn" onclick="closeDelete()">Cancel</button>
+<button class="delete-btn-popup" onclick="deleteAccount()">Delete</button>
+</div>
+
+</div>
+</div>
+
+
+
+<!-- PROFILE CARD -->
+<div class="profile-card">
+
+<div class="profile-top">
+
+<div class="profile-avatar">
+<img src="https://i.pravatar.cc/150" id="profileImage" class="avatar-circle">
+<label for="uploadPhoto" class="camera-icon">📷</label>
+<input type="file" id="uploadPhoto" accept="image/*" hidden>
+</div>
+
+<div class="level-section">
+<h3>Level 10</h3>
+
+<div class="level-bar">
+<div class="level-progress"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- USERNAME -->
+<div class="form-group">
+<label>Username</label>
+
+<div class="input-box">
+<input type="text" value="alex_gamer" id="username" disabled>
+<span class="edit-icon" onclick="openPopup()">✏️</span>
+</div>
+
+</div>
+
+
+<!-- EMAIL -->
+<div class="form-group">
+<label>Email</label>
+
+<input type="email" value="benedictandre35@gmail.com">
+<small>We'll send verification to your new email address.</small>
+
+</div>
+
+
+<!-- PASSWORD -->
+<div class="form-group">
+<label>Password</label>
+
+<div class="input-box">
+<input type="password" value="password123" id="password" readonly>
+<span class="eye-icon" onclick="togglePassword()" id="eyeIcon">👁️</span>
+</div>
+
+<a class="change-password" onclick="openPassword()">Change Password</a>
+
+</div>
+
+</div>
+
+
+
+<!-- DANGER ZONE -->
+<div class="danger-card">
+
+<h4>Danger Zone</h4>
+
+<div class="danger-box">
+<div>
+<h5>Delete Account</h5>
+<p>Permanently delete your account and all associated data</p>
+</div>
+
+<button class="delete-btn" onclick="openDelete()">Delete Account</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+
+<script>
+
+// Username Popup
+function openPopup(){
+document.getElementById("usernamePopup").style.display = "flex";
+}
+
+function closePopup(){
+document.getElementById("usernamePopup").style.display = "none";
+}
+
+function saveUsername(){
+
+let newName = document.getElementById("newUsername").value;
+
+if(newName.trim() !== ""){
+document.getElementById("username").value = newName;
+showToast("Username Updated ✓");
+}
+
+closePopup();
+}
+
+
+
+// Toggle Password
+function togglePassword(){
+
+let password = document.getElementById("password");
+let icon = document.getElementById("eyeIcon");
+
+if(password.type === "password"){
+password.type = "text";
+icon.textContent = "🙈";
+}else{
+password.type = "password";
+icon.textContent = "👁️";
+}
+}
+
+
+
+// Password Popup
+function openPassword(){
+document.getElementById("passwordPopup").style.display = "flex";
+}
+
+function closePassword(){
+document.getElementById("passwordPopup").style.display = "none";
+}
+
+function updatePassword(){
+
+let newPass = document.getElementById("newPassword").value;
+let confirmPass = document.getElementById("confirmPassword").value;
+
+if(newPass !== confirmPass){
+alert("Password does not match");
+return;
+}
+
+document.getElementById("password").value = newPass;
+
+closePassword();
+showToast("Password Updated ✓");
+}
+
+
+
+// Delete Popup
+function openDelete(){
+document.getElementById("deletePopup").style.display = "flex";
+}
+
+function closeDelete(){
+document.getElementById("deletePopup").style.display = "none";
+}
+
+function deleteAccount(){
+
+showToast("Account Deleted");
+
+setTimeout(()=>{
+window.location.href = "index.html";
+},1200);
+
+}
+
+
+
+// Upload Profile Photo
+document.getElementById("uploadPhoto").addEventListener("change", function(event){
+
+const file = event.target.files[0];
+
+if(file){
+
+const reader = new FileReader();
+
+reader.onload = function(e){
+document.getElementById("profileImage").src = e.target.result;
+showToast("Profile Updated ✓");
+}
+
+reader.readAsDataURL(file);
+
+}
+
+});
+
+
+
+// Toast
+function showToast(message){
+
+let toast = document.getElementById("toast");
+
+toast.textContent = message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>

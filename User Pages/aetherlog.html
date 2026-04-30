@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherLog</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR (TIDAK DIUBAH) -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html"> 🧠 aetherassits</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+<header class="header">
+<h1>AetherLog</h1>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+</header>
+
+<section class="dashboard-card">
+<h2>AetherLog Calendar</h2>
+<p>Your daily habit tracking will appear here</p>
+</section>
+
+<!-- CALENDAR -->
+<section class="calendar-card">
+
+<div class="calendar-header">
+<button id="prevMonth">←</button>
+<h2 id="monthYear"></h2>
+<button id="nextMonth">→</button>
+</div>
+
+<div class="calendar">
+<div class="day-names">
+<div>Sun</div><div>Mon</div><div>Tue</div>
+<div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+</div>
+
+<div id="calendarDays" class="calendar-days"></div>
+</div>
+
+</section>
+
+<!-- RECAP -->
+<section class="monthly-recap">
+
+<h2>This Month Overview</h2>
+
+<div class="recap-grid">
+<div class="recap-card">
+<h3>Goal Completion</h3>
+<p id="goalCompletion">0%</p>
+</div>
+
+<div class="recap-card">
+<h3>Best Streak</h3>
+<p id="bestStreak">0 Days</p>
+</div>
+
+<div class="recap-card">
+<h3>Total Glasses</h3>
+<p id="totalGlasses">0</p>
+</div>
+</div>
+
+<canvas id="monthlyChart"></canvas>
+
+</section>
+
+</main>
+</div>
+
+<!-- POPUP -->
+<div id="statusPopup" class="status-popup">
+<div class="status-option achieved-btn">🟩 Achieved</div>
+<div class="status-option partial-btn">🟨 Partial</div>
+<div class="status-option missed-btn">🟥 Missed</div>
+</div>
+
+<script>
+const monthYear = document.getElementById("monthYear");
+const calendarDays = document.getElementById("calendarDays");
+const popup = document.getElementById("statusPopup");
+
+let date = new Date();
+let selectedDay = null;
+
+let chart = null;
+
+/* 🔥 DATA DIPISAH PER BULAN */
+function getKey() {
+  return `${date.getFullYear()}-${date.getMonth()}`;
+}
+
+function getData() {
+  let all = JSON.parse(localStorage.getItem("aetherData") || "{}");
+  let key = getKey();
+  if (!all[key]) all[key] = {};
+  return all;
+}
+
+function saveData(all) {
+  localStorage.setItem("aetherData", JSON.stringify(all));
+}
+
+/* ================= CALENDAR ================= */
+function renderCalendar() {
+
+calendarDays.innerHTML = "";
+
+let year = date.getFullYear();
+let month = date.getMonth();
+
+let firstDay = new Date(year, month, 1).getDay();
+let lastDate = new Date(year, month + 1, 0).getDate();
+
+monthYear.innerText = date.toLocaleDateString("en-US", {
+month: "long",
+year: "numeric"
+});
+
+let all = getData();
+let data = all[getKey()] || {};
+
+/* empty */
+for (let i = 0; i < firstDay; i++) {
+calendarDays.innerHTML += "<div></div>";
+}
+
+/* days */
+for (let i = 1; i <= lastDate; i++) {
+
+let day = document.createElement("div");
+day.innerText = i;
+
+if (data[i]) day.classList.add(data[i]);
+
+let today = new Date();
+if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+day.classList.add("today");
+}
+
+day.addEventListener("click", (e) => {
+selectedDay = i;
+popup.classList.add("show");
+popup.style.top = e.clientY + "px";
+popup.style.left = e.clientX + "px";
+});
+
+calendarDays.appendChild(day);
+}
+}
+
+/* ================= APPLY STATUS ================= */
+function applyStatus(type) {
+
+let all = getData();
+let key = getKey();
+
+all[key][selectedDay] = type;
+
+saveData(all);
+
+popup.classList.remove("show");
+
+renderCalendar();
+updateStats();
+}
+
+/* buttons */
+document.querySelector(".achieved-btn").onclick = () => applyStatus("achieved");
+document.querySelector(".partial-btn").onclick = () => applyStatus("partial");
+document.querySelector(".missed-btn").onclick = () => applyStatus("missed");
+
+/* close popup */
+document.addEventListener("click", (e) => {
+if (!popup.contains(e.target) && !e.target.closest(".calendar-days div")) {
+popup.classList.remove("show");
+}
+});
+
+/* navigation */
+document.getElementById("prevMonth").onclick = () => {
+date.setMonth(date.getMonth() - 1);
+renderCalendar();
+updateStats();
+};
+
+document.getElementById("nextMonth").onclick = () => {
+date.setMonth(date.getMonth() + 1);
+renderCalendar();
+updateStats();
+};
+
+/* ================= STATS + CHART ================= */
+function updateStats() {
+
+let all = getData();
+let data = all[getKey()] || {};
+
+let a = 0, p = 0, m = 0;
+
+/* count */
+for (let k in data) {
+if (data[k] === "achieved") a++;
+if (data[k] === "partial") p++;
+if (data[k] === "missed") m++;
+}
+
+/* goal */
+let total = a + p + m;
+
+document.getElementById("goalCompletion").innerText =
+total ? Math.round((a / total) * 100) + "%" : "0%";
+
+/* BEST STREAK FIX */
+let arr = Object.keys(data).sort((x,y)=>x-y);
+
+let streak = 0;
+let best = 0;
+
+for (let k of arr) {
+if (data[k] === "achieved") {
+streak++;
+best = Math.max(best, streak);
+} else {
+streak = 0;
+}
+}
+
+document.getElementById("bestStreak").innerText = best + " Days";
+
+/* CHART FIX */
+if (chart) chart.destroy();
+
+chart = new Chart(document.getElementById("monthlyChart"), {
+type: "bar",
+data: {
+labels: ["Achieved", "Partial", "Missed"],
+datasets: [{
+data: [a, p, m],
+backgroundColor: ["#4CAF50", "#FFC107", "#F44336"],
+borderRadius: 10
+}]
+},
+options: {
+responsive: true,
+plugins: {
+legend: { display: false }
+},
+scales: {
+y: {
+beginAtZero: true,
+ticks: { stepSize: 1 }
+}
+}
+}
+});
+}
+
+/* INIT */
+renderCalendar();
+updateStats();
+
+</script>
+
+</body>
+</html>

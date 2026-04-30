@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherFlow</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherflow.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+<aside class="sidebar">
+
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+
+</nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+
+
+<!-- HEADER -->
+<header class="header">
+  <h1>AetherFlow</h1>
+
+  <div class="header-right">
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search videos..." />
+  </div>
+
+  <div class="header-right">
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+
+  </div>
+
+</div>
+
+</header>
+
+<!-- CATEGORY -->
+<section class="category">
+
+  <span>
+    <a href="aetherflow.html">All</a>
+  </span>
+
+  <span class="active">
+    <a href="aetherflow_exercise.html">Exercise</a>
+  </span>
+
+  <span>
+    <a href="aetherflow_movement.html">Movement</a>
+  </span>
+
+  <span>
+    <a href="aetherflow_nutrition.html">Nutrition</a>
+  </span>
+
+  <span>
+    <a href="aetherflow_health.html">Health</a>
+  </span>
+
+</section>
+
+<!-- HERO -->
+<section class="hero-flow">
+
+  <!-- THUMBNAIL YOUTUBE -->
+  <img class="hero-thumb" src="https://img.youtube.com/vi/ow3hpYJqYEI/hqdefault.jpg">
+
+  <div class="hero-content">
+
+    <h2>30 MIN WALKING CARDIO WORKOUT</h2>
+
+    <div class="hero-bottom">
+      <span class="tag">Exerciset</span>
+
+      <button onclick="playVideo('ow3hpYJqYEI')">
+        Watch Now
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+</section>
+
+<!-- RECOMMENDED -->
+<h3 class="section-title">Recommended For You</h3>
+
+<div class="flow-grid">
+  
+  <div class="flow-card">
+
+    <img src="https://img.youtube.com/vi/-hSma-BRzoo/hqdefault.jpg">
+
+    <h4>20 Min Fat Burning HIIT Workout</h4>
+
+    <div class="card-bottom">
+      <span class="tag">Excercise</span>
+      <button class="watch-btn" onclick="playVideo('-hSma-BRzoo')">
+        Watch Now
+      </button>
+    </div>
+
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div id="videoModal" class="video-modal">
+    <div class="video-box">
+      <iframe id="ytFrame" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="flow-card">
+
+    <img src="https://img.youtube.com/vi/IT94xC35u6k/hqdefault.jpg">
+
+    <h4>20 min Fat Burning Workout for TOTAL BEGINNERS</h4>
+
+    <div class="card-bottom">
+      <span class="tag">Excercise</span>
+      <button class="watch-btn" onclick="playVideo('IT94xC35u6k')">
+        Watch Now
+      </button>
+    </div>
+
+  </div>
+
+
+  <div class="flow-card">
+
+    <img src="https://img.youtube.com/vi/pi5WhX24uS4/hqdefault.jpg">
+
+    <h4>Jarang Olahraga? Lakukan 10 Menit Stretching Full Body ini!</h4>
+
+    <div class="card-bottom">
+      <span class="tag">Excercise</span>
+      <button class="watch-btn" onclick="playVideo('pi5WhX24uS4')">
+        Watch Now
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+<script>
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".flow-card");
+
+searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase().trim();
+
+  cards.forEach((card) => {
+    const title = card.querySelector("h4").textContent.toLowerCase();
+    const tag = card.querySelector(".tag").textContent.toLowerCase();
+
+    const match = title.includes(value) || tag.includes(value);
+
+    card.style.display = match ? "block" : "none";
+  });
+});
+</script>
+
+<script>
+function playVideo(videoId) {
+  const modal = document.getElementById("videoModal");
+  const frame = document.getElementById("ytFrame");
+
+  frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  modal.style.display = "flex";
+}
+
+// klik luar untuk close
+document.getElementById("videoModal").addEventListener("click", function () {
+  this.style.display = "none";
+  document.getElementById("ytFrame").src = "";
+});
+</script>
+
+</html>

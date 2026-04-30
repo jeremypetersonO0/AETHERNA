@@ -1,0 +1,469 @@
+/* ================= CATEGORY ================= */
+.category{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:70px;
+  padding:12px 25px;
+  background:linear-gradient(90deg,#b8e54c,#5fa8ff);
+  color:white;
+  font-size:13px;
+  flex-wrap:wrap;
+  border-radius: 10px;
+}
+
+.category span{
+  cursor:pointer;
+  opacity:0.7;
+  padding:5px 10px;
+  border-radius:6px;
+  transition:0.2s;
+}
+
+.category span.active{
+  opacity:1;
+  font-weight:600;
+  background:rgba(255,255,255,0.25);
+}
+
+/* ================= MAIN LAYOUT ================= */
+.content{
+  display:flex;
+  gap:20px;
+  padding:20px 25px;
+}
+
+.left{
+  flex:3;
+}
+
+.right{
+  flex:1.2;
+}
+
+/* ================= HIGHLIGHT ================= */
+.highlight-title{
+  text-align:center;
+  font-size:18px;
+  margin-bottom:12px;
+  font-weight:600;
+}
+
+.highlight{
+  background:white;
+  padding:14px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+
+.highlight-img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.highlight h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.highlight p{
+  font-size:12px;
+  color:#666;
+}
+
+/* ================= GRID ================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:15px;
+}
+
+/* ================= CARD ================= */
+.card{
+  background:white;
+  padding:10px;
+  border-radius:12px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.05);
+  transition:0.2s;
+  cursor:pointer;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+}
+
+.card img{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+  border-radius:8px;
+  margin-bottom:6px;
+}
+
+.card h4{
+  font-size:13px;
+  margin:4px 0;
+  line-height:1.3;
+}
+
+.card p{
+  font-size:11px;
+  color:#777;
+  line-height:1.4;
+
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* ================= CARD META (RATA) ================= */
+.card-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:6px;
+  font-size:11px;
+}
+
+.meta-left{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.card-category{
+  color:#777;
+  font-size:11px;
+}
+
+.card-author{
+  color:#4da3ff;
+  font-size:11px;
+  font-weight:500;
+}
+
+/* ================= RIGHT (POPULAR) ================= */
+.popular{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  padding:10px;
+  border-radius:12px;
+  margin-bottom:10px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.05);
+}
+
+.popular-text h4{
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.meta{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+}
+
+.category-tag{
+  color:#777;
+}
+
+.author-name{
+  color:#4da3ff;
+  font-weight:500;
+}
+
+.dot{
+  color:#aaa;
+}
+
+.popular-img{
+  width:50px;
+  height:50px;
+  border-radius:8px;
+  object-fit:cover;
+}
+
+.highlight h3 {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.highlight p {
+  font-size: 11px;
+  color: #777;
+}
+
+.popular-title{
+  margin-bottom:10px;
+  text-align: center;
+}
+
+.highlight,
+.card,
+.popular {
+  cursor: pointer;
+}
+
+.highlight:hover,
+.card:hover,
+.popular:hover {
+  transform: translateY(-3px);
+  transition: 0.2s;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.search-box input{
+  padding:6px 10px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  font-size:12px;
+  width:150px;
+}
+
+.search-box input{
+  padding:10px 14px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  width:500px;
+  font-size:12px;
+
+  background:#eef1f4;
+
+  /* inset lebih tegas */
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,0.18),
+    inset -4px -4px 8px rgba(255,255,255,0.95);
+}
+
+.hidden{
+  opacity:0;
+  transform:scale(0.95);
+  pointer-events:none;
+  height:0;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  transition:0.2s;
+}
+
+.hidden{
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+}
+
+.card,
+.highlight,
+.popular{
+  transition:0.2s;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:12px;
+
+  align-items:start;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+.content{
+  overflow:visible;
+}
+
+.grid{
+  overflow:visible;
+}
+
+.category a {
+text-decoration: none;
+color: white;
+}
+
+.category span {
+cursor: pointer;
+}
+
+.category span.active {
+background: white;
+color: #1c1c1c;
+}
+
+.category span.active a {
+color: #1c1c1c;
+}
+
+.category span:hover {
+background: rgba(255,255,255,0.15);
+}
+
+.category span {
+transition: all 0.3s ease;
+}
+
+.category span a {
+transition: all 0.3s ease;
+}
+
+.highlight-link{
+text-decoration:none;
+color:inherit;
+display:block;
+}
+
+/* BACKDROP */
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+padding:20px;
+}
+
+/* BOX */
+.modal-content{
+background:white;
+width:100%;
+max-width:750px;
+max-height:85vh;
+overflow-y:auto;
+border-radius:14px;
+padding:20px;
+position:relative;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+animation:pop 0.2s ease;
+transform: translateY(-10px);
+}
+
+/* ANIMATION */
+@keyframes pop{
+from{
+transform:scale(0.95);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+/* CLOSE */
+.close-btn{
+position:absolute;
+top:12px;
+right:12px;
+width:34px;
+height:34px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#f3f3f3;
+cursor:pointer;
+font-size:18px;
+transition:0.2s;
+}
+
+.close-btn:hover{
+background:#e9e9e9;
+}
+
+/* IMAGE */
+#popupImage{
+width:100%;
+height:auto;
+border-radius:10px;
+margin-bottom:15px;
+object-fit:cover;
+}
+
+/* META */
+.modal-body{
+padding-top:10px;
+}
+
+#popupCategory{
+font-size:12px;
+color:#666;
+}
+
+/* TITLE */
+#popupTitle{
+font-size:20px;
+margin:10px 0;
+}
+
+/* TEXT */
+#popupText{
+line-height:1.6;
+color:#444;
+}
+
+/* SHARE */
+.modal-footer{
+display:flex;
+justify-content:flex-end;
+margin-top:15px;
+}
+
+.share-btn{
+background:#5C6EFF;
+color:white;
+border:none;
+padding:9px 16px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.share-btn:hover{
+background:#4a5df0;
+}
+
+#popupText{
+text-align: justify;
+}
+
+#popupTitle{
+text-align: center;
+margin-bottom: 8px;
+}
+
+.author{
+text-align: center;
+color: #777;
+font-size: 13px;
+}
+
+body.modal-open{
+overflow: hidden;
+padding-right: 5px; /* biar gak “geser” karena scrollbar hilang */
+}
+
