@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play</title>
+
+<link rel="stylesheet" href="play_admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <div class="logo-box">
+        <img src="LOGO.png">
+        <h3>AETHERNA</h3>
+    </div>
+
+    <nav class="sidebar-nav">
+        <p class="section-label">Feature</p>
+        <ul>
+            <li class="nav-item"><a href="dashboard_admin.html"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="userlog_admin.html"><i class="fa-solid fa-book"></i> User Log</a></li>
+            <li class="nav-item"><a href="content_admin.html"><i class="fa-solid fa-file-lines"></i> Content</a></li>
+            <li class="nav-item"><a href="analytics_admin.html"><i class="fa-solid fa-chart-simple"></i> Analytics</a></li>
+            <li class="nav-item active"><a href="#"><i class="fa-solid fa-gamepad"></i> Play</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+<h1>Play</h1>
+
+<!-- TASKS -->
+<h2 class="section-title">Tasks</h2>
+
+<div class="card-box">
+
+    <div class="top-bar">
+        <button class="btn-green" onclick="window.location.href='createtask.html'">
+            <i class="fa-solid fa-plus"></i> Create Task
+        </button>
+
+        <div class="right-tools">
+            <input type="text" placeholder="Search by name">
+            <select><option>Filter by Type</option></select>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Type</th>
+                <th>XP</th>
+                <th>Coins</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Drink 8 Glasses</td>
+                <td>Water</td>
+                <td>10 XP</td>
+                <td>30</td>
+                <td>Active</td>
+                <td>
+                    <button class="btn-edit" onclick="window.location.href='edittask.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-delete" onclick="window.location.href='deletetask.html'"><i class="fa-solid fa-trash"></i> Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>30 Minute Exercise</td>
+                <td>Exercise</td>
+                <td>50 XP</td>
+                <td>50</td>
+                <td>Active</td>
+                <td>
+                    <button class="btn-edit" onclick="window.location.href='edittask.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-delete" onclick="window.location.href='deletetask.html'"><i class="fa-solid fa-trash"></i> Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Sleep 8 Hours</td>
+                <td>Sleep</td>
+                <td>150 XP</td>
+                <td>20</td>
+                <td>Active</td>
+                <td>
+                    <button class="btn-edit" onclick="window.location.href='edittask.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-delete" onclick="window.location.href='deletetask.html'"><i class="fa-solid fa-trash"></i> Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- ITEMS -->
+<h2 class="section-title">Items</h2>
+
+<div class="card-box">
+
+    <div class="top-bar">
+        <button class="btn-green" onclick="window.location.href='createitem.html'">
+            <i class="fa-solid fa-plus"></i> Create Item
+        </button>
+
+        <div class="right-tools">
+            <input type="text" placeholder="Search by name">
+            <select><option>Filter by Type</option></select>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Level</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>A Color</td>
+                <td>T-Shirt</td>
+                <td>1</td>
+                <td>Free</td>
+                <td>Available</td>
+                <td>
+                    <button class="btn-edit" onclick="window.location.href='edititem.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-delete" onclick="window.location.href='deleteitem.html'"><i class="fa-solid fa-trash"></i> Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Adventure Awaits</td>
+                <td>T-Shirt</td>
+                <td>5</td>
+                <td>80</td>
+                <td>Available</td>
+                <td>
+                    <button class="btn-edit" onclick="window.location.href='edititem.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-delete" onclick="window.location.href='deleteitem.html'"><i class="fa-solid fa-trash"></i> Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

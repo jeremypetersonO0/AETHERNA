@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Log - Aetherna</title>
+    <link rel="stylesheet" href="userlog_admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+   <aside class="sidebar">
+    <div class="logo-box">
+        <img src="LOGO.png" alt="Aetherna">
+        <h3>AETHERNA</h3>
+    </div>
+    
+    <nav class="sidebar-nav">
+        <p class="section-label">Feature</p>
+        <ul>
+            <li class="nav-item"><a href="dashboard_admin.html"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
+            <li class="nav-item active"><a href="#"><i class="fa-solid fa-book"></i> User Log</a></li>
+            <li class="nav-item"><a href="content_admin.html"><i class="fa-solid fa-file-lines"></i> Content</a></li>
+            <li class="nav-item"><a href="analytics_admin.html"><i class="fa-solid fa-chart-simple"></i> Analytics</a></li>
+            <li class="nav-item"><a href="play_admin.html"><i class="fa-solid fa-gamepad"></i> Play</a></li>
+        </ul>
+    </nav>
+</aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <h1>User Log</h1>
+
+        <!-- SEARCH & FILTER -->
+        <div class="top-bar">
+            <input type="text" id="searchInput" placeholder="Search by name">
+            <select id="filterType">
+                <option value="">Filter by Type</option>
+                <option value="Good">Good</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Low">Low</option>
+            </select>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-container">
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>User Profile</th>
+                        <th>Date</th>
+                        <th>Sleep</th>
+                        <th>Water</th>
+                        <th>Exercise</th>
+                        <th>Breaks</th>
+                        <th>Food</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alya Putri</td>
+                        <td>April 7</td>
+                        <td>7 hours</td>
+                        <td>6/8</td>
+                        <td>30 minute</td>
+                        <td>5 times</td>
+                        <td>Balanced</td>
+                        <td class="good">Good</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rafi Ahmad</td>
+                        <td>April 7</td>
+                        <td>5 hours</td>
+                        <td>3/8</td>
+                        <td>10 minute</td>
+                        <td>2 times</td>
+                        <td>Unbalanced</td>
+                        <td class="low">Low</td>
+                    </tr>
+
+                    <tr>
+                        <td>Kevin Tan</td>
+                        <td>April 7</td>
+                        <td>6.5 hours</td>
+                        <td>7/8</td>
+                        <td>25 minute</td>
+                        <td>4 times</td>
+                        <td>Balanced</td>
+                        <td class="good">Good</td>
+                    </tr>
+
+                    <tr>
+                        <td>Salsa Rahma</td>
+                        <td>April 7</td>
+                        <td>4 hours</td>
+                        <td>2/8</td>
+                        <td>0 minute</td>
+                        <td>1 times</td>
+                        <td>Unbalanced</td>
+                        <td class="low">Low</td>
+                    </tr>
+
+                    <tr>
+                        <td>Nadia Putri</td>
+                        <td>April 7</td>
+                        <td>6 hours</td>
+                        <td>5/8</td>
+                        <td>20 minute</td>
+                        <td>3 times</td>
+                        <td>Moderate</td>
+                        <td class="moderate">Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>Fajar Nugraha</td>
+                        <td>April 7</td>
+                        <td>7 hours</td>
+                        <td>7/8</td>
+                        <td>35 minute</td>
+                        <td>5 times</td>
+                        <td>Balanced</td>
+                        <td class="good">Good</td>
+                    </tr>
+                    <tr>
+                        <td>Lina Kusuma</td>
+                        <td>April 7</td>
+                        <td>5.5 hours</td>
+                        <td>4/8</td>
+                        <td>15 minute</td>
+                        <td>3 times</td>
+                        <td>Moderate</td>
+                        <td class="moderate">Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>Dina Pratama</td>
+                        <td>April 6</td>
+                        <td>7 Hours</td>
+                        <td>7/8</td>
+                        <td>30 minutes</td>
+                        <td>5 times</td>
+                        <td>Balanced</td>
+                        <td class="good">Good</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</div>
+
+<script src="userlog_admin.js"></script>
+</body>
+</html>

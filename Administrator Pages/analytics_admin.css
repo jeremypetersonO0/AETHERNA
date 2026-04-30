@@ -1,0 +1,72 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat',sans-serif; }
+
+body { background:#f4f6f8; color:#333; }
+
+.dashboard-container { display:flex; min-height:100vh; }
+
+/* SIDEBAR */
+.sidebar { width: 250px; background: #fff; padding: 30px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; }
+.logo-box { text-align: center; margin-bottom: 40px; }
+.logo-box img { width: 45px; }
+.logo-box h3 { font-size: 13px; letter-spacing: 2px; margin-top: 10px; font-weight: 800; }
+
+.section-label { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; margin-bottom: 15px; padding-left: 10px; }
+.sidebar-nav ul { list-style: none; }
+.nav-item a { display: flex; align-items: center; gap: 15px; padding: 12px 15px; text-decoration: none; color: #888; font-weight: 600; font-size: 14px; transition: 0.3s; }
+.nav-item.active a { background: #f0f7ff; color: #3b82f6; border-radius: 12px; }
+.nav-item a:hover { color: #3b82f6; }
+
+/* MAIN */
+.main-content { flex:1; padding:40px; }
+
+h1 { font-size:26px; font-weight:800; }
+.subtitle { color:#777; margin-bottom:25px; }
+
+/* CARDS (SAMA DASHBOARD) */
+.stats-grid {
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card {
+    background:#fff;
+    padding:25px 10px;
+    border-radius:18px;
+    text-align:center;
+    border:1px solid #f0f0f0;
+}
+
+.stat-card i { font-size:22px; margin-bottom:10px; }
+.stat-card p { font-size:11px; color:#888; font-weight:700; }
+.stat-card h2 { font-size:22px; font-weight:800; }
+
+/* COLORS */
+.text-blue { color:#3b82f6; }
+.text-green { color:#84cc16; }
+.icon-blue { color:#3b82f6; }
+.icon-green { color:#84cc16; }
+
+/* FILTER */
+.filters {
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+select {
+    padding:10px 14px;
+    border-radius:12px;
+    border:1px solid #ddd;
+    background:#fff;
+}
+
+/* CHART */
+.chart-box {
+    background:#fff;
+    border-radius:25px;
+    padding:30px;
+    height:420px;
+    border:1px solid #f0f0f0;
+}

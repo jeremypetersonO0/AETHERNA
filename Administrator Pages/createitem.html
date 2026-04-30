@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Item</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 600px;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom:18px;
+}
+
+label {
+    display:block;
+    font-size:13px;
+    margin-bottom:6px;
+    color:#444;
+}
+
+input {
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+}
+
+/* UPLOAD BOX */
+.upload-box {
+    border:2px dashed #ddd;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    color:#888;
+    font-size:12px;
+}
+
+.upload-box i {
+    font-size:20px;
+    margin-bottom:8px;
+    color:#3b82f6;
+}
+
+/* HALF INPUT (biar ga full) */
+.half {
+    width:50%;
+}
+
+/* BUTTON */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+button {
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    font-size: 13px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* COLORS */
+.btn-cancel {
+    background:#3b82f6;
+    color:#fff;
+}
+
+.btn-create {
+    background:#84cc16;
+    color:#fff;
+}
+
+/* HOVER */
+.btn-cancel:hover {
+    background:#2563eb;
+}
+
+.btn-create:hover {
+    background:#65a30d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <h2>Create Item</h2>
+        <div class="form-group">
+            <label>Item Name</label>
+            <input type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Upload Item</label>
+            <div class="upload-box">
+                <i class="fa-solid fa-upload"></i>
+                <div>Select Photo to Upload</div>
+                <small>Supported Format: JPG, PNG (10MB max)</small>
+            </div>
+        </div>
+
+        <div class="form-group half">
+            <label>Category</label>
+            <input type="text">
+        </div>
+
+        <div class="form-group half">
+            <label>Level</label>
+            <input type="number">
+        </div>
+
+        <div class="form-group half">
+            <label>Price</label>
+            <input type="number">
+        </div>
+
+        <div class="actions">
+            <button class="btn-cancel" onclick="goBack()">Cancel</button>
+            <button class="btn-create">Create Item</button>
+        </div>
+
+    </div>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+<script>
+function goBack(){
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

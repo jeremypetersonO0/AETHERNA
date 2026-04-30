@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Article</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 540px; /* lebih kecil biar elegan */
+    border-radius: 18px;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-btn:hover {
+    color: #333;
+}
+
+/* HEADER */
+h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.desc {
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+/* SECTION TITLE */
+.section-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: block;
+    color: #444;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+/* focus effect */
+input:focus, textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+/* textarea */
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* ROW */
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+/* UPLOAD BOX */
+.upload-box {
+    border: 2px dashed #e5e7eb;
+    border-radius: 14px;
+    text-align: center;
+    padding: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.upload-box:hover {
+    border-color: #3b82f6;
+    background: #f9fbff;
+}
+
+.upload-box i {
+    font-size: 22px;
+    color: #3b82f6;
+    margin-bottom: 6px;
+}
+
+.upload-box p {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.upload-box span {
+    font-size: 10px;
+    color: #999;
+}
+
+/* BUTTON */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-draft {
+    background: #3b82f6;
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-publish {
+    background: #84cc16;
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* HOVER */
+.btn-draft:hover {
+    background: #2563eb;
+}
+
+.btn-publish:hover {
+    background: #65a30d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <!-- CLOSE -->
+    <i class="fa-solid fa-xmark close-btn" onclick="goBack()"></i>
+
+    <!-- HEADER -->
+    <h2>Upload Article</h2>
+    <p class="desc">Create And Publish New Content For Users</p>
+
+    <div class="section-title">Article Information</div>
+
+    <!-- FORM -->
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Subtitle (Optional)</label>
+        <input type="text">
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text">
+        </div>
+        <div class="form-group">
+            <label>Tags</label>
+            <input type="text">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Cover Image</label>
+        <div class="upload-box">
+            <i class="fa-solid fa-upload"></i>
+            <p>Select Photo to Upload</p>
+            <span>JPG, PNG (10MB max)</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Article Content</label>
+        <textarea placeholder="Type your content here..."></textarea>
+    </div>
+
+    <div class="actions">
+        <button class="btn-draft">Save as Draft</button>
+        <button class="btn-publish">Publish</button>
+    </div>
+
+</div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

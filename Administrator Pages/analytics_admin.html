@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics</title>
+
+<link rel="stylesheet" href="analytics_admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard-container">
+
+<!-- SIDEBAR (SAMA PERSIS CONTENT) -->
+<aside class="sidebar">
+    <div class="logo-box">
+        <img src="LOGO.png">
+        <h3>AETHERNA</h3>
+    </div>
+
+    <nav class="sidebar-nav">
+        <p class="section-label">Feature</p>
+        <ul>
+            <li class="nav-item"><a href="dashboard_admin.html"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="userlog_admin.html"><i class="fa-solid fa-book"></i> User Log</a></li>
+            <li class="nav-item"><a href="content_admin.html"><i class="fa-solid fa-file-lines"></i> Content</a></li>
+            <li class="nav-item active"><a href="#"><i class="fa-solid fa-chart-simple"></i> Analytics</a></li>
+            <li class="nav-item"><a href="play_admin.html"><i class="fa-solid fa-gamepad"></i> Play</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+    <h1>Analytics</h1>
+    <p class="subtitle">Last 7 Days</p>
+
+    <!-- CARDS -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <i class="fa-solid fa-bed icon-blue"></i>
+            <p>Avg Sleep</p>
+            <h2 class="text-blue">6.4 hours</h2>
+        </div>
+
+        <div class="stat-card">
+            <i class="fa-solid fa-dumbbell icon-green"></i>
+            <p>Avg Exercise</p>
+            <h2 class="text-green">22 minutes</h2>
+        </div>
+
+        <div class="stat-card">
+            <i class="fa-solid fa-glass-water icon-blue"></i>
+            <p>Avg Water</p>
+            <h2 class="text-blue">5/8</h2>
+        </div>
+
+        <div class="stat-card">
+            <i class="fa-solid fa-person-walking icon-green"></i>
+            <p>Avg Breaks</p>
+            <h2 class="text-green">7 times</h2>
+        </div>
+
+        <div class="stat-card">
+            <i class="fa-solid fa-utensils icon-blue"></i>
+            <p>Avg Food Score</p>
+            <h2 class="text-blue">78.5%</h2>
+        </div>
+
+    </div>
+
+    <!-- FILTER -->
+    <div class="filters">
+        <select><option>Filter by Type</option></select>
+        <select><option>Time</option></select>
+    </div>
+
+    <!-- CHART -->
+    <div class="chart-box">
+        <canvas id="chart"></canvas>
+    </div>
+
+</main>
+</div>
+
+<script src="analytics_admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Task</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* MODAL */
+.modal-box {
+    background:#fff;
+    width:500px;
+    border-radius:16px;
+    padding:25px;
+}
+
+/* TITLE */
+h2 {
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom:15px;
+}
+
+label {
+    font-size:12px;
+    color:#444;
+    display:block;
+    margin-bottom:5px;
+}
+
+input {
+    width:100%;
+    padding:10px;
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    font-size:12px;
+}
+
+/* TAG */
+.tag-input {
+    background:#f4f6f8;
+    border-radius:12px;
+    padding:8px;
+}
+
+.tag {
+    background:#3b82f6;
+    color:#fff;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:11px;
+    display:inline-block;
+}
+
+/* BUTTON */
+.actions {
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+button {
+    padding:10px 20px;
+    border-radius:10px;
+    border:none;
+    font-weight:600;
+    font-size:12px;
+    cursor:pointer;
+}
+
+/* COLORS */
+.btn-cancel {
+    background:#3b82f6;
+    color:#fff;
+}
+
+.btn-save {
+    background:#84cc16;
+    color:#fff;
+}
+
+/* HOVER */
+.btn-cancel:hover {
+    background:#2563eb;
+}
+
+.btn-save:hover {
+    background:#65a30d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <h2>Edit Task</h2>
+
+    <div class="form-group">
+        <label>Edit Task</label>
+        <input type="text" value="Drink 8 Glasses">
+    </div>
+
+    <div class="form-group">
+        <label>Type</label>
+        <div class="tag-input">
+            <span class="tag">Water ×</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>XP (Per Progress)</label>
+        <input type="number" value="10">
+    </div>
+
+    <div class="form-group">
+        <label>Coin (On Completion)</label>
+        <input type="number" value="30">
+    </div>
+
+    <div class="actions">
+        <button class="btn-cancel" onclick="goBack()">Cancel</button>
+        <button class="btn-save">Save Changes</button>
+    </div>
+
+</div>
+
+<script>
+function goBack(){
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

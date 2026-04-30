@@ -1,0 +1,196 @@
+/* ===== RESET & BASE (samakan dengan dashboard) ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar { width: 250px; background: #fff; padding: 30px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; }
+.logo-box { text-align: center; margin-bottom: 40px; }
+.logo-box img { width: 45px; }
+.logo-box h3 { font-size: 13px; letter-spacing: 2px; margin-top: 10px; font-weight: 800; }
+
+.section-label { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; margin-bottom: 15px; padding-left: 10px; }
+.sidebar-nav ul { list-style: none; }
+.nav-item a { display: flex; align-items: center; gap: 15px; padding: 12px 15px; text-decoration: none; color: #888; font-weight: 600; font-size: 14px; transition: 0.3s; }
+.nav-item.active a { background: #f0f7ff; color: #3b82f6; border-radius: 12px; }
+.nav-item a:hover { color: #3b82f6; }
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.main-content h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* ===== TOP BAR ===== */
+.content-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.left-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.right-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.right-actions input,
+.right-actions select {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    font-size: 13px;
+}
+
+/* ===== BUTTON UPLOAD ===== */
+.btn-green {
+    background: #eff9ef;
+    color: #2d7a2d;
+    border: 1px solid #c9e7c9;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ===== TABLE ===== */
+.table-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #f0f0f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f3f4f6;
+}
+
+th {
+    text-align: left;
+    padding: 14px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+}
+
+td {
+    padding: 14px 12px;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+/* title */
+td:first-child {
+    font-weight: 500;
+}
+
+/* ===== TAGS ===== */
+.tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #3b82f6;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* ===== STATUS ===== */
+.status {
+    font-weight: 600;
+}
+
+.status.published {
+    color: #16a34a;
+}
+
+.status.draft {
+    color: #f59e0b;
+}
+
+/* ===== ACTION BUTTON ===== */
+.actions {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-edit,
+.btn-delete {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-edit {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.btn-delete {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-edit i,
+.btn-delete i {
+    font-size: 10px;
+}
+
+/* hover */
+.btn-edit:hover {
+    background: #2563eb;
+}
+
+.btn-delete:hover {
+    background: #1e40af;
+}

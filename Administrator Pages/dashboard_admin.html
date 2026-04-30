@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetherna Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard_admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-box">
+                <img src="LOGO.png" alt="Aetherna">
+                <h3>AETHERNA</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <p class="section-label">Feature</p>
+                <ul>
+                    <li class="nav-item active"><a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
+                    <li class="nav-item"><a href="userlog_admin.html"><i class="fa-solid fa-book"></i> User Log</a></li>
+                    <li class="nav-item"><a href="content_admin.html"><i class="fa-solid fa-file-lines"></i> Content</a></li>
+                    <li class="nav-item"><a href="analytics_admin.html"><i class="fa-solid fa-chart-simple"></i> Analytics</a></li>
+                    <li class="nav-item"><a href="play_admin.html"><i class="fa-solid fa-gamepad"></i> Play</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Dashboard</h1>
+                <div class="user-pill">
+                    <div class="user-text">
+                        <span class="uname">Username</span>
+                        <span class="ulevel">Level 01</span>
+                    </div>
+                    <i class="fa-solid fa-circle-user profile-icon"></i>
+                </div>
+            </header>
+
+            <div class="action-bar">
+                <button class="btn-add" onclick="window.location.href='uploadarticle.html'"><i class="fa-solid fa-plus"></i> Upload Article</button>
+                <button class="btn-add" onclick="window.location.href='uploadvideo.html'"><i class="fa-solid fa-plus"></i> Upload Video</button>
+                <button class="btn-add" onclick="window.location.href='createtask.html'"><i class="fa-solid fa-plus"></i> Create Task</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fa-solid fa-users icon-blue"></i>
+                    <p>Total Users</p>
+                    <h2 class="text-blue">12,458</h2>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-user-check icon-green"></i>
+                    <p>Active Users</p>
+                    <h2 class="text-green">8,234</h2>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-file-invoice icon-blue"></i>
+                    <p>Total Articles</p>
+                    <h2 class="text-blue">342</h2>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-video icon-blue-light"></i>
+                    <p>Total Videos</p>
+                    <h2 class="text-blue-dark">156</h2>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-thumbtack icon-lime"></i>
+                    <p>Active Tasks</p>
+                    <h2 class="text-lime">24</h2>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <div class="act-icon bg-blue"><i class="fa-solid fa-user-plus"></i></div>
+                        <div class="act-info">
+                            <strong>New user registered</strong>
+                            <span>Sarah Johnson joined • 2 mins ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="act-icon bg-purple"><i class="fa-solid fa-video"></i></div>
+                        <div class="act-info">
+                            <strong>New video uploaded</strong>
+                            <span>Sarah Johnson joined • 2 mins ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

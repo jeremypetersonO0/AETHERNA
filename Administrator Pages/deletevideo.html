@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Video</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 420px;
+    border-radius: 18px;
+    padding: 30px 25px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* CLOSE */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: #333;
+}
+
+/* TITLE */
+h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
+.desc {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.warning {
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+/* BUTTON */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* COLORS */
+.btn-cancel {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.btn-delete {
+    background: #84cc16;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background: #2563eb;
+}
+
+.btn-delete:hover {
+    background: #65a30d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <!-- CLOSE -->
+    <i class="fa-solid fa-xmark close-btn" onclick="goBack()"></i>
+
+    <h2>Delete Video?</h2>
+
+    <p class="desc">
+        Are You Sure You Want To Delete<br>
+        "<strong id="videoTitle"></strong>"?
+    </p>
+
+    <p class="warning">This Action Cannot Be Undone.</p>
+
+    <div class="actions">
+        <button class="btn-cancel" onclick="goBack()">Cancel</button>
+        <button class="btn-delete">Delete</button>
+    </div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const title = params.get("title");
+
+document.getElementById("videoTitle").textContent = title || "Unknown Video";
+
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

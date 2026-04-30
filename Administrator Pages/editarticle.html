@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Article</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 540px;
+    border-radius: 18px;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* CLOSE */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: #333;
+}
+
+/* HEADER */
+h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.desc {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* SECTION */
+.section-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 11px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    font-size: 12px;
+}
+
+textarea {
+    height: 100px;
+}
+
+/* ROW */
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+/* TAG (edit mode) */
+.tag-input {
+    display: inline-block;
+    background: #3b82f6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+}
+
+/* IMAGE PREVIEW */
+.image-preview {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+/* BUTTON IMAGE */
+.image-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-actions button {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #f9fafb;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: #3b82f6;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-save {
+    flex: 1;
+    background: #2563eb;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-delete {
+    flex: 1;
+    background: #84cc16;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <!-- CLOSE -->
+    <i class="fa-solid fa-xmark close-btn" onclick="goBack()"></i>
+
+    <h2>Edit Article</h2>
+    <p class="desc">Update And Manage Existing Content</p>
+
+    <div class="section-title">Article Information</div>
+
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" value="Healthy Eating Basics">
+    </div>
+
+    <div class="form-group">
+        <label>Subtitle</label>
+        <input type="text" value="Simple guide to balanced nutrition">
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" value="Dr. Sarah Lee">
+        </div>
+        <div class="form-group">
+            <label>Tags</label>
+            <div class="tag-input">Nutrition ×</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Current Image</label>
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352" class="image-preview">
+
+        <div class="image-actions">
+            <button>Change Image</button>
+            <button>Remove</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Article Content</label>
+        <textarea>
+- Eat more vegetables
+- Include protein in every meal
+- Stay hydrated
+        </textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Last Updated</label>
+        <p style="font-size:12px; color:#777;">Apr 9, 2026 (Auto)</p>
+    </div>
+
+    <div class="actions">
+        <button class="btn-cancel" onclick="goBack()">Cancel</button>
+        <button class="btn-save">Save Changes</button>
+        <button class="btn-delete">Delete Article</button>
+    </div>
+
+</div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

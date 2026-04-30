@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content - Aetherna</title>
+
+    <!-- GLOBAL STYLE (ambil dari dashboard biar konsisten) -->
+    <link rel="stylesheet" href="dashboard_admin.css">
+    <link rel="stylesheet" href="content_admin.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR (SAMA PERSIS) -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <img src="LOGO.png" alt="Aetherna">
+            <h3>AETHERNA</h3>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <p class="section-label">Feature</p>
+            <ul>
+                <li class="nav-item"><a href="dashboard_admin.html"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
+                <li class="nav-item"><a href="userlog_admin.html"><i class="fa-solid fa-book"></i> User Log</a></li>
+                <li class="nav-item active"><a href="#"><i class="fa-solid fa-file-lines"></i> Content</a></li>
+                <li class="nav-item"><a href="analytics_admin.html"><i class="fa-solid fa-chart-simple"></i> Analytics</a></li>
+                <li class="nav-item"><a href="play_admin.html"><i class="fa-solid fa-gamepad"></i> Play</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <h1>Content</h1>
+
+        <!-- ACTION + SEARCH -->
+        <div class="content-topbar">
+            <div class="left-actions">
+                <button class="btn-green" onclick="window.location.href='uploadarticle.html'"><i class="fa-solid fa-plus"></i> Upload Article</button>
+                <button class="btn-green" onclick="window.location.href='uploadvideo.html'"><i class="fa-solid fa-plus"></i> Upload Video</button>
+            </div>
+
+            <div class="right-actions">
+                <input type="text" placeholder="Search by name">
+                <select>
+                    <option>Filter by Type</option>
+                    <option>Article</option>
+                    <option>Video</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Author</th>
+                        <th>Tags</th>
+                        <th>Status</th>
+                        <th>Views</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>Start Running Without Burning Out</td>
+                        <td>Article</td>
+                        <td>Ethan Walker</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Exercise</span>
+                                <span class="tag">Movement</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>1K</td>
+                        <td>April 7</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editarticle.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteArticle('Start Running Without Burning Out')"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Eat Better Without Overthinking</td>
+                        <td>Article</td>
+                        <td>Dr. Amelia Hart</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Nutrition</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>200</td>
+                        <td>April 7</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editarticle.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteArticle('Eat Better Without Overthinking')"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Chair Yoga for Absolute Beginners</td>
+                        <td>Video</td>
+                        <td>Edgardo Guerrero</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Movement</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>15K</td>
+                        <td>April 7</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editvideo.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteVideo(`Chair Yoga for Absolute Beginners`)"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Why Sleep Matters More Than You Think</td>
+                        <td>Article</td>
+                        <td>Daniel Cho</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Rest</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>341</td>
+                        <td>April 7</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editarticle.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteArticle('Why Sleep Matters More Than You Think')"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Post-Workout Stretch for Flexibility</td>
+                        <td>Video</td>
+                        <td>Rachel Hampton</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Movement</span>
+                            </div>
+                        </td>
+                        <td class="status draft">Drafted</td>
+                        <td>-</td>
+                        <td>April 7</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editvideo.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteVideo(`Post-Workout Stretch for Flexibility`)"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Full Body Warm-Up (No Jumping)</td>
+                        <td>Video</td>
+                        <td>Newton Sutton</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Exercise</span>
+                                <span class="tag">Movement</span>
+                            </div>
+                        </td>
+                        <td class="status draft">Drafted</td>
+                        <td>-</td>
+                        <td>April 6</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editvideo.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteVideo(`Full Body Warm-Up (No Jumping)`)"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Are You Drinking Enough Water?</td>
+                        <td>Article</td>
+                        <td>Sofia Martinez</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Nutrition</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>9.8K</td>
+                        <td>April 6</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editarticle.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteArticle('Are You Drinking Enough Water?')"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>It’s Okay to Enjoy Treats</td>
+                        <td>Article</td>
+                        <td>Marcus Lee</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Nutrition</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>46</td>
+                        <td>April 6</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editarticle.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteArticle('It’s Okay to Enjoy Treats')"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Gentle Morning Stretch for Beginners</td>
+                        <td>Video</td>
+                        <td>Jacqueline Hutchinson</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Movement</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>23</td>
+                        <td>April 6</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editvideo.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteVideo(`Gentle Morning Stretch for Beginners`)"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Why Small Habits Actually Work</td>
+                        <td>Article</td>
+                        <td>Claire Thompson</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Mindset</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>8.4K</td>
+                        <td>April 6</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editarticle.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteArticle('Why Small Habits Actually Work')"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Walking Workout: 15 Minutes at Home</td>
+                        <td>Video</td>
+                        <td>Brianna Powell</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Exercise</span>
+                            </div>
+                        </td>
+                        <td class="status draft">Drafted</td>
+                        <td>-</td>
+                        <td>April 6</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editvideo.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteVideo(`Walking Workout: 15 Minutes at Home`)"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Wake Up Your Hips: Mobility Flow</td>
+                        <td>Video</td>
+                        <td>Tracie Cisneros</td>
+                        <td>
+                            <div class="tags">
+                                <span class="tag">Exercise</span>
+                                <span class="tag">Movement</span>
+                            </div>
+                        </td>
+                        <td class="status published">Published</td>
+                        <td>3.1K</td>
+                        <td>April 6</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="window.location.href='editvideo.html'"><i class="fa-solid fa-pen"></i> Edit</button>
+                            <button class="btn-delete" onclick="deleteVideo(`Wake Up Your Hips: Mobility Flow`)"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </main>
+</div>
+<script>
+function deleteArticle(title) {
+    const encodedTitle = encodeURIComponent(title);
+    window.location.href = `deletearticle.html?title=${encodedTitle}`;
+}
+function deleteVideo(title) {
+    const encodedTitle = encodeURIComponent(title);
+    window.location.href = `deletevideo.html?title=${encodedTitle}`;
+}
+</script>
+</body>
+</html>

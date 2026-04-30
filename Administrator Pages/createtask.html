@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Task</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 600px;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    font-size: 13px;
+}
+
+/* SMALL INPUT (center like figma) */
+.small-input {
+    width: 50%;
+}
+
+/* BUTTON */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+button {
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* CANCEL */
+.btn-cancel {
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* CREATE */
+.btn-create {
+    background: #84cc16;
+    color: #fff;
+}
+
+/* HOVER */
+.btn-cancel:hover {
+    background: #2563eb;
+}
+
+.btn-create:hover {
+    background: #65a30d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <h2>Create Task</h2>
+
+    <div class="form-group">
+        <label>Task Name</label>
+        <input type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Type</label>
+        <input type="text" class="small-input">
+    </div>
+
+    <div class="form-group">
+        <label>XP (Per Progress)</label>
+        <input type="number" class="small-input">
+    </div>
+
+    <div class="form-group">
+        <label>Coin (On Completion)</label>
+        <input type="number" class="small-input">
+    </div>
+
+    <div class="actions">
+        <button class="btn-cancel" onclick="goBack()">Cancel</button>
+        <button class="btn-create">Create Task</button>
+    </div>
+
+</div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

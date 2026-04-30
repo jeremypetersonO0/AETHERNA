@@ -56,10 +56,25 @@
 document.getElementById('loginForm').addEventListener('submit', function(e){
     e.preventDefault(); // biar ga reload
 
-    // nanti bisa tambah validasi di sini
+ // Mengambil value input dengan lebih spesifik
+        const emailInput = document.querySelector('input[type="email"]').value;
+        const passwordInput = document.querySelector('input[type="password"]').value;
 
-    // pindah ke dashboard
-    window.location.href = "dashborad.html";
+        // Daftar email admin kelompokmu
+        const adminEmails = [
+            "mauvesagara@gmail.com", 
+            "jeremypetersonO0@gmail.com", 
+            "bita@gmail.com"
+        ];
+
+        // Logika pengecekan
+        if (adminEmails.includes(emailInput)) {
+            alert('Selamat datang Admin! Mengalihkan ke Dashboard...');
+            window.location.href = "../Administrator Pages/dashboard_admin.html"; 
+        } else {
+            alert('Welcome back! Redirecting to home...');
+            window.location.href = "dashborad.html"; 
+        }
 });
 </script>
 

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Video</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 540px;
+    border-radius: 18px;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* CLOSE */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: #333;
+}
+
+/* HEADER */
+h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.desc {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* SECTION */
+.section-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    font-size: 12px;
+}
+
+/* ROW */
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+/* TAGS */
+.tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #3b82f6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+}
+
+/* VIDEO BOX */
+.video-box {
+    border: 2px dashed #e5e7eb;
+    border-radius: 14px;
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* BUTTON FILE */
+.file-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.file-actions button {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #f9fafb;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* IMAGE PREVIEW */
+.image-preview {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+/* FOOTER BUTTON */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: #3b82f6;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-save {
+    flex: 1;
+    background: #2563eb;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-delete {
+    flex: 1;
+    background: #84cc16;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <!-- CLOSE -->
+    <i class="fa-solid fa-xmark close-btn" onclick="goBack()"></i>
+
+    <h2>Edit Video</h2>
+    <p class="desc">Update Video Content</p>
+
+    <div class="section-title">Video Information</div>
+
+    <!-- TITLE -->
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" value="Morning Cardio Routine">
+    </div>
+
+    <div class="form-group">
+        <label>Subtitle</label>
+        <input type="text" value="Quick 10-minute cardio workout">
+    </div>
+
+    <!-- AUTHOR + TAG -->
+    <div class="row">
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" value="Ethan Walker">
+        </div>
+        <div class="form-group">
+            <label>Tags</label>
+            <div class="tags">
+                <span class="tag">Exercise</span>
+                <span class="tag">Movement</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="form-group">
+        <label>Video File</label>
+        <div class="video-box">
+            Current Video<br>
+            <strong>Morning_Cardio_Routine.mp4</strong>
+        </div>
+
+        <div class="file-actions">
+            <button>Replace Video</button>
+            <button>Remove</button>
+        </div>
+    </div>
+
+    <!-- THUMBNAIL -->
+    <div class="form-group">
+        <label>Thumbnail</label>
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352" class="image-preview">
+
+        <div class="file-actions">
+            <button>Change Image</button>
+            <button>Remove</button>
+        </div>
+    </div>
+
+    <!-- UPDATED -->
+    <div class="form-group">
+        <label>Last Updated</label>
+        <p style="font-size:12px; color:#777;">Apr 9, 2026 (Auto)</p>
+    </div>
+
+    <!-- ACTION -->
+    <div class="actions">
+        <button class="btn-cancel" onclick="goBack()">Cancel</button>
+        <button class="btn-save">Save Changes</button>
+        <button class="btn-delete">Delete Video</button>
+    </div>
+
+</div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>
