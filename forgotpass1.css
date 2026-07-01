@@ -1,0 +1,131 @@
+/* Font & reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        url("backgroundfinal.png") no-repeat center,
+        linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-size: 1270px, cover;
+}
+
+/* Box tengah */
+.forgot-box {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    width: 500px;
+    text-align: center;
+}
+
+/* Logo */
+.forgot-box .logo {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+/* Heading & Paragraph */
+.forgot-box h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.forgot-box p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Input & Button */
+.forgot-box input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.3s;
+    box-shadow: 
+        inset 5px 5px 10px rgba(0, 0, 0, 0.05),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-box input:focus {
+    box-shadow: 
+        inset 7px 7px 15px rgba(0, 0, 0, 0.08),
+        inset -7px -7px 15px rgba(255, 255, 255, 1);
+    
+    background: #ffffff;
+}
+
+.forgot-box button {
+    background: #ff6b6b;
+    border: none;
+    padding: 16px;
+    border-radius: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    width: 100%;
+}
+
+.forgot-box button:hover {
+    background: #ff4b4b;
+    transform: translateY(-4px); 
+    box-shadow: 0 15px 25px rgba(255, 107, 107, 0.4);
+}
+
+/* Tombol Kembali */
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 1); 
+    backdrop-filter: blur(10px);         
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 50%;                
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;                        
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* EFEK HOVER */
+.back-btn:hover {
+    background: #ffffff;
+    transform: scale(1.1) rotate(-10deg); 
+    color: #93C001;                      
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.back-btn span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover span {
+    transform: translateX(-3px);
+}

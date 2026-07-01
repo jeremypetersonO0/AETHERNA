@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Profile - AETHERNA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="setup.css">
+</head>
+<body>
+
+<a href="sign-up.html" class="back-btn">
+    <span>←</span>
+</a>
+
+<form id="profileForm" class="container">
+
+    <h1>Welcome</h1>
+    <p class="subtitle">Hi there! Let's set up your profile in just a few taps.</p>
+
+    <div class="input-group">
+        <label>What should we call you?</label>
+        <input type="text" id="profileName" placeholder="Your name" required>
+    </div>
+
+    <div class="input-group">
+        <label>Your body stats (so we can track better)</label>
+
+        <div class="stats">
+            <div class="box">
+                <input type="number" id="profileWeight" placeholder="Weight" required>
+                <span>kg</span>
+            </div>
+
+            <div class="box">
+                <input type="number" id="profileHeight" placeholder="Height" required>
+                <span>cm</span>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="next-btn">Next →</button>
+
+</form>
+
+<script type="module" src="setup.js"></script>
+
+</body>
+</html>

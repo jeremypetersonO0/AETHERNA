@@ -1,0 +1,134 @@
+/* RESET & DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background:
+        url("backgroundfinal.png") no-repeat center,
+        linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-size: 1270px, cover;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 45px 30px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* LOGO */
+.logo img {
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+/* TITLE */
+h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+/* DESCRIPTION */
+.desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.user-email {
+    font-weight: 700;
+    color: #333;
+    text-decoration: underline;
+}
+
+/* OPEN EMAIL BOX */
+.email-app-box {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 0 3px 3px #777e86;
+    transition: all 0.3s ease;
+}
+
+.email-app-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+.email-app-box a {
+    text-decoration: none;
+    color: #4A90E2;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* RESEND TEXT */
+.resend-text {
+    font-size: 13px;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* RESEND BUTTON */
+.resend-btn {
+    background: none;
+    border: none;
+    color: #6c63ff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    margin-top: 8px;
+}
+
+.resend-btn:disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    width: 100%;
+    background: #ff8585;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    margin-top: 15px;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.back-btn:hover {
+    background: #ff7070;
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 16px #bababa, -8px -8px 16px #ffffff;
+}
+
+.back-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 4px 4px 8px #d66060, inset -4px -4px 8px #ffffff;
+}

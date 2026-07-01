@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherAssist</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherassits.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+<header class="header">
+<h1>AetherAssist</h1>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+</header>
+
+
+<section class="hero-card">
+
+
+<h1>
+Hey User, <span>aetherassist here!</span><br>
+What's on your mind today?
+</h1>
+
+
+<!-- CHAT -->
+<div class="chat-container">
+
+<div class="chat-messages" id="chatMessages">
+
+<div class="bot-message">
+Hello! I'm AetherAssist. How can I help you today?
+</div>
+
+</div>
+
+
+<div class="chat-box">
+
+<button class="upload-btn" 
+onclick="document.getElementById('fileInput').click()">
++
+</button>
+
+<input 
+type="text" 
+id="chatInput" 
+placeholder="Ask Aetherna..." 
+/>
+
+<!-- Tombol pemicu kirim pesan sekarang memanggil window.sendMessage -->
+<button onclick="window.sendMessage()">➤</button>
+
+</div>
+
+
+<input 
+type="file" 
+id="fileInput" 
+hidden 
+onchange="showFile(this)"
+>
+
+</div>
+
+</section>
+
+</main>
+</div>
+
+<script type="module">
+// Impor fungsi pembantu dan objek auth dari file firebase.js
+import { saveToFirestore, getChatHistory, auth } from "./firebase.js"; 
+
+let selectedFile = null; 
+
+// =================================================================
+// 🔄 FUNGSI ME-LOAD BUBBLE CHAT LAMA SAAT PINDAH HALAMAN
+// =================================================================
+async function loadChatHistory() {
+    let messagesContainer = document.getElementById("chatMessages");
+    if (!messagesContainer) return;
+
+    messagesContainer.innerHTML = ""; // Bersihkan layar container chat
+    
+    console.log("Mengambil riwayat bubble chat dari Firestore...");
+    const history = await getChatHistory();
+    
+    // Looping untuk menggambar ulang bubble chat di layar
+    history.forEach(chat => {
+        let msgDiv = document.createElement("div");
+        
+        if (chat.sender === "user") {
+            if (chat.fileName && chat.message === "Mengirim lampiran file") {
+                msgDiv.className = "user-message file-attachment";
+                msgDiv.innerText = "📎 Lampiran: " + chat.fileName;
+            } else {
+                msgDiv.className = "user-message";
+                msgDiv.innerText = chat.message;
+            }
+        } else {
+            msgDiv.className = "bot-message";
+            msgDiv.innerText = chat.message;
+        }
+        
+        messagesContainer.appendChild(msgDiv);
+    });
+    
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+// =================================================================
+// LOGIKA TOMBOL + (PILIH FILE) & TOMBOL KIRIM CHAT GLOBAL
+// =================================================================
+
+window.showFile = function(input) {
+    if (input.files && input.files[0]) {
+        selectedFile = input.files[0];
+        
+        let messages = document.getElementById("chatMessages");
+        let fileMsg = document.createElement("div");
+        fileMsg.className = "user-message file-attachment";
+        fileMsg.innerText = "📎 Siap dikirim: " + selectedFile.name;
+        messages.appendChild(fileMsg);
+        messages.scrollTop = messages.scrollHeight;
+    }
+}
+
+// PERBAIKAN: Diubah menjadi window.sendMessage agar tombol klik ➤ di HTML bisa mendeteksi fungsi ini
+window.sendMessage = async function() {
+    let input = document.getElementById("chatInput");
+    let messages = document.getElementById("chatMessages");
+
+    if (!input || (input.value.trim() === "" && !selectedFile)) return;
+
+    let userText = input.value;
+    let currentFileName = selectedFile ? selectedFile.name : null;
+
+    /* 1. TAMPILKAN PESAN USER DAN SIMPAN KE FIREBASE */
+    if (userText.trim() !== "") {
+        let userMsg = document.createElement("div");
+        userMsg.className = "user-message";
+        userMsg.innerText = userText;
+        messages.appendChild(userMsg);
+        
+        await saveToFirestore("user", userText, currentFileName);
+    } else if (currentFileName) {
+        await saveToFirestore("user", "Mengirim lampiran file", currentFileName);
+    }
+
+    input.value = "";
+    messages.scrollTop = messages.scrollHeight;
+
+    /* 2. BALON AKAN LOADING UNTUK JAWABAN BOT */
+    let botMsg = document.createElement("div");
+    botMsg.className = "bot-message";
+    botMsg.innerText = "AetherAssist sedang berpikir... 🧠";
+    messages.appendChild(botMsg);
+    messages.scrollTop = messages.scrollHeight;
+
+    /* 3. KEMAS DATA UNTUK SERVER NODE.JS BACKEND */
+    const formData = new FormData();
+    if (userText) formData.append('message', userText);
+    if (selectedFile) {
+        formData.append('file', selectedFile);
+        selectedFile = null; 
+        document.getElementById('fileInput').value = ""; 
+    }
+
+    /* 4. HUBUNGKAN KE BACKEND */
+    try {
+        const response = await fetch('http://localhost:3000/api/chat', {
+            method: 'POST',
+            body: formData 
+        });
+
+        const data = await response.json();
+        botMsg.innerText = data.reply;
+        
+        // Simpan jawaban bot ke Firebase
+        await saveToFirestore("bot", data.reply, null);
+
+    } catch (error) {
+        console.error("Error:", error);
+        botMsg.innerText = "AetherAssist gagal memproses file atau pesan kamu. 😓";
+    }
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+// =================================================================
+// DETECTION EVENT: MENANGANI STATUS LOGIN & TOMBOL ENTER
+// =================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    // Pastikan Firebase memverifikasi akun pengguna yang sedang login lebih dulu
+    auth.onAuthStateChanged(async (user) => {
+        if (user) {
+            console.log("User terdeteksi login:", user.email);
+            await loadChatHistory(); // Panggil bubble chat setelah user valid
+        } else {
+            console.warn("User belum login.");
+            let messagesContainer = document.getElementById("chatMessages");
+            if (messagesContainer) {
+                messagesContainer.innerHTML = "<div class='bot-message'>Silakan login terlebih dahulu untuk mengakses riwayat AetherAssist.</div>";
+            }
+        }
+    });
+
+    // Pasang ulang listener tombol Enter agar bisa kirim pesan lewat keyboard
+    const chatInput = document.getElementById("chatInput");
+    if (chatInput) {
+        chatInput.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                window.sendMessage();
+            }
+        });
+    }
+});
+</script>
+
+<script type="module" src="shared-header.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - Profile</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="profile.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+
+<p class="menu-title">Feature</p>
+
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+<p class="menu-title">General</p>
+
+<ul class="menu">
+<li class="menu-item">
+<a href="logout.html">
+<span>⏻</span> Log Out
+</a>
+</li>
+</ul>
+
+</nav>
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+<header class="header">
+<h1>Your Profile</h1>
+</header>
+
+<section class="profile-container">
+
+
+<!-- USERNAME POPUP -->
+<div class="popup-overlay" id="usernamePopup">
+<div class="popup-box">
+
+<h2>Change Username</h2>
+
+<label>New Username</label>
+<input type="text" id="newUsername">
+
+<p class="note">
+Username must be unique and contain only letters, numbers, or underscores.
+</p>
+
+<div class="popup-buttons">
+<button class="cancel-btn" onclick="closePopup()">Cancel</button>
+<button class="save-btn" id="btnSaveUsername">Save</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PASSWORD POPUP -->
+<div class="popup-overlay" id="passwordPopup">
+<div class="popup-box">
+
+<h2>Change Password</h2>
+
+<label>New Password</label>
+<input type="password" id="newPassword">
+
+<label>Confirm Password</label>
+<input type="password" id="confirmPassword">
+
+<p class="note">
+Password must be at least 8 characters long.
+</p>
+
+<div class="popup-buttons">
+<button class="cancel-btn" onclick="closePassword()">Cancel</button>
+<button class="save-btn" id="btnUpdatePassword">Update Password</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- DELETE POPUP -->
+<div class="popup-overlay" id="deletePopup">
+<div class="popup-box">
+
+<h2>Delete Account</h2>
+
+<p class="delete-desc">
+Are you sure you want to permanently delete your account?
+</p>
+
+<p class="delete-warning">
+All your data, progress, and rewards will be lost and cannot be recovered.
+</p>
+
+<div class="popup-buttons">
+<button class="cancel-btn" onclick="closeDelete()">Cancel</button>
+<button class="delete-btn-popup" id="btnDeleteAccount">Delete</button>
+</div>
+
+</div>
+</div>
+
+
+
+<!-- PROFILE CARD -->
+<div class="profile-card">
+
+<div class="profile-top">
+
+<div class="profile-avatar">
+<img src="https://i.pravatar.cc/150" id="profileImage" class="avatar-circle">
+<label for="uploadPhoto" class="camera-icon">📷</label>
+<input type="file" id="uploadPhoto" accept="image/*" hidden>
+</div>
+
+<div class="level-section">
+<h3 id="profileLevelText">Level 01</h3>
+
+<div class="level-bar">
+<div class="level-progress" id="profileLevelProgress"></div>
+</div>
+
+<p class="exp-text-profile" id="profileExpText" style="font-size: 0.85rem; color: #666; margin-top: 5px;">0 / 200 EXP</p>
+</div>
+
+</div>
+
+
+<!-- USERNAME -->
+<div class="form-group">
+<label>Username</label>
+
+<div class="input-box">
+<!-- Perbaikan: Value bawaan "alex_gamer" dihapus agar loading data asli Firestore terlihat -->
+<input type="text" placeholder="Loading username..." id="username" disabled>
+<span class="edit-icon" onclick="openPopup()">✏️</span>
+</div>
+
+</div>
+
+
+<!-- EMAIL -->
+<div class="form-group">
+<label>Email</label>
+
+<!-- Perbaikan: Value bawaan dihapus -->
+<input type="email" placeholder="Loading email..." id="emailInput">
+<small>Your registered Aetherna account email.</small>
+
+</div>
+
+
+<!-- PASSWORD -->
+<div class="form-group">
+<label>Password</label>
+
+<div class="input-box">
+<!-- Perbaikan: Value diubah menjadi dot enkripsi statis demi keamanan privacy -->
+<input type="password" value="********" id="password" readonly>
+<span class="eye-icon" onclick="togglePassword()" id="eyeIcon">👁️</span>
+</div>
+
+<a class="change-password" onclick="openPassword()">Change Password</a>
+
+</div>
+
+</div>
+
+
+
+<!-- DANGER ZONE -->
+<div class="danger-card">
+
+<h4>Danger Zone</h4>
+
+<div class="danger-box">
+<div>
+<h5>Delete Account</h5>
+<p>Permanently delete your account and all associated data</p>
+</div>
+
+<button class="delete-btn" onclick="openDelete()">Delete Account</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<script type="module">
+// 1. Import layanan Firebase dari pusat
+import { auth, db } from "./firebase.js";
+import { 
+  onAuthStateChanged, 
+  updatePassword as firebaseUpdatePassword, 
+  deleteUser 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { doc, getDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// === ELEMEN DOM INTERFACES ===
+const usernameInput = document.getElementById("username");
+const emailField = document.getElementById("emailInput");
+const passwordInput = document.getElementById("password");
+const eyeIcon = document.getElementById("eyeIcon");
+const toast = document.getElementById("toast");
+
+// Menyimpan ID Pengguna aktif secara global di modul script
+let currentUserUID = null;
+
+// === FUNGSI TOAST ===
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2000);
+}
+
+// === FUNGSI BUKA/TUTUP POPUP GLOBAL ===
+window.openPopup = () => document.getElementById("usernamePopup").style.display = "flex";
+window.closePopup = () => document.getElementById("usernamePopup").style.display = "none";
+window.openPassword = () => document.getElementById("passwordPopup").style.display = "flex";
+window.closePassword = () => document.getElementById("passwordPopup").style.display = "none";
+window.openDelete = () => document.getElementById("deletePopup").style.display = "flex";
+window.closeDelete = () => document.getElementById("deletePopup").style.display = "none";
+
+// === TOGGLE VISIBILITAS PASSWORD ===
+window.togglePassword = () => {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    eyeIcon.textContent = "🙈";
+  } else {
+    passwordInput.type = "password";
+    eyeIcon.textContent = "👁️";
+  }
+};
+
+// ==========================================
+// 🔄 AMBIL DATA DARI FIRESTORE & AUTH LOGIN
+// ==========================================
+// ==========================================
+// 🔄 AMBIL DATA DARI FIRESTORE & AUTH LOGIN (profile.html)
+// ==========================================
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    currentUserUID = user.uid;
+    console.log("User aktif di halaman profil:", currentUserUID);
+
+    // Set value email dari Firebase Auth
+    emailField.value = user.email;
+    emailField.disabled = true; 
+
+    try {
+      // 📄 Jalur 1: Ambil Nama & Foto dari koleksi 'profiles'
+      const profileRef = doc(db, "profiles", currentUserUID);
+      const profileSnap = await getDoc(profileRef);
+
+      if (profileSnap.exists()) {
+        const profileData = profileSnap.data();
+        if (profileData.name) {
+          usernameInput.value = profileData.name;
+        }
+        if (profileData.avatar) {
+          document.getElementById("profileImage").src = profileData.avatar;
+        }
+      } else {
+        usernameInput.value = "Aetherna User";
+      }
+
+      // 📄 Jalur 2: Ambil Level & EXP dari koleksi 'daily_activities' (Biar sinkron dengan Dashboard!)
+      const activityRef = doc(db, "daily_activities", currentUserUID);
+      const activitySnap = await getDoc(activityRef);
+
+      if (activitySnap.exists()) {
+        const activityData = activitySnap.data();
+        
+        const userLevel = activityData.level || 1;
+        const userExp = activityData.exp || 0;
+        
+        // Rumus exp harian kamu di dashboard.js: level * 200
+        const neededExp = userLevel * 200; 
+
+        // 1. Tampilkan teks Level (Contoh: Level 01)
+        document.getElementById("profileLevelText").textContent = `Level ${String(userLevel).padStart(2, '0')}`;
+        
+        // 2. Tampilkan teks EXP (Contoh: 60 / 200 EXP) sesuai request kamu!
+        document.getElementById("profileExpText").textContent = `${userExp} / ${neededExp} EXP`;
+
+        // 3. Hitung persentase lebar bar warna biru/hijau di profil
+        const progressPercent = Math.min((userExp / neededExp) * 100, 100);
+        document.getElementById("profileLevelProgress").style.width = `${progressPercent}%`;
+      }
+
+    } catch (err) {
+      console.error("Gagal sinkronisasi data ke halaman profil:", err);
+      usernameInput.value = "Error Loading Data";
+    }
+
+  } else {
+    console.warn("Sesi habis, dialihkan ke sign-up.");
+    window.location.href = "sign-up.html";
+  }
+});
+
+// =================================================================
+// ✏️ PROSES EVENT HANDLER: LUAR ONAUTHSTATECHANGED (BIAR TIDAK DUPLIKAT)
+// =================================================================
+
+// A. Update Username Baru ke Firestore
+document.getElementById("btnSaveUsername").addEventListener("click", async () => {
+  const newName = document.getElementById("newUsername").value.trim();
+
+  if (!currentUserUID) return;
+
+  if (newName !== "") {
+    try {
+      const docRef = doc(db, "profiles", currentUserUID);
+      await updateDoc(docRef, { name: newName });
+
+      usernameInput.value = newName;
+      showToast("Username Updated ✓");
+      closePopup();
+      document.getElementById("newUsername").value = ""; // Reset form isi popup
+    } catch (err) {
+      console.error("Gagal update username:", err);
+      alert("Gagal memperbarui username. Pastikan koneksi internet aman.");
+    }
+  } else {
+    alert("Username tidak boleh kosong.");
+  }
+});
+
+// B. Update Password Baru ke Firebase Core Auth
+document.getElementById("btnUpdatePassword").addEventListener("click", async () => {
+  const newPass = document.getElementById("newPassword").value;
+  const confirmPass = document.getElementById("confirmPassword").value;
+  const user = auth.currentUser;
+
+  if (!user) return;
+
+  if (newPass.length < 8) {
+    alert("Password must be at least 8 characters long.");
+    return;
+  }
+  if (newPass !== confirmPass) {
+    alert("Password does not match");
+    return;
+  }
+
+  try {
+    await firebaseUpdatePassword(user, newPass);
+    showToast("Password Updated ✓");
+    closePassword();
+    
+    // Reset form field di dalam popup ganti password
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmPassword").value = "";
+  } catch (err) {
+    console.error("Gagal update password:", err);
+    if (err.code === "auth/requires-recent-login") {
+      alert("Demi keamanan akses data, silakan Log Out lalu Log In kembali untuk merubah data password.");
+    } else {
+      alert("Gagal update password: " + err.message);
+    }
+  }
+});
+
+// C. Hapus Dokumen Firestore + Hapus User Auth (Danger Zone)
+document.getElementById("btnDeleteAccount").addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (!user || !currentUserUID) return;
+
+  try {
+    console.log("Memulai proses penghapusan data...");
+
+    // 1. Bersihkan dokumen profil pengguna di Firestore
+    await deleteDoc(doc(db, "profiles", currentUserUID));
+    
+    // 2. Hapus akun pengguna secara permanen dari sistem inti Firebase Auth
+    await deleteUser(user);
+
+    showToast("Account Deleted");
+    closeDelete();
+
+    setTimeout(() => {
+      window.location.href = "sign-up.html";
+    }, 1500);
+
+  } catch (err) {
+    console.error("Gagal menghapus data akun:", err);
+    if (err.code === "auth/requires-recent-login") {
+      alert("Sesi hapus akun kedaluwarsa. Silakan Log Out lalu Log In kembali sebelum mengeksekusi penghapusan akun.");
+    } else {
+      alert("Gagal menghapus akun: " + err.message);
+    }
+  }
+});
+
+// D. Preview Upload Foto Profil Sementara (Frontend Local)
+document.getElementById("uploadPhoto").addEventListener("change", function(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById("profileImage").src = e.target.result;
+      showToast("Profile Picture Updated ✓");
+    }
+    reader.readAsDataURL(file);
+  }
+});
+
+// =================================================================
+// 📷 E. UPLOAD FOTO PROFIL & SIMPAN PERMANEN KE FIRESTORE
+// =================================================================
+document.getElementById("uploadPhoto").addEventListener("change", function(event) {
+  const file = event.target.files[0];
+  
+  if (!currentUserUID) {
+    alert("Sesi tidak valid, silakan login ulang.");
+    return;
+  }
+
+  if (file) {
+    // Validasi ukuran file (Opsional, disarankan di bawah 1MB untuk Base64 Firestore)
+    if (file.size > 1024 * 1024) { 
+      alert("Ukuran file terlalu besar! Maksimal beralih ke foto berukuran 1MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+    
+    // Proses membaca file gambar lokal menjadi teks string Base64
+    reader.onload = async function(e) {
+      const base64Image = e.target.result;
+
+      try {
+        // Tembak langsung ke dokumen Firestore milik user yang sedang login
+        const docRef = doc(db, "profiles", currentUserUID);
+        await updateDoc(docRef, {
+          avatar: base64Image // Simpan string gambar ke field 'avatar'
+        });
+
+        // Tampilkan ke layar jika berhasil disimpan di database
+        document.getElementById("profileImage").src = base64Image;
+        showToast("Profile Picture Updated ✓");
+      } catch (err) {
+        console.error("Gagal menyimpan foto profil ke Firestore:", err);
+        alert("Gagal memperbarui foto profil di database.");
+      }
+    }
+    
+    reader.readAsDataURL(file);
+  }
+});
+
+</script>
+
+</body>
+</html>

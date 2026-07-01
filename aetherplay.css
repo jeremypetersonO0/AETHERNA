@@ -1,0 +1,347 @@
+/* PAGE BACKGROUND */
+.page-content {
+    padding: 30px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dfe9f3, #cfe0d8);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('image/aetherplay/background_aetherplay.png');
+    background-position: center;
+    
+}
+
+/* Background Pattern */
+.page-content::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+    background-size: 300px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* GAME CONTAINER - Menggunakan Grid agar lebih presisi */
+.game-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* AVATAR PANEL (LEFT) */
+.avatar-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    height: fit-content;
+}
+
+.avatar-box {
+    position: relative;
+    height: 350px;
+    background: linear-gradient(180deg, #b3e5fc, #81c784);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 5px solid #f0f0f0;
+}
+
+.layer {
+    position: absolute;
+    width: 80%;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+/* LEVEL INFO */
+.avatar-info {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    text-align: center;     
+}
+
+.avatar-info p {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 1.1rem;      
+}
+
+.level-bar {
+    width: 80%;           
+    height: 12px;
+    background: #e6e6e6;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.progress {
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50, #2196f3);
+    border-radius: 20px;
+}
+
+/* CUSTOM PANEL (RIGHT) */
+.custom-panel {
+    background: white;
+    padding: 60px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    max-height: 600px;
+    max-width: 600px;
+    overflow-y: auto;
+}
+
+.custom-panel h3 {
+    margin: 20px 0 10px 0;
+    font-weight: 600;
+    color: #444;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+/* OPTION GRID */
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.options img {
+    width: 100%;
+    aspect-ratio: 1 / 1;    
+    object-fit: contain;    
+    padding: 12px;         
+    background: #f5f6fa;
+    border-radius: 12px;
+}
+
+
+.options img:hover {
+    transform: scale(1.1);
+    background: #eef2ff;
+    border-color: #7aa7ff;
+}
+
+/* BLUSH SPECIFIC STYLE */
+/* Gunakan class ini di div pembungkus blush jika pakai warna solid */
+.blush-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.color-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.color-circle:hover {
+    transform: translateY(-5px);
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+    .game-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .avatar-panel {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Scrollbar Styling */
+.custom-panel::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-panel::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}
+
+/* COIN BADGE */
+.coin-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 10; /* Biar tetap di depan avatar */
+    border: 2px solid #f0f0f0;
+}
+
+.coin-icon {
+    font-size: 1.1rem;
+}
+
+.coin-amount {
+    font-weight: 700;
+    color: #fbc02d; /* Warna kuning emas */
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Tambahan: Pastikan avatar-box punya position relative */
+.avatar-box {
+    position: relative; /* Ini wajib agar coin-badge tidak lari ke mana-mana */
+}
+
+.category-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab.active {
+    background: #4caf50; /* Warna hijau seperti di gambar */
+    color: white;
+}
+
+.tab img {
+    width: 20px;
+}
+
+/* CATEGORY TABS - Memastikan posisi di tengah */
+.category-tabs {
+    display: flex;
+    justify-content: center; /* Membuat ikon ke tengah */
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.tab {
+    width: 50px;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+/* Warna hijau saat tab aktif */
+.tab.active {
+    background: #4caf50; 
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    transform: scale(1.1);
+}
+
+.tab img {
+    width: 25px;
+    height: 25px;
+    /* Jika gambar ikonnya hitam, filter ini bisa membuatnya putih saat aktif */
+    transition: filter 0.3s;
+}
+
+.tab.active img {
+    filter: brightness(0) invert(1);
+}
+
+.tab:hover:not(.active) {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+#head{
+    transform: translate(-50%, -50%) scale(0.79); 
+    top: 45%; 
+    z-index: 2; /* Pastikan mata berada di atas layer body */
+}
+
+#body{
+    transform: translate(-50%, -50%) scale(1); 
+    top: 87%; 
+    z-index: 3; /* Pastikan mata berada di atas layer body */
+}
+
+#eyes {
+    transform: translate(-50%, -50%) scale(0.55); 
+    top: 45%; 
+    z-index: 5;
+}
+
+#nose {
+    transform: translate(-50%, -50%) scale(0.1); 
+    top: 50%; 
+    z-index: 5; 
+}
+
+#mouth {
+    transform: translate(-50%, -50%) scale(0.2); 
+    top: 59%; 
+    z-index: 5;
+}
+
+#hair {
+    transform: translate(-50%, -50%) scale(1.1); 
+    top: 57%; 
+    z-index: 2; /* Pastikan mata berada di atas layer body */
+}
+
+#baju {
+    transform: translate(-50%, -50%) scale(0.88); 
+    top: 87%; 
+    z-index: 4; /* Pastikan mata berada di atas layer body */
+}
+
+#celana {
+    transform: translate(-50%, -50%) scale(0.40); 
+    top: 100%; 
+    z-index: 3; /* Pastikan mata berada di atas layer body */
+}
+
+#blush1 {
+    transform: translate(-50%, -50%) scale(0.1); 
+    left: 32%;
+    top: 54%; 
+    z-index: 5; /* Pastikan mata berada di atas layer body */
+}
+
+#blush2 {
+    transform: translate(-50%, -50%) scale(0.1); 
+    left: 67%;
+    top: 54%; 
+    z-index: 5; /* Pastikan mata berada di atas layer body */
+}
+
