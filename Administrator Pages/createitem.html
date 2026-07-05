@@ -129,51 +129,47 @@ button {
     <h2>Create Item</h2>
         <div class="form-group">
             <label>Item Name</label>
-            <input type="text">
+            <input type="text" id="itemName">
+            <input type="text" id="rarity" placeholder="common / rare / epic">
         </div>
 
         <div class="form-group">
-            <label>Upload Item</label>
-            <div class="upload-box">
-                <i class="fa-solid fa-upload"></i>
-                <div>Select Photo to Upload</div>
-                <small>Supported Format: JPG, PNG (10MB max)</small>
-            </div>
-        </div>
+    <label>Upload Item</label>
+
+    <input
+        type="file"
+        id="itemImage"
+        accept=".png,.jpg,.jpeg"
+    >
+</div>
 
         <div class="form-group half">
             <label>Category</label>
-            <input type="text">
+            <input type="text" id="category">
         </div>
 
         <div class="form-group half">
             <label>Level</label>
-            <input type="number">
+            <input type="number" id="level">
         </div>
 
         <div class="form-group half">
             <label>Price</label>
-            <input type="number">
+            <input type="number" id="price">
         </div>
 
         <div class="actions">
             <button class="btn-cancel" onclick="goBack()">Cancel</button>
-            <button class="btn-create">Create Item</button>
+            <button class="btn-create" id="createItems">Create Item</button>
         </div>
 
     </div>
-
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-
 <script>
 function goBack(){
     window.history.back();
 }
 </script>
+<script type="module" src="edittask.js"></script>
 
 </body>
 </html>

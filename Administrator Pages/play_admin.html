@@ -66,43 +66,7 @@
             </tr>
         </thead>
 
-        <tbody>
-            <tr>
-                <td>Drink 8 Glasses</td>
-                <td>Water</td>
-                <td>10 XP</td>
-                <td>30</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn-edit" onclick="window.location.href='edittask.html'"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-delete" onclick="window.location.href='deletetask.html'"><i class="fa-solid fa-trash"></i> Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>30 Minute Exercise</td>
-                <td>Exercise</td>
-                <td>50 XP</td>
-                <td>50</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn-edit" onclick="window.location.href='edittask.html'"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-delete" onclick="window.location.href='deletetask.html'"><i class="fa-solid fa-trash"></i> Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Sleep 8 Hours</td>
-                <td>Sleep</td>
-                <td>150 XP</td>
-                <td>20</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn-edit" onclick="window.location.href='edittask.html'"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-delete" onclick="window.location.href='deletetask.html'"><i class="fa-solid fa-trash"></i> Delete</button>
-                </td>
-            </tr>
-        </tbody>
+        <tbody id="tasksTableBody"> </tbody>
     </table>
 
 </div>
@@ -135,37 +99,13 @@
             </tr>
         </thead>
 
-        <tbody>
-            <tr>
-                <td>A Color</td>
-                <td>T-Shirt</td>
-                <td>1</td>
-                <td>Free</td>
-                <td>Available</td>
-                <td>
-                    <button class="btn-edit" onclick="window.location.href='edititem.html'"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-delete" onclick="window.location.href='deleteitem.html'"><i class="fa-solid fa-trash"></i> Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Adventure Awaits</td>
-                <td>T-Shirt</td>
-                <td>5</td>
-                <td>80</td>
-                <td>Available</td>
-                <td>
-                    <button class="btn-edit" onclick="window.location.href='edititem.html'"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn-delete" onclick="window.location.href='deleteitem.html'"><i class="fa-solid fa-trash"></i> Delete</button>
-                </td>
-            </tr>
-        </tbody>
+        <tbody id="itemsTableBody"> </tbody>
     </table>
 
 </div>
 
 </main>
 </div>
-
+<script type="module" src="play_admin.js"></script>
 </body>
 </html>

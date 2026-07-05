@@ -194,6 +194,7 @@ textarea {
 <body>
 
 <div class="modal-box">
+    <form id="articleForm">
 
     <!-- CLOSE -->
     <i class="fa-solid fa-xmark close-btn" onclick="goBack()"></i>
@@ -207,51 +208,54 @@ textarea {
     <!-- FORM -->
     <div class="form-group">
         <label>Title</label>
-        <input type="text">
+        <input type="text" id="title">
     </div>
 
     <div class="form-group">
         <label>Subtitle (Optional)</label>
-        <input type="text">
+        <input type="text" id="subtitle">
     </div>
 
     <div class="row">
         <div class="form-group">
             <label>Author</label>
-            <input type="text">
+            <input type="text" id="author">
         </div>
         <div class="form-group">
             <label>Tags</label>
-            <input type="text">
+            <input type="text" id="tags">
         </div>
     </div>
 
     <div class="form-group">
         <label>Cover Image</label>
         <div class="upload-box">
-            <i class="fa-solid fa-upload"></i>
-            <p>Select Photo to Upload</p>
-            <span>JPG, PNG (10MB max)</span>
+        <input
+            type="file"
+            id="coverImage"
+            accept="image/*">
         </div>
     </div>
 
     <div class="form-group">
         <label>Article Content</label>
-        <textarea placeholder="Type your content here..."></textarea>
+        <textarea placeholder="Type your content here..." id="content"></textarea>
     </div>
 
     <div class="actions">
-        <button class="btn-draft">Save as Draft</button>
-        <button class="btn-publish">Publish</button>
+        <button type="button" class="btn-draft">Save as Draft</button>
+        <button type="submit" class="btn-publish">Publish</button>
     </div>
 
 </div>
+</form>
 
 <script>
 function goBack() {
     window.history.back();
 }
 </script>
+<script type="module" src="uploadarticle.js"></script>
 
 </body>
 </html>

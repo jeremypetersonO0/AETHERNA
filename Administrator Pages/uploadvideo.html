@@ -195,52 +195,45 @@ input:focus, textarea:focus {
     <p class="desc">Add New Video Content For Users</p>
 
     <div class="section-title">Video Information</div>
+    <form id="videoForm">
 
     <!-- FORM -->
     <div class="form-group">
         <label>Title</label>
-        <input type="text">
+        <input type="text" id="title">
     </div>
 
     <div class="form-group">
         <label>Subtitle (Optional)</label>
-        <input type="text">
+        <input type="text" id="subtitle">
     </div>
 
     <div class="row">
         <div class="form-group">
             <label>Instructor / Creator</label>
-            <input type="text">
+            <input type="text" id="creator">
         </div>
         <div class="form-group">
             <label>Tags</label>
-            <input type="text">
+            <input type="text" id="tags">
         </div>
     </div>
 
     <div class="form-group">
-        <label>Video File</label>
-        <div class="upload-box">
-            <i class="fa-solid fa-upload"></i>
-            <p>Select Video to Upload</p>
-            <span>MP4, MOV (1GB max)</span>
-        </div>
+    <label>YouTube URL</label>
+    <input
+        type="url"
+        id="youtubeUrl"
+        placeholder="https://www.youtube.com/watch?v=..."
+        required>
     </div>
 
-    <div class="form-group">
-        <label>Thumbnail</label>
-        <div class="upload-box">
-            <i class="fa-solid fa-upload"></i>
-            <p>Upload Thumbnail</p>
-            <span>JPG, PNG (10MB max)</span>
-        </div>
-    </div>
 
     <div class="actions">
-        <button class="btn-draft">Save as Draft</button>
-        <button class="btn-publish">Publish</button>
+        <button type="button" class="btn-draft">Save as Draft</button>
+        <button type="submit" class="btn-publish">Publish</button>
     </div>
-
+</form>
 </div>
 
 <script>
@@ -248,6 +241,7 @@ function goBack() {
     window.history.back();
 }
 </script>
+<script type="module" src="uploadvideo.js"></script>
 
 </body>
 </html>

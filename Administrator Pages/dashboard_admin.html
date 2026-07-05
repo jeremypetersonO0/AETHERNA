@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -51,51 +53,73 @@
                 <div class="stat-card">
                     <i class="fa-solid fa-users icon-blue"></i>
                     <p>Total Users</p>
-                    <h2 class="text-blue">12,458</h2>
+                    <h2 id="total-users" class="text-blue">0</h2>
                 </div>
                 <div class="stat-card">
                     <i class="fa-solid fa-user-check icon-green"></i>
                     <p>Active Users</p>
-                    <h2 class="text-green">8,234</h2>
+                    <h2 id="active-users" class="text-green">0</h2>
                 </div>
                 <div class="stat-card">
                     <i class="fa-solid fa-file-invoice icon-blue"></i>
                     <p>Total Articles</p>
-                    <h2 class="text-blue">342</h2>
+                    <h2 id="total-articles" class="text-blue">0</h2>
                 </div>
                 <div class="stat-card">
                     <i class="fa-solid fa-video icon-blue-light"></i>
                     <p>Total Videos</p>
-                    <h2 class="text-blue-dark">156</h2>
+                    <h2 id="total-videos" class="text-blue-dark">0</h2>
                 </div>
                 <div class="stat-card">
                     <i class="fa-solid fa-thumbtack icon-lime"></i>
                     <p>Active Tasks</p>
-                    <h2 class="text-lime">24</h2>
+                    <h2 id="active-tasks" class="text-lime">0</h2>
                 </div>
             </div>
 
-            <div class="recent-activity">
-                <h3>Recent Activity</h3>
-                <div class="activity-grid">
-                    <div class="activity-card">
-                        <div class="act-icon bg-blue"><i class="fa-solid fa-user-plus"></i></div>
-                        <div class="act-info">
-                            <strong>New user registered</strong>
-                            <span>Sarah Johnson joined • 2 mins ago</span>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="act-icon bg-purple"><i class="fa-solid fa-video"></i></div>
-                        <div class="act-info">
-                            <strong>New video uploaded</strong>
-                            <span>Sarah Johnson joined • 2 mins ago</span>
-                        </div>
-                    </div>
-                </div>
+<div class="recent-activity">
+    <h3>Recent Activity</h3>
+
+    <div class="activity-grid">
+
+        <!-- ARTICLE -->
+        <div class="activity-card">
+            <div class="act-icon bg-blue">
+                <i class="fa-solid fa-newspaper"></i>
             </div>
+
+            <div class="act-info">
+                <strong id="articleActivityTitle">
+                    New article uploaded
+                </strong>
+
+                <span id="articleActivityText">
+                    Loading...
+                </span>
+            </div>
+        </div>
+
+        <!-- VIDEO -->
+        <div class="activity-card">
+            <div class="act-icon bg-purple">
+                <i class="fa-solid fa-video"></i>
+            </div>
+
+            <div class="act-info">
+                <strong id="videoActivityTitle">
+                    New video uploaded
+                </strong>
+
+                <span id="videoActivityText">
+                    Loading...
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>
         </main>
     </div>
-
+<script type="module" src="dashboard_admin.js"></script>
 </body>
 </html>

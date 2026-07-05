@@ -38,7 +38,9 @@
 <main class="main-content">
 
     <h1>Analytics</h1>
-    <p class="subtitle">Last 7 Days</p>
+    <p class="subtitle">
+    Average health statistics from all users during the selected period
+</p>
 
     <!-- CARDS -->
     <div class="stats-grid">
@@ -46,50 +48,65 @@
         <div class="stat-card">
             <i class="fa-solid fa-bed icon-blue"></i>
             <p>Avg Sleep</p>
-            <h2 class="text-blue">6.4 hours</h2>
+            <h2 class="text-blue" id="avgSleep">0 hours</h2>
         </div>
 
         <div class="stat-card">
             <i class="fa-solid fa-dumbbell icon-green"></i>
             <p>Avg Exercise</p>
-            <h2 class="text-green">22 minutes</h2>
+            <h2 class="text-green" id="avgExercise">0 minutes</h2>
         </div>
 
         <div class="stat-card">
             <i class="fa-solid fa-glass-water icon-blue"></i>
             <p>Avg Water</p>
-            <h2 class="text-blue">5/8</h2>
+            <h2 class="text-blue" id="avgWater">0/0</h2>
         </div>
 
         <div class="stat-card">
             <i class="fa-solid fa-person-walking icon-green"></i>
             <p>Avg Breaks</p>
-            <h2 class="text-green">7 times</h2>
+            <h2 class="text-green" id="avgBreaks">0 times</h2>
         </div>
 
         <div class="stat-card">
             <i class="fa-solid fa-utensils icon-blue"></i>
             <p>Avg Food Score</p>
-            <h2 class="text-blue">78.5%</h2>
+            <h2 class="text-blue" id="avgFood">0%</h2>
         </div>
 
     </div>
 
     <!-- FILTER -->
     <div class="filters">
-        <select><option>Filter by Type</option></select>
-        <select><option>Time</option></select>
-    </div>
+
+    <select id="metricFilter">
+        <option value="sleep_duration">Sleep</option>
+        <option value="exercise_duration">Exercise</option>
+        <option value="water_intake">Water Intake</option>
+        <option value="break_count">Break Count</option>
+        <option value="food_score">Food Score</option>
+    </select>
+
+    <select id="periodFilter">
+        <option value="7">Last 7 Days</option>
+        <option value="30">Last 30 Days</option>
+    </select>
+</div>
+<p id="fallbackMessage" class="fallback-message"></p>
 
     <!-- CHART -->
     <div class="chart-box">
+            <div class="chart-header">
+                <h3 id="chartTitle">Sleep Trend</h3>
+            </div>
         <canvas id="chart"></canvas>
     </div>
 
 </main>
 </div>
 
-<script src="analytics_admin.js"></script>
+<script type="module" src="analytics_admin.js"></script>
 
 </body>
 </html>

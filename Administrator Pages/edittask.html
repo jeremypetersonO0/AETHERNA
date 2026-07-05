@@ -125,29 +125,27 @@ button {
 
     <div class="form-group">
         <label>Edit Task</label>
-        <input type="text" value="Drink 8 Glasses">
+        <input type="text" id="taskName" value="Drink 8 Glasses">
     </div>
 
     <div class="form-group">
         <label>Type</label>
-        <div class="tag-input">
-            <span class="tag">Water ×</span>
-        </div>
+        <input type="text" id="taskType">
     </div>
 
     <div class="form-group">
         <label>XP (Per Progress)</label>
-        <input type="number" value="10">
+        <input type="number" id="taskXP" value="10">
     </div>
 
     <div class="form-group">
         <label>Coin (On Completion)</label>
-        <input type="number" value="30">
+        <input type="number" id="taskCoins" value="30">
     </div>
 
     <div class="actions">
         <button class="btn-cancel" onclick="goBack()">Cancel</button>
-        <button class="btn-save">Save Changes</button>
+        <button class="btn-save" id="saveTaskBtn">Save Changes</button>
     </div>
 
 </div>

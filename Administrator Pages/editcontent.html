@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edit Article</title>
+<title>Edit Video</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -84,16 +84,12 @@ label {
     display: block;
 }
 
-input, textarea {
+input {
     width: 100%;
     padding: 11px;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
     font-size: 12px;
-}
-
-textarea {
-    height: 100px;
 }
 
 /* ROW */
@@ -106,9 +102,14 @@ textarea {
     flex: 1;
 }
 
-/* TAG (edit mode) */
-.tag-input {
-    display: inline-block;
+/* TAGS */
+.tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tag {
     background: #3b82f6;
     color: white;
     padding: 5px 10px;
@@ -116,21 +117,24 @@ textarea {
     font-size: 11px;
 }
 
-/* IMAGE PREVIEW */
-.image-preview {
-    width: 100%;
-    border-radius: 12px;
-    margin-top: 5px;
+/* VIDEO BOX */
+.video-box {
+    border: 2px dashed #e5e7eb;
+    border-radius: 14px;
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+    color: #777;
 }
 
-/* BUTTON IMAGE */
-.image-actions {
+/* BUTTON FILE */
+.file-actions {
     display: flex;
     gap: 10px;
     margin-top: 10px;
 }
 
-.image-actions button {
+.file-actions button {
     flex: 1;
     padding: 8px;
     border-radius: 8px;
@@ -140,7 +144,14 @@ textarea {
     cursor: pointer;
 }
 
-/* FOOTER */
+/* IMAGE PREVIEW */
+.image-preview {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+/* FOOTER BUTTON */
 .actions {
     display: flex;
     gap: 10px;
@@ -181,63 +192,128 @@ textarea {
 
 <div class="modal-box">
 
-    <!-- CLOSE -->
     <i class="fa-solid fa-xmark close-btn" onclick="goBack()"></i>
 
-    <h2>Edit Article</h2>
+    <h2>Edit Content</h2>
     <p class="desc">Update And Manage Existing Content</p>
 
-    <div class="section-title">Article Information</div>
+    <div class="section-title">Content Information</div>
+
+    <!-- GENERAL -->
+    <div class="form-group">
+        <label>Content Type</label>
+        <input type="text" id="contentType" readonly>
+    </div>
 
     <div class="form-group">
         <label>Title</label>
-        <input type="text" value="Healthy Eating Basics">
+        <input type="text" id="title">
     </div>
 
     <div class="form-group">
         <label>Subtitle</label>
-        <input type="text" value="Simple guide to balanced nutrition">
+        <input type="text" id="subtitle">
     </div>
 
     <div class="row">
         <div class="form-group">
             <label>Author</label>
-            <input type="text" value="Dr. Sarah Lee">
+            <input type="text" id="author">
         </div>
+
         <div class="form-group">
             <label>Tags</label>
-            <div class="tag-input">Nutrition ×</div>
+            <input type="text" id="tags">
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Current Image</label>
-        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352" class="image-preview">
+    <!-- ARTICLE ONLY -->
+    <div id="articleSection">
 
-        <div class="image-actions">
-            <button>Change Image</button>
-            <button>Remove</button>
+        <div class="form-group">
+            <label>Current Image</label>
+
+            <img
+                id="articleImagePreview"
+                class="image-preview"
+            >
+
+            <div class="image-actions">
+                <input
+                    type="file"
+                    id="articleImage"
+                    accept="image/*"
+                >
+            </div>
         </div>
+
+        <div class="form-group">
+            <label>Article Content</label>
+            <textarea id="articleContent"></textarea>
+        </div>
+
     </div>
 
-    <div class="form-group">
-        <label>Article Content</label>
-        <textarea>
-- Eat more vegetables
-- Include protein in every meal
-- Stay hydrated
-        </textarea>
+    <!-- VIDEO ONLY -->
+    <div id="videoSection">
+
+        <div class="form-group">
+            <label>Current Video</label>
+
+            <div class="video-box">
+                <span id="currentVideoName"></span>
+            </div>
+
+            <div class="file-actions">
+                <input
+                    type="file"
+                    id="videoFile"
+                    accept="video/*"
+                >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Thumbnail</label>
+
+            <img
+                id="thumbnailPreview"
+                class="image-preview"
+            >
+
+            <div class="file-actions">
+                <input
+                    type="file"
+                    id="thumbnailFile"
+                    accept="image/*"
+                >
+            </div>
+        </div>
+
     </div>
 
     <div class="form-group">
         <label>Last Updated</label>
-        <p style="font-size:12px; color:#777;">Apr 9, 2026 (Auto)</p>
+
+        <p
+            id="lastUpdated"
+            style="font-size:12px;color:#777;"
+        >
+        </p>
     </div>
 
     <div class="actions">
-        <button class="btn-cancel" onclick="goBack()">Cancel</button>
-        <button class="btn-save">Save Changes</button>
-        <button class="btn-delete">Delete Article</button>
+        <button class="btn-cancel" onclick="goBack()">
+            Cancel
+        </button>
+
+        <button class="btn-save" id="saveBtn">
+            Save Changes
+        </button>
+
+        <button class="btn-delete" id="deleteBtn">
+            Delete Content
+        </button>
     </div>
 
 </div>
@@ -247,6 +323,8 @@ function goBack() {
     window.history.back();
 }
 </script>
+
+<script type="module" src="editcontent.js"></script>
 
 </body>
 </html>

@@ -194,3 +194,113 @@ td:first-child {
 .btn-delete:hover {
     background: #1e40af;
 }
+
+.modal-content{
+
+    width:360px;
+
+    background:#fff;
+
+    border-radius:10px;
+
+    padding:28px;
+
+    text-align:center;
+
+}
+
+.modal-content h2{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin-bottom:24px;
+
+}
+
+#deleteText{
+
+    font-size:15px;
+
+    color:#444;
+
+    line-height:1.7;
+
+}
+
+.warning{
+
+    margin:22px 0;
+
+    font-weight:700;
+
+    color:#111;
+
+}
+
+.modal-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+}
+
+.btn-cancel{
+
+    width:82px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#4F8DFD;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.btn-delete-confirm{
+
+    width:82px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#98D317;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.modal.show{
+    display:flex;
+}
