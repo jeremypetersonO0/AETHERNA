@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    background:
+        url("backgroundfinal.png") no-repeat center,
+        linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-size: 1270px, cover;
+}
+
+/* TOMBOL BACK BULAT (MATTE GUNDUKAN) */
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #555;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+    color: #93C001;
+}
+
+/* CONTAINER */
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 700px;
+    background: #ffffff; 
+    padding: 50px 30px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: #333;
+}
+
+.subtitle {
+    margin-bottom: 40px;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* CARDS WRAPPER */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* BOX CARD (EFEK GUNDUKAN MATTE) */
+.card-box {
+    background: #ffffff;
+    color: #333;
+    border-radius: 25px;
+    padding: 25px 20px;
+    width: 180px; /* Diperlebar sedikit agar lebih lega */
+    text-align: center;
+    /* Efek Outset Matte */
+    box-shadow: 8px 8px 16px #777e86, -8px -8px 16px #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.card-box:hover {
+    transform: translateY(-5px);
+}
+
+.card-box img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+    /* Memberi bayangan halus pada ikon */
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+.card-box label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #555;
+}
+
+/* INPUT DALAM CARD (EFEK MASUK KE DALAM / INSET) */
+.card-box input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    background: #f0f0f0;
+    text-align: center;
+    font-weight: 700;
+    color: #333;
+    /* Efek Neumorphism Inset */
+    box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+}
+
+/* Menghilangkan tanda panah di input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* NEXT BUTTON (GUNDUKAN HIJAU MATTE) */
+.next-btn {
+    width: 200px;
+    background: #93C001; /* Hijau tema Wu Xie */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Bayangan abu-abu solid (No Glow) */
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.next-btn:hover {
+    background: #82ab01;
+    transform: translateY(-3px);
+    box-shadow: 10px 10px 20px #bababa, -10px -10px 20px #ffffff;
+}
+
+.next-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 4px 4px 8px #82ab01, inset -4px -4px 8px #ffffff;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 600px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card-box {
+        width: 100%;
+        max-width: 250px;
+    }
+}

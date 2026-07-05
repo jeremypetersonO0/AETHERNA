@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherna - AetherLog</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR (TIDAK DIUBAH) -->
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html"> 🧠 aetherassits</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+
+            <p class="menu-title">General</p>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="logout.html">
+                        <span>⏻</span> Log Out
+                    </a>
+                </li>
+            </ul>
+</nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+<header class="header">
+<h1>AetherLog</h1>
+
+            <a href="profile.html" class="user-badge-link">
+            <div class="user-badge">
+                <div class="user-info">
+                    <span class="name">Username</span>
+                    <span class="level">Level 01</span>
+                </div>
+                <div class="user-avatar"></div>
+            </div>
+            </a>
+</header>
+
+<section class="dashboard-card">
+<h2>AetherLog Calendar</h2>
+<p>Your daily habit tracking will appear here</p>
+</section>
+
+<!-- CALENDAR -->
+<section class="calendar-card">
+
+<div class="calendar-header">
+<button id="prevMonth">←</button>
+<h2 id="monthYear"></h2>
+<button id="nextMonth">→</button>
+</div>
+
+<div class="calendar">
+<div class="day-names">
+<div>Sun</div><div>Mon</div><div>Tue</div>
+<div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+</div>
+
+<div id="calendarDays" class="calendar-days"></div>
+</div>
+
+</section>
+
+<!-- RECAP -->
+<section class="monthly-recap">
+
+<h2>This Month Overview</h2>
+
+<div class="recap-grid">
+<div class="recap-card">
+<h3>Goal Completion</h3>
+<p id="goalCompletion">0%</p>
+</div>
+
+<div class="recap-card">
+<h3>Best Streak</h3>
+<p id="bestStreak">0 Days</p>
+</div>
+
+<div class="recap-card">
+    <h3>Total Glasses</h3>
+    <p id="totalGlasses">0 Gelas</p>
+</div>
+</div>
+
+<!-- Grafik 1: Status Kalender Utama -->
+<canvas id="monthlyChart"></canvas>
+
+<!-- 🔥 TAMBAHAN UTAMA: Elemen Canvas tempat menggambar Grafik Air Minum kamu! -->
+<div class="water-recap-section" style="margin-top: 40px;">
+    <h2>Water Intake Overview ☕</h2>
+    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Grafik konsumsi air minum harian kamu di bulan ini</p>
+    <canvas id="waterMonthlyChart"></canvas>
+</div>
+
+</section>
+
+</main>
+</div>
+
+<!-- POPUP -->
+<div id="statusPopup" class="status-popup">
+<div class="status-option achieved-btn">🟩 Achieved</div>
+<div class="status-option partial-btn">🟨 Partial</div>
+<div class="status-option missed-btn">🟥 Missed</div>
+</div>
+
+<script type="module">
+import { auth, db } from "./firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { doc, getDoc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const monthYear = document.getElementById("monthYear");
+const calendarDays = document.getElementById("calendarDays");
+const popup = document.getElementById("statusPopup");
+
+let date = new Date();
+let selectedDay = null;
+let currentUserUID = null;
+
+let mainChart = null;
+let waterChart = null;
+
+let monthlyFirebaseData = {}; 
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        currentUserUID = user.uid;
+        console.log("AetherLog terhubung dengan User:", currentUserUID);
+        await loadMonthlyDataFromFirebase();
+    } else {
+        window.location.href = "login.html";
+    }
+});
+
+function padZero(num) {
+    return String(num).padStart(2, '0');
+}
+
+function getFormattedDateString(day) {
+    const year = date.getFullYear();
+    const month = padZero(date.getMonth() + 1); 
+    return `${year}-${month}-${padZero(day)}`;
+}
+
+/* =================================================================
+   🔄 1. AMBIL DATA BULANAN DARI FIRESTORE
+   ================================================================= */
+async function loadMonthlyDataFromFirebase() {
+    if (!currentUserUID) return;
+
+    monthlyFirebaseData = {};
+    const year = date.getFullYear();
+    const monthStr = padZero(date.getMonth() + 1);
+    const prefixFilter = `${year}-${monthStr}`; 
+
+    renderCalendar();
+
+    try {
+        const historyCollRef = collection(db, "daily_activities", currentUserUID, "history");
+        const querySnapshot = await getDocs(historyCollRef);
+
+        querySnapshot.forEach((docSnap) => {
+            const docId = docSnap.id; 
+            if (docId.startsWith(prefixFilter)) {
+                const dayNum = parseInt(docId.split("-")[2]);
+                monthlyFirebaseData[dayNum] = docSnap.data();
+            }
+        });
+
+        renderCalendar();
+        updateStatsAndCharts();
+
+    } catch (err) {
+        console.error("Gagal mengambil histori aktivitas dari Firestore:", err);
+        updateStatsAndCharts(); 
+    }
+}
+
+/* =================================================================
+   📅 2. RENDER KALENDER BERDASARKAN DATA FIRESTORE
+   ================================================================= */
+function renderCalendar() {
+    calendarDays.innerHTML = "";
+
+    let year = date.getFullYear();
+    let month = date.getMonth();
+
+    let firstDay = new Date(year, month, 1).getDay();
+    let lastDate = new Date(year, month + 1, 0).getDate();
+
+    monthYear.innerText = date.toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric"
+    });
+
+    for (let i = 0; i < firstDay; i++) {
+        calendarDays.innerHTML += "<div></div>";
+    }
+
+    for (let i = 1; i <= lastDate; i++) {
+        let day = document.createElement("div");
+        day.innerText = i;
+
+        const dayData = monthlyFirebaseData[i];
+        if (dayData && dayData.status) {
+            day.classList.add(dayData.status); 
+        }
+
+        let today = new Date();
+        if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+            day.classList.add("today");
+        }
+
+        day.addEventListener("click", (e) => {
+            selectedDay = i;
+            popup.classList.add("show");
+            popup.style.top = e.clientY + "px";
+            popup.style.left = e.clientX + "px";
+        });
+
+        calendarDays.appendChild(day);
+    }
+}
+
+/* =================================================================
+   💾 3. SIMPAN STATUS PILIHAN BARU KE FIRESTORE & RE-SYNC
+   ================================================================= */
+async function applyStatus(statusType) {
+    if (!currentUserUID || !selectedDay) return;
+
+    const dateDocName = getFormattedDateString(selectedDay);
+    const dayDocRef = doc(db, "daily_activities", currentUserUID, "history", dateDocName);
+
+    try {
+        const oldSnap = await getDoc(dayDocRef);
+        let currentWater = 0;
+        
+        if (oldSnap.exists()) {
+            currentWater = oldSnap.data().water_intake || 0;
+        }
+
+        await setDoc(dayDocRef, {
+            status: statusType,
+            water_intake: currentWater
+        }, { merge: true });
+
+        console.log(`Berhasil menyimpan status [${statusType}] untuk tanggal: ${dateDocName}`);
+        popup.classList.remove("show");
+        await loadMonthlyDataFromFirebase();
+
+    } catch (err) {
+        console.error("Gagal menyimpan status ke Firestore:", err);
+        alert("Koneksi gagal. Status tidak tersimpan.");
+    }
+}
+
+document.querySelector(".achieved-btn").onclick = () => applyStatus("achieved");
+document.querySelector(".partial-btn").onclick = () => applyStatus("partial");
+document.querySelector(".missed-btn").onclick = () => applyStatus("missed");
+
+document.addEventListener("click", (e) => {
+    if (!popup.contains(e.target) && !e.target.closest(".calendar-days div")) {
+        popup.classList.remove("show");
+    }
+});
+
+document.getElementById("prevMonth").onclick = async () => {
+    date.setMonth(date.getMonth() - 1);
+    await loadMonthlyDataFromFirebase();
+};
+
+document.getElementById("nextMonth").onclick = async () => {
+    date.setMonth(date.getMonth() + 1);
+    await loadMonthlyDataFromFirebase();
+};
+
+/* =================================================================
+   📊 4. HITUNG STATISTIK & RE-BUILD GRAFIK (KALENDER + AIR MINUM)
+   ================================================================= */
+function updateStatsAndCharts() {
+    let achievedCount = 0;
+    let partialCount = 0;
+    let missedCount = 0;
+    let totalGlassesInMonth = 0;
+
+    let waterLabels = [];
+    let waterDataValues = [];
+
+    let lastDateInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
+    for (let d = 1; d <= lastDateInMonth; d++) {
+        const dayData = monthlyFirebaseData[d];
+        
+        if (dayData) {
+            if (dayData.status === "achieved") achievedCount++;
+            if (dayData.status === "partial") partialCount++;
+            if (dayData.status === "missed") missedCount++;
+
+            if (dayData.water_intake) {
+                totalGlassesInMonth += Number(dayData.water_intake);
+            }
+        }
+
+        waterLabels.push(`Tgl ${d}`);
+        waterDataValues.push(dayData ? (dayData.water_intake || 0) : 0);
+    }
+
+    let totalStatus = achievedCount + partialCount + missedCount;
+    const goalEl = document.getElementById("goalCompletion");
+    if (goalEl) {
+        goalEl.innerText = totalStatus ? Math.round((achievedCount / totalStatus) * 100) + "%" : "0%";
+    }
+
+    let streak = 0;
+    let bestStreak = 0;
+    for (let d = 1; d <= lastDateInMonth; d++) {
+        const dayData = monthlyFirebaseData[d];
+        if (dayData && dayData.status === "achieved") {
+            streak++;
+            bestStreak = Math.max(bestStreak, streak);
+        } else if (dayData && dayData.status) {
+            streak = 0; 
+        }
+    }
+    
+    const streakEl = document.getElementById("bestStreak");
+    if (streakEl) {
+        streakEl.innerText = bestStreak + " Days";
+    }
+    
+    const glassesEl = document.getElementById("totalGlasses");
+    if (glassesEl) {
+        glassesEl.innerText = totalGlassesInMonth + " Gelas";
+    }
+
+    const ctxMain = document.getElementById("monthlyChart");
+    if (ctxMain) {
+        if (mainChart) mainChart.destroy();
+        mainChart = new Chart(ctxMain, {
+            type: "bar",
+            data: {
+                labels: ["Achieved", "Partial", "Missed"],
+                datasets: [{
+                    data: [achievedCount, partialCount, missedCount],
+                    backgroundColor: ["#4CAF50", "#FFC107", "#F44336"],
+                    borderRadius: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            }
+        });
+    }
+
+    const ctxWater = document.getElementById("waterMonthlyChart");
+    if (ctxWater) {
+        if (waterChart) waterChart.destroy();
+        
+        waterChart = new Chart(ctxWater, {
+            type: "line", 
+            data: {
+                labels: waterLabels, 
+                datasets: [{
+                    label: "Konsumsi Air (Gelas)",
+                    data: waterDataValues,
+                    backgroundColor: "rgba(33, 150, 243, 0.2)",
+                    borderColor: "#2196F3", 
+                    borderWidth: 2,
+                    pointBackgroundColor: "#2196F3",
+                    tension: 0.2, 
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: true } },
+                scales: {
+                    y: { beginAtZero: true, max: 12, ticks: { stepSize: 2 } }
+                }
+            }
+        });
+    }
+}
+</script>
+
+<!-- Mengimpor file header global satu kali saja -->
+<script type="module" src="shared-header.js"></script>
+
+</body>
+</html>

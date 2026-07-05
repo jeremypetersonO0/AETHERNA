@@ -1,0 +1,110 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Poppins', sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+        url("backgroundfinal.png") no-repeat center,
+        linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+
+background-size: 1270px, cover;
+}
+
+
+.logout-card{
+background:white;
+padding:40px;
+width:380px;
+border-radius:16px;
+text-align:center;
+
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
+
+animation:fadeIn .5s ease;
+}
+
+.logout-icon{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.logout-card h2{
+font-size:20px;
+margin-bottom:12px;
+color:#333;
+}
+
+.logout-card p{
+color:#666;
+font-size:14px;
+margin-bottom:28px;
+line-height:1.5;
+}
+
+/* Buttons */
+
+.logout-buttons{
+display:flex;
+gap:12px;
+}
+
+button{
+flex:1;
+padding:13px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+
+background: whitesmoke; 
+color:black;
+
+transition: all .25s ease;
+
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+
+button:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 18px rgba(0,0,0,0.15);
+}
+
+
+.btn-no:hover{
+background:#ef4444;
+color:white;
+}
+
+
+.btn-yes:hover{
+background:#22c55e;
+color:white;
+}
+
+
+button:active{
+transform:translateY(-1px);
+box-shadow:0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
