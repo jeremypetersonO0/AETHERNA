@@ -101,86 +101,11 @@
 - Highlighted For You -
 </h2>
 
+<!-- Highlight digenerate otomatis dari data -->
+<div id="highlightContainer"></div>
 
-<div class="highlight" 
-onclick="openArticle(
-'Start Running Without Burning Out',
-'Ethan Walker',
-'Exercise',
-'Running doesn’t have to be intense. You don’t need to be fast, and you don’t need to go far to call yourself a runner. What actually matters is showing up consistently, even if it’s just for a few minutes. A lot of people quit early because they think running has to feel exhausting or extreme. In reality, running works best when it feels manageable. When you keep it light and sustainable, it becomes something you can actually stick with. Running is powerful because it supports multiple aspects of your health at once. It improves heart health, builds stamina, and even helps clear your mind after a long day. That “post-run” feeling? That’s your body and brain resetting. If you’re just starting out, the best thing you can do is start small. Instead of running non-stop, try mixing it with walking. For example, you can:run for 2 minutes, walk for 1 minute, and repeat this for 10–15 minutes. This makes running feel less intimidating and helps your body adjust gradually. Keep your pace comfortable — you should still be able to talk while running. To make it easier to stay consistent, focus on building a simple routine. You don’t need perfect gear or a detailed plan. Just: pick a time that works for you (morning or evening) wear something comfortable let go of the pressure to go far or fast When running feels easy, you’re more likely to come back to it. A simple starting plan could look like this: run 2–3 times a week for 10–15 minutes. If it feels good, you can slowly increase the duration the following week. There’s no rush — progress doesn’t have to be fast to be real. At the end of the day, running isn’t about perfection. Slow runs still count. Short runs still count. What matters most is that you keep going, one step at a time. So if you’re thinking about starting, don’t overthink it. Just put on your shoes, step outside, and begin. Even a 5-minute run is already a win 🏃‍♂️✨',
-'image/running.png'
-)">
-
-<img src="image/running.png" class="highlight-img">
-
-<h3>Start Running Without Burning Out</h3>
-
-<p>
-Running doesn’t have to be intense. Start slow, build steady, and make it enjoyable.
-Running is one of the simplest ways to stay active — but many people quit too fast
-</p>
-
-<div class="meta">
-  <span class="category-tag">Exercise</span>
-  <span class="dot">•</span>
-  <span class="author-name">Ethan Walker</span>
-</div>
-
-
-</div>
-
-<!-- GRID -->
-<div class="grid">
-
-<div class="card">
-  <img src="image/food.png">
-  <h4>Eat Better Without Overthinking</h4>
-  <p>Healthy eating doesn’t have to be complicated. Start with simple combinations that actually work</p>
-
-  <div class="card-meta">
-    <span class="card-category">Nutrition</span>
-    <span class="dot">•</span>
-    <span class="card-author">Andre B. </span>
-  </div>
-</div>
-
-<div class="card">
-  <img src="image/sleep.png">
-  <h4>Why Sleep Matters More</h4>
-  <p>Sleep isn’t just rest — it’s recovery.  Here’s why your body needs it more than you realize.....</p>
-
-  <div class="card-meta">
-    <span class="card-category">Rest</span>
-    <span class="dot">•</span>
-    <span class="card-author">Dinda Karlina</span>
-  </div>
-</div>
-
-<div class="card">
-  <img src="image/barbel.png">
-  <h4>Move Without Working Out</h4>
-  <p>You don’t need the gym to stay active.  Small movements throughout the day add up.....</p>
-
-  <div class="card-meta">
-    <span class="card-category">Movement</span>
-    <span class="dot">•</span>
-    <span class="card-author">Sofia M.</span>
-  </div>
-</div>
-
-<div class="card">
-  <img src="image/water.png">
-  <h4>Are You Drinking Enough Water</h4>
-  <p>Hydration affects your energy, focus, and mood. Most people don’t drink enough — here’s how to fix it.</p>
-
-  <div class="card-meta">
-    <span class="card-category">Nutrition</span>
-    <span class="dot">•</span>
-    <span class="card-author">Dr. Lina Patel</span>
-  </div>
-</div>
-
-</div>
+<!-- GRID digenerate otomatis dari data -->
+<div class="grid" id="gridContainer"></div>
 
 </div>
 
@@ -193,69 +118,8 @@ Running is one of the simplest ways to stay active — but many people quit too 
 Most Popular
 </h3>
 
-
-<div class="popular">
-
-<div class="popular-text">
-  <h4>Why Small Habits Actually Work</h4>
-  <div class="meta">
-    <span class="category-tag">Mindset</span>
-    <span class="dot">•</span>
-    <span class="author-name">Ethan Walker</span>
-  </div>
-</div>
-
-<img src="image/habit.png" class="popular-img">
-
-</div>
-
-
-<div class="popular">
-
-<div class="popular-text">
-  <h4>Getting Started With Workouts</h4>
-  <div class="meta">
-    <span class="category-tag">Exercise</span>
-    <span class="dot">•</span>
-    <span class="author-name">Ryan Kim</span>
-  </div>
-</div>
-
-
-<img src="image/workout.png" class="popular-img">
-
-</div>
-
-<div class="popular">
-
-<div class="popular-text">
-  <h4>It's Okay To Enjoy Treats</h4>
-  <div class="meta">
-    <span class="category-tag">Nutrition</span>
-    <span class="dot">•</span>
-    <span class="author-name">Marcus Lee</span>
-  </div>
-</div>
-
-<img src="image/treat.png" class="popular-img">
-
-</div>
-
-<div class="popular">
-
-<div class="popular-text">
-  <h4>How long should we sleep?</h4>
-  <div class="meta">
-    <span class="category-tag">Rest</span>
-    <span class="dot">•</span>
-    <span class="author-name">Xiao Gege</span>
-  </div>
-</div>
-
-<img src="image/turu.jpg" class="popular-img">
-
-</div>
-
+<!-- Popular digenerate otomatis dari data -->
+<div id="popularContainer"></div>
 
 </div>
 
@@ -265,60 +129,254 @@ Most Popular
 
 </div>
 
-</body>
+<!-- ================= DATA ARTIKEL ================= -->
+<!--
+  Semua artikel disimpan di sini sebagai satu sumber data (single source of truth).
+  Nanti kalau sudah ada backend/admin panel, bagian ini tinggal diganti dengan
+  hasil fetch() dari API/JSON, tanpa perlu ubah kode render di bawah.
 
+  Field:
+  - id        : unique id, dipakai untuk cari artikel saat dibuka
+  - section   : "highlight" | "grid" | "popular"  -> nentuin di kontainer mana dia muncul
+  - page      : "all" | "rest" | "exercise" | "nutrition" | "movement" | "mindset"
+  - title, author, category, image, excerpt, text
+-->
 <script>
-const searchInput = document.getElementById("search");
-const cards = document.querySelectorAll(".card");
-
-searchInput.addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase().trim();
-
-  cards.forEach((card) => {
-    const title = card.querySelector("h4").textContent.toLowerCase();
-    const desc = card.querySelector("p").textContent.toLowerCase();
-
-    const match = title.includes(value) || desc.includes(value);
-
-    card.classList.toggle("hidden", !match);
-  });
-});
+const articles = [
+  {
+    id: "run-01",
+    section: "highlight",
+    page: "all",
+    title: "Start Running Without Burning Out",
+    author: "Ethan Walker",
+    category: "Exercise",
+    image: "image/running.png",
+    excerpt: "Running doesn't have to be intense. Start slow, build steady, and make it enjoyable. Running is one of the simplest ways to stay active — but many people quit too fast",
+    text: "Running doesn't have to be intense. You don't need to be fast, and you don't need to go far to call yourself a runner. What actually matters is showing up consistently, even if it's just for a few minutes. A lot of people quit early because they think running has to feel exhausting or extreme. In reality, running works best when it feels manageable. When you keep it light and sustainable, it becomes something you can actually stick with. Running is powerful because it supports multiple aspects of your health at once. It improves heart health, builds stamina, and even helps clear your mind after a long day. That \u201Cpost-run\u201D feeling? That's your body and brain resetting. If you're just starting out, the best thing you can do is start small. Instead of running non-stop, try mixing it with walking. For example, you can: run for 2 minutes, walk for 1 minute, and repeat this for 10\u201315 minutes. This makes running feel less intimidating and helps your body adjust gradually. Keep your pace comfortable \u2014 you should still be able to talk while running. To make it easier to stay consistent, focus on building a simple routine. You don't need perfect gear or a detailed plan. Just: pick a time that works for you (morning or evening), wear something comfortable, let go of the pressure to go far or fast. When running feels easy, you're more likely to come back to it. A simple starting plan could look like this: run 2\u20133 times a week for 10\u201315 minutes. If it feels good, you can slowly increase the duration the following week. There's no rush \u2014 progress doesn't have to be fast to be real. At the end of the day, running isn't about perfection. Slow runs still count. Short runs still count. What matters most is that you keep going, one step at a time. So if you're thinking about starting, don't overthink it. Just put on your shoes, step outside, and begin. Even a 5-minute run is already a win 🏃\u200D♂️✨"
+  },
+  {
+    id: "food-01",
+    section: "grid",
+    page: "all",
+    title: "Eat Better Without Overthinking",
+    author: "Andre B.",
+    category: "Nutrition",
+    image: "image/food.png",
+    excerpt: "Healthy eating doesn't have to be complicated. Start with simple combinations that actually work",
+    text: "Healthy eating doesn't have to be complicated. Start with simple, balanced combinations instead of chasing perfect diets. Small, consistent choices at every meal add up to real results over time."
+  },
+  {
+    id: "sleep-01",
+    section: "grid",
+    page: "all",
+    title: "Why Sleep Matters More",
+    author: "Dinda Karlina",
+    category: "Rest",
+    image: "image/sleep.png",
+    excerpt: "Sleep isn't just rest — it's recovery. Here's why your body needs it more than you realize.....",
+    text: "Sleep isn't just rest — it's recovery. During sleep your body repairs muscle, consolidates memory, and resets hormones that control hunger and mood. Cutting sleep short quietly affects focus, energy, and emotional balance the next day."
+  },
+  {
+    id: "move-01",
+    section: "grid",
+    page: "all",
+    title: "Move Without Working Out",
+    author: "Sofia M.",
+    category: "Movement",
+    image: "image/barbel.png",
+    excerpt: "You don't need the gym to stay active. Small movements throughout the day add up.....",
+    text: "You don't need the gym to stay active. Small movements throughout the day — taking the stairs, stretching, short walks — add up and support your health just as much as a structured workout."
+  },
+  {
+    id: "water-01",
+    section: "grid",
+    page: "all",
+    title: "Are You Drinking Enough Water",
+    author: "Dr. Lina Patel",
+    category: "Nutrition",
+    image: "image/water.png",
+    excerpt: "Hydration affects your energy, focus, and mood. Most people don't drink enough — here's how to fix it.",
+    text: "Hydration affects your energy, focus, and mood. Most people don't drink enough — here's how to fix it: keep a bottle within reach, drink a glass right after waking up, and pair water with meals as a habit."
+  },
+  {
+    id: "habit-01",
+    section: "popular",
+    page: "all",
+    title: "Why Small Habits Actually Work",
+    author: "Ethan Walker",
+    category: "Mindset",
+    image: "image/habit.png",
+    excerpt: "",
+    text: "Small habits work because they don't rely on motivation. A tiny, repeatable action compounds over weeks and months into real change, without needing willpower every single day."
+  },
+  {
+    id: "workout-01",
+    section: "popular",
+    page: "all",
+    title: "Getting Started With Workouts",
+    author: "Ryan Kim",
+    category: "Exercise",
+    image: "image/workout.png",
+    excerpt: "",
+    text: "Getting started with workouts is easier when you begin with short, simple sessions. Focus on consistency first, intensity later."
+  },
+  {
+    id: "treat-01",
+    section: "popular",
+    page: "all",
+    title: "It's Okay To Enjoy Treats",
+    author: "Marcus Lee",
+    category: "Nutrition",
+    image: "image/treat.png",
+    excerpt: "",
+    text: "It's okay to enjoy treats. Balanced eating isn't about strict restriction — occasional treats fit into a healthy routine when the rest of your diet is balanced."
+  },
+  {
+    id: "sleeplen-01",
+    section: "popular",
+    page: "all",
+    title: "How long should we sleep?",
+    author: "Xiao Gege",
+    category: "Rest",
+    image: "image/turu.jpg",
+    excerpt: "",
+    text: "Most teenagers need around 8\u201310 hours of sleep per night for their bodies and minds to fully recover and function well the next day."
+  }
+];
 </script>
 
-</div>
+<!-- ================= RENDER LOGIC ================= -->
+<script>
+const CURRENT_PAGE = "all"; // ganti sesuai halaman: "rest", "exercise", "nutrition", "movement", "mindset"
 
+function buildHighlight(article) {
+  const div = document.createElement("div");
+  div.className = "highlight";
+  div.innerHTML = `
+    <img src="${article.image}" class="highlight-img">
+    <h3>${article.title}</h3>
+    <p>${article.excerpt}</p>
+    <div class="meta">
+      <span class="category-tag">${article.category}</span>
+      <span class="dot">•</span>
+      <span class="author-name">${article.author}</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openArticleById(article.id));
+  return div;
+}
+
+function buildCard(article) {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <img src="${article.image}">
+    <h4>${article.title}</h4>
+    <p>${article.excerpt}</p>
+    <div class="card-meta">
+      <span class="card-category">${article.category}</span>
+      <span class="dot">•</span>
+      <span class="card-author">${article.author}</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openArticleById(article.id));
+  return div;
+}
+
+function buildPopular(article) {
+  const div = document.createElement("div");
+  div.className = "popular";
+  div.innerHTML = `
+    <div class="popular-text">
+      <h4>${article.title}</h4>
+      <div class="meta">
+        <span class="category-tag">${article.category}</span>
+        <span class="dot">•</span>
+        <span class="author-name">${article.author}</span>
+      </div>
+    </div>
+    <img src="${article.image}" class="popular-img">
+  `;
+  div.addEventListener("click", () => openArticleById(article.id));
+  return div;
+}
+
+function renderArticles() {
+  const pageArticles = articles.filter(a => a.page === CURRENT_PAGE);
+
+  const highlightContainer = document.getElementById("highlightContainer");
+  const gridContainer = document.getElementById("gridContainer");
+  const popularContainer = document.getElementById("popularContainer");
+
+  pageArticles.forEach(article => {
+    if (article.section === "highlight") {
+      highlightContainer.appendChild(buildHighlight(article));
+    } else if (article.section === "grid") {
+      gridContainer.appendChild(buildCard(article));
+    } else if (article.section === "popular") {
+      popularContainer.appendChild(buildPopular(article));
+    }
+  });
+}
+
+function openArticleById(id) {
+  const article = articles.find(a => a.id === id);
+  if (!article) return;
+  openArticle(article.title, article.author, article.category, article.text, article.image);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderArticles();
+  setupSearch();
+});
+
+function setupSearch() {
+  const searchInput = document.getElementById("search");
+
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+      const title = card.querySelector("h4").textContent.toLowerCase();
+      const desc = card.querySelector("p").textContent.toLowerCase();
+      const match = title.includes(value) || desc.includes(value);
+      card.classList.toggle("hidden", !match);
+    });
+  });
+}
+</script>
+
+<!-- ================= POPUP / MODAL ================= -->
 <script>
 function openArticle(title, author, category, text, image){
+  document.getElementById("popupTitle").textContent = title;
+  document.getElementById("popupAuthor").textContent = author;
+  document.getElementById("popupCategory").textContent = category;
+  document.getElementById("popupText").textContent = text;
+  document.getElementById("popupImage").src = image;
 
-document.getElementById("popupTitle").textContent = title;
-document.getElementById("popupAuthor").textContent = author;
-document.getElementById("popupCategory").textContent = category;
-document.getElementById("popupText").textContent = text;
-document.getElementById("popupImage").src = image;
-
-document.getElementById("articlePopup").style.display = "flex";
-document.body.classList.add("modal-open");
-
+  document.getElementById("articlePopup").style.display = "flex";
+  document.body.classList.add("modal-open");
 }
 
 function closeArticle(){
-document.getElementById("articlePopup").style.display = "none";
-
-document.body.classList.remove("modal-open"); 
+  document.getElementById("articlePopup").style.display = "none";
+  document.body.classList.remove("modal-open");
 }
 
 function shareArticle(){
-navigator.clipboard.writeText(window.location.href);
-alert("Link copied!");
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied!");
 }
 </script>
 
 <div id="articlePopup" class="modal" style="display:none;">
     <div class="modal-content">
         <span class="close-btn" onclick="closeArticle()">&times;</span>
-        
+
         <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
-        
+
         <div class="modal-body">
             <span id="popupCategory" class="category-tag"></span>
             <h2 id="popupTitle"></h2>
@@ -335,4 +393,5 @@ alert("Link copied!");
 
 <script type="module" src="shared-header.js"></script>
 
+</body>
 </html>

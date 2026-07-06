@@ -3,27 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Aetherna - AetherPedia Rest</title>
-
 <link rel="stylesheet" href="dashboard.css">
 <link rel="stylesheet" href="aetherpedia2.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
 
 <div class="container">
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
 <div class="logo-box">
 <img src="Group 39.png" class="logo-img" alt="logo">
 <h3>AETHERNA</h3>
 </div>
-
 <nav>
 <p class="menu-title">Feature</p>
 <ul class="menu">
@@ -34,209 +27,54 @@
 <li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
 <li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
 </ul>
-
-            <p class="menu-title">General</p>
-            <ul class="menu">
-                <li class="menu-item">
-                    <a href="logout.html">
-                        <span>⏻</span> Log Out
-                    </a>
-                </li>
-            </ul>
+<p class="menu-title">General</p>
+<ul class="menu">
+<li class="menu-item"><a href="logout.html"><span>⏻</span> Log Out</a></li>
+</ul>
 </nav>
 </aside>
 
-
-<!-- MAIN -->
 <main class="main-content">
 
-<!-- HEADER -->
 <header class="header">
 <h1>AetherPedia</h1>
-
 <div class="header-right">
-
 <div class="search-box">
 <input type="text" id="search" placeholder="Search articles..." />
 </div>
-
-            <a href="profile.html" class="user-badge-link">
-            <div class="user-badge">
-                <div class="user-info">
-                    <span class="name">Username</span>
-                    <span class="level">Level 01</span>
-                </div>
-                <div class="user-avatar"></div>
-            </div>
-            </a>
-
+<a href="profile.html" class="user-badge-link">
+<div class="user-badge">
+<div class="user-info">
+<span class="name">Username</span>
+<span class="level">Level 01</span>
+</div>
+<div class="user-avatar"></div>
+</div>
+</a>
 </div>
 </header>
 
-
-<!-- CATEGORY -->
 <section class="category">
-
 <span onclick="location.href='aetherpedia2.html'">All</span>
 <span class="active">Rest</span>
 <span onclick="location.href='aetherpedia_excercise.html'">Exercise</span>
 <span onclick="location.href='aetherpedia_nutrition.html'">Nutrition</span>
 <span onclick="location.href='aetherpedia_movement.html'">Health</span>
 <span onclick="location.href='aetherpedia_mindset.html'">Mental Wellness</span>
-
 </section>
 
-
-
-<!-- CONTENT -->
 <section class="content">
 
-<!-- LEFT -->
 <div class="left">
-
-<h2 class="highlight-title">
-- Recomended For You -
-</h2>
-
-<div class="highlight" 
-onclick="openArticle(
-'Why You are Always Tired Even After Sleeping',
-'Tsabita Syahri',
-'Energy & Fatigue',
-'You slept enough, but still feel exhausted? This is actually quite common, and it doesn’t always mean you’re not getting enough hours of sleep. In many cases, the problem comes from sleep quality rather than sleep duration. Even if you spend 7–8 hours in bed, frequent interruptions, shallow sleep, or an inconsistent sleep schedule can prevent your body from fully recovering. Stress is another major factor that can quietly drain your energy. When your mind is constantly active—thinking about school, responsibilities, or personal worries—your body stays in a state of tension even during rest. This makes your sleep less effective, so you may still wake up feeling tired even after a full night of rest. Daily habits also play a big role in how refreshed you feel. Late-night screen time, irregular sleeping hours, lack of physical activity, and poor diet can all affect your energy levels without you realizing it. Improving sleep quality, managing stress, and building healthier routines can help your body recover better so you can wake up feeling more refreshed and energized.',
-'image/aetherpedia_rest/Tired.jpg'
-)">
-
-<img src="image/aetherpedia_rest/Tired.jpg" class="highlight-img">
-
-<h3>Why You are Always Tired Even After Sleeping</h3>
-
-<p>
-You slept enough, but still feel exhausted? Poor sleep quality, stress, and daily habits 
-can drain your energy without you realizing it. Learn the hidden reasons behind constant 
-fatigue and how to wake up feeling truly refreshed.
-</p>
-
-<div class="meta">
-  <span class="category-tag">Energy & Fatigue</span>
-  <span class="dot">•</span>
-  <span class="author-name">Tsabita Syhari</span>
+<h2 class="highlight-title">- Recomended For You -</h2>
+<div id="highlightContainer"></div>
+<div class="grid" id="gridContainer"></div>
 </div>
 
-</div>
-
-<!-- GRID kosong -->
-<div class="grid">
-
-<div class="card">
-  <img src="image/aetherpedia_rest/SleepQuality.jpg">
-  <h4>Sleep Quality vs Sleep Duration</h4>
-  <p>Is it better to sleep longer or sleep better? Understanding the difference between sleep quality and duration can help you wake up feeling more refreshed.</p>
-
-  <div class="card-meta">
-    <span class="card-category">Sleep Basics</span>
-    <span class="dot">•</span>
-    <span class="card-author">Andre B. </span>
-  </div>
-</div>
-
-<div class="card">
-  <img src="image/aetherpedia_rest/Avoid These Before Sleep.jpg">
-  <h4>Avoid These Before Sleep</h4>
-  <p>Small habits before bed can affect your sleep more than you think.Avoid these common mistakes to improve your sleep quality tonight.</p>
-
-  <div class="card-meta">
-    <span class="card-category">Night Routine</span>
-    <span class="dot">•</span>
-    <span class="card-author">Dinda K.</span>
-  </div>
-</div>
-
-<div class="card">
-  <img src="image/aetherpedia_rest/Why Snoozing Makes You Tired.jpg">
-  <h4>Why Snoozing Makes You Tired</h4>
-  <p>Hitting snooze might feel good, but it can make you more tired. Learn why snoozing hurts your energy and how to wake up better.</p>
-
-  <div class="card-meta">
-    <span class="card-category">Morning</span>
-    <span class="dot">•</span>
-    <span class="card-author">Sofia M.</span>
-  </div>
-</div>
-
-<div class="card">
-  <img src="image/aetherpedia_rest/Mincro Sleeping.jpg">
-  <h4>Micro Breaks During Work</h4>
-  <p>Short breaks throughout the day can boost focus and reduce fatigue. Discover how micro breaks help your mind and body recover.</p>
-
-  <div class="card-meta">
-    <span class="card-category">Recovery</span>
-    <span class="dot">•</span>
-    <span class="card-author">Dr. Lina Patel</span>
-  </div>
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- RIGHT -->
 <div class="right">
-
-<h3 class="popular-title">
-Most Popular
-</h3>
-
-<!-- popular kosong -->
-<div class="popular">
-<div class="popular-text">
-  <h4>How Screen Time Affects Sleep</h4>
-  <div class="meta">
-    <span class="category-tag">Night Routine</span>
-    <span class="dot">•</span>
-    <span class="author-name">Ethan Walker</span>
-  </div>
+<h3 class="popular-title">Most Popular</h3>
+<div id="popularContainer"></div>
 </div>
-
-<img src="image/aetherpedia_rest/Screen Time and Sleep.jpg" class="popular-img">
-
-</div>
-
-
-<div class="popular">
-
-<div class="popular-text">
-  <h4>Morning Habits For Better Energy</h4>
-  <div class="meta">
-    <span class="category-tag">Morning</span>
-    <span class="dot">•</span>
-    <span class="author-name">Marcus Lee</span>
-  </div>
-</div>
-
-
-<img src="image/aetherpedia_rest/Morning Energy Habits.jpg" class="popular-img">
-
-</div>
-
-<div class="popular">
-
-<div class="popular-text">
-  <h4>Rest Helps Mental Recovery</h4>
-  <div class="meta">
-    <span class="category-tag">Break</span>
-    <span class="dot">•</span>
-    <span class="author-name">Ryan Kim</span>
-  </div>
-</div>
-
-<img src="image/aetherpedia_rest/Mentality.jpg" class="popular-img">
-
-</div>
-
-
 
 </section>
 
@@ -245,57 +83,216 @@ Most Popular
 </div>
 
 <script>
-const searchInput = document.getElementById("search");
-const cards = document.querySelectorAll(".card");
-
-searchInput.addEventListener("input", (e) => {
-const value = e.target.value.toLowerCase().trim();
-
-cards.forEach((card) => {
-const title = card.querySelector("h4").textContent.toLowerCase();
-const desc = card.querySelector("p").textContent.toLowerCase();
-
-const match = title.includes(value) || desc.includes(value);
-
-card.classList.toggle("hidden", !match);
-});
-});
+const articles = [
+  {
+    id: "rest-highlight-01",
+    section: "highlight",
+    page: "rest",
+    title: "Why You are Always Tired Even After Sleeping",
+    author: "Tsabita Syahri",
+    category: "Energy & Fatigue",
+    image: "image/aetherpedia_rest/Tired.jpg",
+    excerpt: "You slept enough, but still feel exhausted? Poor sleep quality, stress, and daily habits can drain your energy without you realizing it. Learn the hidden reasons behind constant fatigue and how to wake up feeling truly refreshed.",
+    text: "You slept enough, but still feel exhausted? This is actually quite common, and it doesn't always mean you're not getting enough hours of sleep. In many cases, the problem comes from sleep quality rather than sleep duration. Even if you spend 7\u20138 hours in bed, frequent interruptions, shallow sleep, or an inconsistent sleep schedule can prevent your body from fully recovering. Stress is another major factor that can quietly drain your energy. When your mind is constantly active\u2014thinking about school, responsibilities, or personal worries\u2014your body stays in a state of tension even during rest. This makes your sleep less effective, so you may still wake up feeling tired even after a full night of rest. Daily habits also play a big role in how refreshed you feel. Late-night screen time, irregular sleeping hours, lack of physical activity, and poor diet can all affect your energy levels without you realizing it. Improving sleep quality, managing stress, and building healthier routines can help your body recover better so you can wake up feeling more refreshed and energized."
+  },
+  {
+    id: "rest-grid-01",
+    section: "grid",
+    page: "rest",
+    title: "Sleep Quality vs Sleep Duration",
+    author: "Andre B.",
+    category: "Sleep Basics",
+    image: "image/aetherpedia_rest/SleepQuality.jpg",
+    excerpt: "Is it better to sleep longer or sleep better? Understanding the difference between sleep quality and duration can help you wake up feeling more refreshed.",
+    text: "Is it better to sleep longer or sleep better? Sleep duration is only part of the picture. Deep, uninterrupted sleep cycles matter just as much as the number of hours, since your body does most of its physical and mental repair during deep sleep stages. Prioritizing a consistent bedtime and reducing disturbances can make even fewer hours feel more restorative."
+  },
+  {
+    id: "rest-grid-02",
+    section: "grid",
+    page: "rest",
+    title: "Avoid These Before Sleep",
+    author: "Dinda K.",
+    category: "Night Routine",
+    image: "image/aetherpedia_rest/Avoid These Before Sleep.jpg",
+    excerpt: "Small habits before bed can affect your sleep more than you think. Avoid these common mistakes to improve your sleep quality tonight.",
+    text: "Small habits before bed can affect your sleep more than you think. Bright screens, heavy meals, caffeine late in the day, and stressful conversations right before bed all make it harder for your body to wind down. Building a calm, consistent wind-down routine signals to your brain that it's time to rest."
+  },
+  {
+    id: "rest-grid-03",
+    section: "grid",
+    page: "rest",
+    title: "Why Snoozing Makes You Tired",
+    author: "Sofia M.",
+    category: "Morning",
+    image: "image/aetherpedia_rest/Why Snoozing Makes You Tired.jpg",
+    excerpt: "Hitting snooze might feel good, but it can make you more tired. Learn why snoozing hurts your energy and how to wake up better.",
+    text: "Hitting snooze might feel good in the moment, but it fragments the last stretch of your sleep cycle, leaving you groggier than if you'd just gotten up. Waking at a consistent time, even on weekends, helps your body settle into a rhythm that makes mornings easier."
+  },
+  {
+    id: "rest-grid-04",
+    section: "grid",
+    page: "rest",
+    title: "Micro Breaks During Work",
+    author: "Dr. Lina Patel",
+    category: "Recovery",
+    image: "image/aetherpedia_rest/Mincro Sleeping.jpg",
+    excerpt: "Short breaks throughout the day can boost focus and reduce fatigue. Discover how micro breaks help your mind and body recover.",
+    text: "Short breaks throughout the day can boost focus and reduce fatigue. Stepping away from a task for even a few minutes lets your mind reset, reducing the mental fog that builds up during long stretches of concentration."
+  },
+  {
+    id: "rest-popular-01",
+    section: "popular",
+    page: "rest",
+    title: "How Screen Time Affects Sleep",
+    author: "Ethan Walker",
+    category: "Night Routine",
+    image: "image/aetherpedia_rest/Screen Time and Sleep.jpg",
+    excerpt: "",
+    text: "Screens emit blue light that can delay the release of melatonin, the hormone that helps you feel sleepy. Reducing screen time an hour before bed can help you fall asleep faster and sleep more deeply."
+  },
+  {
+    id: "rest-popular-02",
+    section: "popular",
+    page: "rest",
+    title: "Morning Habits For Better Energy",
+    author: "Marcus Lee",
+    category: "Morning",
+    image: "image/aetherpedia_rest/Morning Energy Habits.jpg",
+    excerpt: "",
+    text: "Simple morning habits like getting natural light, drinking water, and moving your body soon after waking can help set a more energized tone for the rest of the day."
+  },
+  {
+    id: "rest-popular-03",
+    section: "popular",
+    page: "rest",
+    title: "Rest Helps Mental Recovery",
+    author: "Ryan Kim",
+    category: "Break",
+    image: "image/aetherpedia_rest/Mentality.jpg",
+    excerpt: "",
+    text: "Rest isn't just physical recovery — it also gives your mind space to process emotions and reduce mental clutter, which is just as important for feeling refreshed."
+  }
+];
 </script>
 
-</div>
+<script>
+const CURRENT_PAGE = "rest";
+
+function buildHighlight(article) {
+  const div = document.createElement("div");
+  div.className = "highlight";
+  div.innerHTML = `
+    <img src="${article.image}" class="highlight-img">
+    <h3>${article.title}</h3>
+    <p>${article.excerpt}</p>
+    <div class="meta">
+      <span class="category-tag">${article.category}</span>
+      <span class="dot">•</span>
+      <span class="author-name">${article.author}</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openArticleById(article.id));
+  return div;
+}
+
+function buildCard(article) {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <img src="${article.image}">
+    <h4>${article.title}</h4>
+    <p>${article.excerpt}</p>
+    <div class="card-meta">
+      <span class="card-category">${article.category}</span>
+      <span class="dot">•</span>
+      <span class="card-author">${article.author}</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openArticleById(article.id));
+  return div;
+}
+
+function buildPopular(article) {
+  const div = document.createElement("div");
+  div.className = "popular";
+  div.innerHTML = `
+    <div class="popular-text">
+      <h4>${article.title}</h4>
+      <div class="meta">
+        <span class="category-tag">${article.category}</span>
+        <span class="dot">•</span>
+        <span class="author-name">${article.author}</span>
+      </div>
+    </div>
+    <img src="${article.image}" class="popular-img">
+  `;
+  div.addEventListener("click", () => openArticleById(article.id));
+  return div;
+}
+
+function renderArticles() {
+  const pageArticles = articles.filter(a => a.page === CURRENT_PAGE);
+  const highlightContainer = document.getElementById("highlightContainer");
+  const gridContainer = document.getElementById("gridContainer");
+  const popularContainer = document.getElementById("popularContainer");
+
+  pageArticles.forEach(article => {
+    if (article.section === "highlight") highlightContainer.appendChild(buildHighlight(article));
+    else if (article.section === "grid") gridContainer.appendChild(buildCard(article));
+    else if (article.section === "popular") popularContainer.appendChild(buildPopular(article));
+  });
+}
+
+function openArticleById(id) {
+  const article = articles.find(a => a.id === id);
+  if (!article) return;
+  openArticle(article.title, article.author, article.category, article.text, article.image);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderArticles();
+  setupSearch();
+});
+
+function setupSearch() {
+  const searchInput = document.getElementById("search");
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => {
+      const title = card.querySelector("h4").textContent.toLowerCase();
+      const desc = card.querySelector("p").textContent.toLowerCase();
+      const match = title.includes(value) || desc.includes(value);
+      card.classList.toggle("hidden", !match);
+    });
+  });
+}
+</script>
 
 <script>
 function openArticle(title, author, category, text, image){
-
-document.getElementById("popupTitle").textContent = title;
-document.getElementById("popupAuthor").textContent = author;
-document.getElementById("popupCategory").textContent = category;
-document.getElementById("popupText").textContent = text;
-document.getElementById("popupImage").src = image;
-
-document.getElementById("articlePopup").style.display = "flex";
-document.body.classList.add("modal-open");
-
+  document.getElementById("popupTitle").textContent = title;
+  document.getElementById("popupAuthor").textContent = author;
+  document.getElementById("popupCategory").textContent = category;
+  document.getElementById("popupText").textContent = text;
+  document.getElementById("popupImage").src = image;
+  document.getElementById("articlePopup").style.display = "flex";
+  document.body.classList.add("modal-open");
 }
-
 function closeArticle(){
-document.getElementById("articlePopup").style.display = "none";
-
-document.body.classList.remove("modal-open"); 
+  document.getElementById("articlePopup").style.display = "none";
+  document.body.classList.remove("modal-open");
 }
-
 function shareArticle(){
-navigator.clipboard.writeText(window.location.href);
-alert("Link copied!");
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied!");
 }
 </script>
 
 <div id="articlePopup" class="modal" style="display:none;">
     <div class="modal-content">
         <span class="close-btn" onclick="closeArticle()">&times;</span>
-        
         <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
-        
         <div class="modal-body">
             <span id="popupCategory" class="category-tag"></span>
             <h2 id="popupTitle"></h2>
@@ -303,7 +300,6 @@ alert("Link copied!");
             <hr>
             <p id="popupText"></p>
         </div>
-
         <div class="modal-footer">
             <button onclick="shareArticle()" class="share-btn">🔗 Share Link</button>
         </div>
