@@ -60,7 +60,31 @@ if(videoList.length > 0){
         videoList[0].title;
 
 }
+let activeUsers = 0;
 
+const today = new Date();
+
+users.forEach((doc) => {
+
+    const data = doc.data();
+
+    if (data.last_login) {
+
+        const loginDate = data.last_login.toDate();
+
+        if (
+            loginDate.getDate() === today.getDate() &&
+            loginDate.getMonth() === today.getMonth() &&
+            loginDate.getFullYear() === today.getFullYear()
+        ) {
+            activeUsers++;
+        }
+
+    }
+
+});
+
+document.getElementById("active-users").textContent = activeUsers;
         document.getElementById("total-users").textContent = users.size;
         document.getElementById("total-articles").textContent = contents.size;
         document.getElementById("active-tasks").textContent = tasks.size;
