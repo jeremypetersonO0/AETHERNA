@@ -14,28 +14,37 @@ let exp = 0
 let coins = 0
 
 function expToNextLevel(level) {
-return level * 200
+return 100 + (level - 1) * 50
 }
 
 function formatLevel(num){
 return String(num).padStart(2,'0')
 }
 
-// Tambahkan async karena fungsi ini akan menyimpan data level baru ke Firebase
-async function addExp(amount) {
-exp += amount
+function normalizeLevel() {
+let leveledUp = false
 let needed = expToNextLevel(level)
 
 while (exp >= needed) {
 exp -= needed
 level++
 coins += 500
-
-showCoinReward()   // 🔥 animasi coin
-updateCoinUI()
+leveledUp = true
 
 console.log("LEVEL UP →", level)
 needed = expToNextLevel(level)
+}
+
+return leveledUp
+}
+
+// Tambahkan async karena fungsi ini akan menyimpan data level baru ke Firebase
+async function addExp(amount) {
+exp += amount
+
+const leveledUp = normalizeLevel()
+if (leveledUp) {
+showCoinReward()   // 🔥 animasi coin
 }
 
 updateLevelUI()
@@ -147,6 +156,21 @@ onAuthStateChanged(auth, async (user) => {
                 level = data.level || 1;
                 exp = data.exp || 0;
                 coins = data.coins || 0;
+
+                // 🔧 PENTING: cek ulang apakah EXP yang tersimpan ini sudah cukup buat naik level.
+                // Ini nutup kasus kayak rumus expToNextLevel() diubah lalu ada data lama yang jadi
+                // "kelewat" (misal 280 EXP di level 2, padahal kebutuhan levelnya udah turun jadi 150).
+                const leveledUpOnLoad = normalizeLevel();
+                if (leveledUpOnLoad) {
+                    console.log("🎉 Ada level tertunda, diproses saat load. Level sekarang:", level);
+                    showCoinReward();
+                    await updateDoc(docRef, {
+                        level: level,
+                        exp: exp,
+                        coins: coins
+                    }).catch(err => console.error("Gagal simpan koreksi level saat load:", err));
+                }
+
                 updateLevelUI();
                 updateCoinUI();
 
@@ -198,53 +222,33 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
+// Avatar di dashboard sekarang tinggal menampilkan "screenshot" avatar yang sudah
+// jadi (field "snapshot", satu gambar PNG utuh) yang dibuat & disimpan dari AetherPlay.
+// Jadi TIDAK perlu lagi mengatur posisi tiap part (mata, rambut, baju, dst) di sini —
+// posisinya sudah pas dari sononya karena itu screenshot langsung dari AetherPlay.
 async function loadUserAvatarToDashboard(uid) {
     try {
         const docRef = doc(db, "users_avatar", uid);
         const docSnap = await getDoc(docRef);
+        const data = docSnap.exists() ? docSnap.data() : null;
 
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            console.log("🔥 DATA AVATAR BERHASIL DIAMBIL:", data);
-            
-            // 1. UPDATE AVATAR KECIL DI POJOK KANAN ATAS (HEADER)
-            const headerAvatar = document.querySelector(".user-avatar");
-            if (headerAvatar) {
-                headerAvatar.style.backgroundImage = `url('${data.hair}'), url('${data.baju}'), url('image/aetherplay/avatar/head.png')`;
-                headerAvatar.style.backgroundSize = "cover";
-                headerAvatar.style.backgroundPosition = "center";
-                headerAvatar.style.borderRadius = "50%";
-            }
+        const mainAvatar = document.querySelector(".main-avatar");
+        if (!mainAvatar) return;
 
-            // 2. UPDATE AVATAR BESAR DI TENGAH DASHBOARD (DENGAN UKURAN PRESISI)
-            const mainAvatar = document.querySelector(".main-avatar");
-            if (mainAvatar) {
-                mainAvatar.style.backgroundImage = `url('${data.hair}'), url('${data.baju}'), url('image/aetherplay/avatar/head.png')`;
-                
-                // 🔥 KUNCI UKURAN: Berikan perintah 'contain' ke 3 layer (Rambut, Baju, Kepala) secara berurutan
-                mainAvatar.style.backgroundSize = "contain, contain, contain";
-                
-                // 🔥 KUNCI POSISI: Pastikan semua layer sejajar tepat di tengah kotak
-                mainAvatar.style.backgroundPosition = "center, center, center";
-                mainAvatar.style.backgroundRepeat = "no-repeat, no-repeat, no-repeat";
-                
-                // Atur ukuran kotak div-nya agar stabil
-                mainAvatar.style.height = "240px"; // 💡 Naik-turunkan angka ini untuk memperbesar/memperkecil avatar kamu
-                mainAvatar.style.width = "100%";
-            }
-            
+        if (data && data.snapshot) {
+            console.log("🔥 Avatar snapshot ditemukan, menampilkan avatar AetherPlay.");
+            mainAvatar.style.backgroundImage = `url('${data.snapshot}')`;
         } else {
-            console.log("ℹ️ Avatar belum dibuat di AetherPlay, menampilkan default.");
-            // Jika data belum ada, pasang gambar default di tengah
-            const mainAvatar = document.querySelector(".main-avatar");
-            if (mainAvatar) {
-                mainAvatar.style.backgroundImage = "url('Default Character.png')";
-                mainAvatar.style.backgroundSize = "contain";
-                mainAvatar.style.backgroundRepeat = "no-repeat";
-                mainAvatar.style.backgroundPosition = "center";
-                mainAvatar.style.height = "250px";
-            }
+            console.log("ℹ️ Avatar belum pernah disimpan di AetherPlay, menampilkan default.");
+            mainAvatar.style.backgroundImage = "url('image/aetherplay/avatar/head.png')";
         }
+
+        // Karena sekarang cuma 1 gambar (bukan tumpukan layer lagi), "contain" sudah aman
+        mainAvatar.style.backgroundSize = "contain";
+        mainAvatar.style.backgroundPosition = "center";
+        mainAvatar.style.backgroundRepeat = "no-repeat";
+        mainAvatar.style.height = "240px"; // 💡 Naik-turunkan angka ini untuk memperbesar/memperkecil avatar kamu
+        mainAvatar.style.width = "100%";
     } catch (err) {
         console.error("Gagal memuat avatar:", err);
     }
@@ -436,4 +440,3 @@ async function addWater(currentWaterValue) {
 
 // Penutup DOMContentLoaded pembungkus utama file dashboard.js
 })
-

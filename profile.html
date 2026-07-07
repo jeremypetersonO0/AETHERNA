@@ -315,8 +315,8 @@ onAuthStateChanged(auth, async (user) => {
         const userLevel = activityData.level || 1;
         const userExp = activityData.exp || 0;
         
-        // Rumus exp harian kamu di dashboard.js: level * 200
-        const neededExp = userLevel * 200; 
+        // Rumus EXP dibutuhkan per level — HARUS SAMA dengan dashboard.js & aetherplay.js
+        const neededExp = 100 + (userLevel - 1) * 50; 
 
         // 1. Tampilkan teks Level (Contoh: Level 01)
         document.getElementById("profileLevelText").textContent = `Level ${String(userLevel).padStart(2, '0')}`;
