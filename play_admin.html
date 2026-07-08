@@ -29,6 +29,11 @@
             <li class="nav-item"><a href="content_admin.html"><i class="fa-solid fa-file-lines"></i> Content</a></li>
             <li class="nav-item"><a href="analytics_admin.html"><i class="fa-solid fa-chart-simple"></i> Analytics</a></li>
             <li class="nav-item active"><a href="#"><i class="fa-solid fa-gamepad"></i> Play</a></li>
+            <p class="section-label">General</p>
+            <li class="nav-item">
+                    <a href="logout_admin.html">
+                        <span>⏻</span> Log Out
+                    </a> </li>
         </ul>
     </nav>
 </aside>
@@ -39,37 +44,7 @@
 <h1>Play</h1>
 
 <!-- TASKS -->
-<h2 class="section-title">Tasks</h2>
 
-<div class="card-box">
-
-    <div class="top-bar">
-        <button class="btn-green" onclick="window.location.href='createtask.html'">
-            <i class="fa-solid fa-plus"></i> Create Task
-        </button>
-
-        <div class="right-tools">
-            <input type="text" placeholder="Search by name">
-            <select><option>Filter by Type</option></select>
-        </div>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Task Name</th>
-                <th>Type</th>
-                <th>XP</th>
-                <th>Coins</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-
-        <tbody id="tasksTableBody"> </tbody>
-    </table>
-
-</div>
 
 <!-- ITEMS -->
 <h2 class="section-title">Items</h2>
