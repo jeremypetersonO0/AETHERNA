@@ -505,11 +505,6 @@ float.classList.remove("show")
 // =============================================================================
 // LOGGING HARIAN — GENERIC UNTUK SEMUA HABIT (bukan cuma air lagi)
 // =============================================================================
-// Setiap kali habit di-update, field-nya ditulis ke sub-koleksi
-// daily_activities/{uid}/history/{tanggal} pakai merge, jadi tiap hari
-// punya satu dokumen berisi semua habit yang di-log hari itu.
-// Field "date" sengaja disimpan eksplisit (bukan cuma jadi ID dokumen) supaya
-// bisa di-query pakai where("date", ">=", ...) saat ambil rekap mingguan.
 async function logDailyHistory(field, value) {
     const user = auth.currentUser;
     if (!user) return;
