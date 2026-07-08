@@ -14,6 +14,28 @@
 <body>
 
 <div class="container">
+    <div id="customToast" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+">
+    <span id="toastIcon">🔒</span>
+    <span id="toastMessage">Notifikasi</span>
+</div>
 
 <!-- SIDEBAR (TIDAK DIUBAH) -->
 <aside class="sidebar">
@@ -135,6 +157,37 @@ import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { doc, getDoc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+// Fungsi untuk mengambil tanggal hari ini (Format: YYYY-MM-DD)
+function getTodayDateString() {
+    const today = new Date();
+    const offset = today.getTimezoneOffset();
+    const localDate = new Date(today.getTime() - (offset * 60 * 1000));
+    return localDate.toISOString().split('T')[0];
+}
+
+// Fungsi Pemicu Notifikasi Cantik Modern (Pengganti Alert Laptop)
+function showNotification(message, icon = "🔒", bgColor = "#2d3748") {
+    const toast = document.getElementById("customToast");
+    const toastIcon = document.getElementById("toastIcon");
+    const toastMsg = document.getElementById("toastMessage");
+    
+    if(!toast) return;
+    
+    toastIcon.innerText = icon;
+    toastMsg.innerText = message;
+    toast.style.backgroundColor = bgColor;
+    
+    // Munculkan ke layar
+    toast.style.transform = "translateY(0)";
+    toast.style.opacity = "1";
+    
+    // Hilang otomatis dalam 3.5 detik
+    setTimeout(() => {
+        toast.style.transform = "translateY(-100px)";
+        toast.style.opacity = "0";
+    }, 2000);
+}
+
 const monthYear = document.getElementById("monthYear");
 const calendarDays = document.getElementById("calendarDays");
 const popup = document.getElementById("statusPopup");
@@ -238,6 +291,16 @@ function renderCalendar() {
         }
 
         day.addEventListener("click", (e) => {
+            const clickedDateStr = getFormattedDateString(i);
+            const todayStr = getTodayDateString();
+
+            // 🔒 Anti-Curang: Jika klik hari esok atau kemarin, tolak pakai notifikasi custom
+            if (clickedDateStr !== todayStr) {
+                showNotification(`Tanggal ${i} dikunci. Log hanya untuk hari ini!`, "🔒", "#e53e3e");
+                return;
+            }
+
+            // Jika tanggal hari ini, jalankan popup normal
             selectedDay = i;
             popup.classList.add("show");
             popup.style.top = e.clientY + "px";
@@ -255,6 +318,15 @@ async function applyStatus(statusType) {
     if (!currentUserUID || !selectedDay) return;
 
     const dateDocName = getFormattedDateString(selectedDay);
+    const todayStr = getTodayDateString(); // ◄ SUDAH DIPERBAIKI: Mendefinisikan string hari ini
+
+    // 🔒 Validasi Sisi Database: Cegah manipulasi tanggal lama
+    if (dateDocName !== todayStr) {
+        showNotification("Akses ditolak! Hari yang berlalu telah dikunci.", "🔒", "#e53e3e");
+        popup.classList.remove("show");
+        return; 
+    }
+
     const dayDocRef = doc(db, "daily_activities", currentUserUID, "history", dateDocName);
 
     try {
@@ -272,11 +344,15 @@ async function applyStatus(statusType) {
 
         console.log(`Berhasil menyimpan status [${statusType}] untuk tanggal: ${dateDocName}`);
         popup.classList.remove("show");
+        
+        // Pemicu Notifikasi Sukses Modern Berwarna Hijau
+        showNotification(`Status hari ini sukses diubah menjadi ${statusType}!`, "✅", "#38a169");
+        
         await loadMonthlyDataFromFirebase();
 
     } catch (err) {
         console.error("Gagal menyimpan status ke Firestore:", err);
-        alert("Koneksi gagal. Status tidak tersimpan.");
+        showNotification("Koneksi gagal. Status tidak tersimpan.", "❌", "#e53e3e");
     }
 }
 

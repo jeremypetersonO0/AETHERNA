@@ -153,7 +153,8 @@ box-shadow: 0 4px 10px rgba(0,0,0,0.12);
     display: flex;
     justify-content: space-between;
     box-shadow: 0 1px #ffffff, 0 5px 5px rgba(0,0,0,0.2);
-    transition: all 0.2s ease
+    transition: all 0.2s ease;
+    margin-bottom: 20px !important;
 }
 
 .character-box img {
@@ -968,4 +969,132 @@ opacity: 0.9;
     display: block;
     margin: 0 auto;
 }
+/* Minimal Premium Wrapped Modal */
+
+:root{
+  --bg:#0f1115;
+  --surface:#171a21;
+  --border:#2b3442;
+  --text:#f4f6f8;
+  --muted:#9ca7b5;
+  --accent:#7dd3fc;
+  --accent2:#86efac;
+}
+
+#wrappedModal.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(10,12,16,.72);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  z-index:99999;
+  align-items:center;
+  justify-content:center;
+}
+
+#wrappedModal .modal-box{
+  width:90%;
+  max-width:400px;
+  height:580px;
+  background:linear-gradient(180deg,#1a1e26,#12151b);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px 25px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  box-sizing:border-box;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+#wrappedModal .close-btn{
+  position:absolute;
+  top:22px;right:22px;
+  width:34px;height:34px;
+  border-radius:50%;
+  border:none;
+  background:#232833;
+  color:#cfd8e3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.2s ease;
+}
+#wrappedModal .close-btn:hover{
+  background:#2d3442;
+  transform:scale(1.05);
+}
+
+#wrappedModal .indicator{
+  display:flex;
+  gap:6px;
+  margin:6px 0 34px;
+}
+#wrappedModal .indicator .bar{
+  flex:1;
+  height:4px;
+  border-radius:999px;
+  background:#2b3442;
+}
+#wrappedModal .indicator .bar.active{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+}
+
+#wrappedModal .story-content-area{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#wrappedModal .story-slide{
+  text-align:center;
+  animation:fadeUp .35s ease;
+}
+
+#wrappedModal .story-slide h2{
+  font:700 26px Poppins,sans-serif;
+  color:var(--text);
+  margin-bottom:18px;
+  line-height:1.3;
+}
+
+#wrappedModal .story-slide p{
+  font:400 15px Poppins,sans-serif;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+#wrappedModal .story-highlight{
+  color:var(--text);
+  font-weight:600;
+  padding:2px 8px;
+  border-radius:999px;
+  background:rgba(125,211,252,.12);
+  border:1px solid rgba(125,211,252,.25);
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(12px);}
+to{opacity:1;transform:none;}
+}
+
+.wrap-slide-content {
+    text-align: center;
+    color: #ffffff !important; /* Memaksa warna tulisan menjadi putih */
+}
+
+.wrap-slide-content h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: #ffffff !important;
+}
+
+.wrap-slide-content p {
+    font-size: 16px;
+    color: #e2e8f0 !important;
+}
+
 

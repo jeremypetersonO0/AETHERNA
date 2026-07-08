@@ -131,97 +131,131 @@
 <!-- RECOMMENDED -->
 <h3 class="section-title">Recommended For You</h3>
 
-<div class="flow-grid">
-  
-  <div class="flow-card">
-
-    <img src="https://img.youtube.com/vi/12J2gR9HHl4/hqdefault.jpg">
-
-    <h4>Morning Mobility Routine for Beginners</h4>
-
-    <div class="card-bottom">
-      <span class="tag">Movement</span>
-      <button class="watch-btn" onclick="playVideo('12J2gR9HHl4')">
-        Watch Now
-      </button>
-    </div>
-
+<div class="flow-grid" id="videoGrid">
   </div>
-
-  <!-- VIDEO MODAL -->
-  <div id="videoModal" class="video-modal">
-    <div class="video-box">
-      <iframe id="ytFrame" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <div class="flow-card">
-
-    <img src="https://img.youtube.com/vi/VwlPQjVCQuw/hqdefault.jpg">
-
-    <h4>Do This Daily To Move 10x Better !!!!!!!!</h4>
-
-    <div class="card-bottom">
-      <span class="tag">Movement</span>
-      <button class="watch-btn" onclick="playVideo('VwlPQjVCQuw')">
-        Watch Now
-      </button>
-    </div>
-
-  </div>
-
-
-  <div class="flow-card">
-
-    <img src="https://img.youtube.com/vi/AdqrTg_hpEQ/hqdefault.jpg">
-
-    <h4>Walking Exercise with the SUPER Coaches!</h4>
-
-    <div class="card-bottom">
-      <span class="tag">Movement</span>
-      <button class="watch-btn" onclick="playVideo('AdqrTg_hpEQ')">
-        Watch Now
-      </button>
-    </div>
-
-  </div>
-
-</div>
 
 </main>
 
-<script>
-const searchInput = document.getElementById("search");
-const cards = document.querySelectorAll(".flow-card");
+<script type="module">
+import { db } from "../Firebase/Firebase-config.js";
+import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-searchInput.addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase().trim();
+// Tentukan kategori halaman ini (Harus sama persis dengan value dropdown di admin)
+const CURRENT_PAGE = "Movement"; 
+const videoGrid = document.getElementById("videoGrid");
 
-  cards.forEach((card) => {
-    const title = card.querySelector("h4").textContent.toLowerCase();
-    const tag = card.querySelector(".tag").textContent.toLowerCase();
+async function loadVideos() {
+  try {
+    if(videoGrid) videoGrid.innerHTML = "";
 
-    const match = title.includes(value) || tag.includes(value);
+    const videoRef = collection(db, "videos");
+    const q = query(videoRef, orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
 
-    card.style.display = match ? "block" : "none";
+    let allVideos = [];
+    querySnapshot.forEach((doc) => {
+      allVideos.push({ id: doc.id, ...doc.data() });
+    });
+
+    // FILTER LOGIKA: Hanya mengambil video yang kategorinya cocok dengan halaman ini
+    let filteredVideos = allVideos.filter(video => video.category === CURRENT_PAGE);
+
+    if (filteredVideos.length === 0) {
+      videoGrid.innerHTML = "<p style='grid-column: 1/-1; text-align:center; color:#888; padding: 40px 0;'>No videos available in this category.</p>";
+      return;
+    }
+
+    // Tampilkan video hasil filter ke grid HTML
+    filteredVideos.forEach(video => {
+      videoGrid.appendChild(buildVideoCard(video));
+    });
+
+    setupSearch();
+
+  } catch (error) {
+    console.error("Gagal memuat video kategori:", error);
+  }
+}
+
+function buildVideoCard(video) {
+  const div = document.createElement("div");
+  div.className = "flow-card";
+  div.innerHTML = `
+    <img src="${video.thumbnailUrl || 'https://img.youtube.com/vi/default/hqdefault.jpg'}">
+    <h4>${video.title}</h4>
+    <div class="card-bottom">
+      <span class="tag">${video.category || 'General'}</span>
+      <button class="watch-btn">
+        Watch Now
+      </button>
+    </div>
+  `;
+  
+  const regExp = /^.*(embed\/|v\/|v=|https:\/\/youtu.be\/)([^#\&\?]*).*/;
+  const match = video.embedUrl ? video.embedUrl.match(regExp) : null;
+  const videoId = (match && match[2]) ? match[2] : "";
+
+  div.querySelector(".watch-btn").addEventListener("click", () => playVideo(videoId));
+  return div;
+}
+
+function setupSearch() {
+  const searchInput = document.getElementById("search");
+  if(!searchInput) return;
+
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".flow-card");
+
+    cards.forEach((card) => {
+      const title = card.querySelector("h4").textContent.toLowerCase();
+      const tag = card.querySelector(".tag").textContent.toLowerCase();
+      const match = title.includes(value) || tag.includes(value);
+      card.style.display = match ? "block" : "none";
+    });
   });
-});
+}
+
+document.addEventListener("DOMContentLoaded", loadVideos);
 </script>
 
+<div id="videoModal" class="modal" style="display:none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
+    <div class="modal-content" style="position: relative; width: 80%; max-width: 800px; background: #000; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+        <span onclick="document.getElementById('videoModal').style.display='none'; document.getElementById('ytFrame').src='';" style="position: absolute; right: 15px; top: 10px; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer; z-index: 10px;">&times;</span>
+        
+        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+            <iframe id="ytFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        </div>
+    </div>
+</div>
+
 <script>
+// 1. FUNGSI UNTUK MEMBUKA MODAL DAN MEMUTAR VIDEO YOUTUBE
 function playVideo(videoId) {
   const modal = document.getElementById("videoModal");
   const frame = document.getElementById("ytFrame");
 
-  frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-  modal.style.display = "flex";
+  if (modal && frame) {
+    frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    modal.style.display = "flex";
+  } else {
+    console.error("Elemen videoModal atau ytFrame tidak ditemukan di HTML!");
+  }
 }
 
-// klik luar untuk close
-document.getElementById("videoModal").addEventListener("click", function () {
-  this.style.display = "none";
-  document.getElementById("ytFrame").src = "";
-});
+// 2. LOGIKA UNTUK MENUTUP MODAL SAAT PENGGUNA KLIK DI LUAR KOTAK VIDEO
+const videoModal = document.getElementById("videoModal");
+if (videoModal) {
+  videoModal.addEventListener("click", (e) => {
+    // Jika yang diklik adalah area hitam transparan (bukan kotak videonya)
+    if (e.target === videoModal) {
+      const frame = document.getElementById("ytFrame");
+      if (frame) frame.src = ""; // Kosongkan src agar video YouTube berhenti berbunyi
+      
+      videoModal.style.display = "none"; // Sembunyikan modal kembali (Sudah diperbaiki dari style.style)
+    }
+  });
+}
 </script>
 
 <script type="module" src="shared-header.js"></script>

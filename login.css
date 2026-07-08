@@ -245,3 +245,54 @@ form input::placeholder {
 .back-btn:hover span {
     transform: translateX(-3px);
 }
+
+/* Wadah Utama Toast */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Gaya Kotak Notifikasi */
+.toast {
+    background-color: #333;
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    min-width: 250px;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Animasi Muncul */
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Variasi Warna Berdasarkan Tipe */
+.toast.success {
+    background-color: #2ec4b6; /* Warna hijau toska estetik */
+    border-left: 5px solid #208b81;
+}
+
+.toast.error {
+    background-color: #e63946; /* Warna merah pastel */
+    border-left: 5px solid #b81d24;
+}
+
+.toast.info {
+    background-color: #a8dadc;
+    color: #1d3557;
+    border-left: 5px solid #457b9d;
+}

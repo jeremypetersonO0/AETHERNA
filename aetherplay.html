@@ -10,6 +10,31 @@
     <link rel="stylesheet" href="aetherplay.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Tambahan untuk interaktivitas Tab Toko */
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .tab-btn.active {
+            color: #6c5ce7 !important;
+            border-bottom: 3px solid #6c5ce7 !important;
+        }
+        .shop-item-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .shop-item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06) !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,7 +53,7 @@
                 <li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
                 <li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
                 <li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
-                <li class="menu-item"><a href="aetherflow.html">🏃 aetheralow</a></li>
+                <li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
                 <li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
                 <li class="menu-item"><a href="aetherplay.html">🎮 aetherPlay</a></li>
             </ul>
@@ -47,25 +72,18 @@
     <main class="main-content">
 
         <header class="header">
-        <h1>AetherPlay</h1>
-
-        <div class="header-right">
-
-        <a href="profile.html" class="user-badge-link">
-        <div class="user-badge">
-            
-        <div class="user-info">
-        <span class="name">Username</span>
-        <span class="level">Level 01</span>
-        </div>
-
-        <div class="user-avatar"></div>
-
-        </div>
-        </a>
-
-        </div>
-
+            <h1>AetherPlay</h1>
+            <div class="header-right">
+                <a href="profile.html" class="user-badge-link">
+                    <div class="user-badge">
+                        <div class="user-info">
+                            <span class="name" id="header-username">Username</span>
+                            <span class="level" id="header-level">Level 01</span>
+                        </div>
+                        <div class="user-avatar" id="header-avatar-preview"></div>
+                    </div>
+                </a>
+            </div>
         </header>
 
         <section class="page-content">
@@ -75,7 +93,7 @@
                     <div class="avatar-box">
                         <div class="coin-badge">
                             <span class="coin-icon">🪙</span>
-                            <span class="coin-amount">500</span>
+                            <span class="coin-amount">0</span>
                         </div>
                         
                         <img src="image/aetherplay/avatar/head.png" id="head" class="layer">
@@ -83,219 +101,59 @@
                         <img src="image/aetherplay/avatar/mata_default.png" id="eyes" class="layer">
                         <img src="image/aetherplay/avatar/hidung_default.png" id="nose" class="layer">
                         <img src="image/aetherplay/avatar/mulut_default.png" id="mouth" class="layer">
-                        <img src="image/aetherplay/avatar/blush_1.png" id="blush1" class="layer">
-                        <img src="image/aetherplay/avatar/blush_1.png" id="blush2" class="layer">
+                        <img src="image/aetherplay/avatar/blush_1.png" id="blush1" class="layer" style="display:none;">
+                        <img src="image/aetherplay/avatar/blush_1.png" id="blush2" class="layer" style="display:none;">
                         <img src="image/aetherplay/rambut/Hair2.png" id="hair" class="layer">
                         <img src="image/aetherplay/avatar/baju_default.png" id="baju" class="layer">
                         <img src="image/aetherplay/avatar/celana_default.png" id="celana" class="layer">
                     </div>
 
                     <div class="avatar-info">
-                        <p>Level 10</p>
+                        <p id="avatar-level-text">Memuat Level...</p>
                         <div class="level-bar">
-                            <div class="progress"></div>
+                            <div class="progress" id="avatar-exp-progress" style="width: 0%;"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="custom-panel">
-                    <div class="category-tabs">
-                        <div class="tab active" onclick="showCategory('tab-wajah', this)">
-                            <img src="image/aetherplay/wajah/ikon_wajah.png" alt="Face">
-                        </div>
-                        <div class="tab" onclick="showCategory('tab-rambut', this)">
-                            <img src="image/aetherplay/rambut/gunting.png" alt="Hair">
-                        </div>
-                        <div class="tab" onclick="showCategory('tab-baju', this)">
-                            <img src="image/aetherplay/baju/hanger.png" alt="Cloth">
-                        </div>
-                    </div>
+                    <h3>Custom Avatar</h3>
                     
-                    <div id="tab-wajah" class="category-content" style="display: block;">
-                        <h3>Eyes</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/wajah/mata/mata1.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata1.png')">
-                            <img src="image/aetherplay/wajah/mata/mata2.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata2.png')">
-                            <img src="image/aetherplay/wajah/mata/mata3.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata3.png')">
-                            <img src="image/aetherplay/wajah/mata/mata4.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata4.png')">
-                            <img src="image/aetherplay/wajah/mata/mata5.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata5.png')">
-                            <img src="image/aetherplay/wajah/mata/mata6.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata6.png')">
-                            <img src="image/aetherplay/wajah/mata/mata7.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata7.png')">
-                            <img src="image/aetherplay/wajah/mata/mata8.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata8.png')">
-                            <img src="image/aetherplay/wajah/mata/mata9.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata9.png')">
-                            <img src="image/aetherplay/wajah/mata/mata10.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata10.png')">
-                            <img src="image/aetherplay/wajah/mata/mata11.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata11.png')">
-                            <img src="image/aetherplay/wajah/mata/mata12.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata12.png')">
-                            <img src="image/aetherplay/wajah/mata/mata13.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata13.png')">
-                            <img src="image/aetherplay/wajah/mata/mata14.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata14.png')">
-                            <img src="image/aetherplay/wajah/mata/mata15.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata15.png')">
-                            <img src="image/aetherplay/wajah/mata/mata16.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata16.png')">
-                            <img src="image/aetherplay/wajah/mata/mata17.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata17.png')">
-                            <img src="image/aetherplay/wajah/mata/mata18.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata18.png')">
-                            <img src="image/aetherplay/wajah/mata/mata19.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata19.png')">
-                            <img src="image/aetherplay/wajah/mata/mata20.png" onclick="changeEyes('image/aetherplay/wajah/mata/mata20.png')">
-                        </div>
-
-                        <h3>Nose</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/hidung/hidung1.png" onclick="changeNose('image/aetherplay/hidung/hidung1.png')">
-                            <img src="image/aetherplay/hidung/hidung2.png" onclick="changeNose('image/aetherplay/hidung/hidung2.png')">
-                            <img src="image/aetherplay/hidung/hidung3.png" onclick="changeNose('image/aetherplay/hidung/hidung3.png')">
-                            <img src="image/aetherplay/hidung/hidung4.png" onclick="changeNose('image/aetherplay/hidung/hidung4.png')">
-                        </div>
-
-                        <h3>Mouth</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/mulut/mulut1.png" onclick="changeMouth('image/aetherplay/mulut/mulut1.png')">
-                            <img src="image/aetherplay/mulut/mulut2.png" onclick="changeMouth('image/aetherplay/mulut/mulut2.png')">
-                            <img src="image/aetherplay/mulut/mulut3.png" onclick="changeMouth('image/aetherplay/mulut/mulut3.png')">
-                            <img src="image/aetherplay/mulut/mulut4.png" onclick="changeMouth('image/aetherplay/mulut/mulut4.png')">
-                            <img src="image/aetherplay/mulut/mulut7.png" onclick="changeMouth('image/aetherplay/mulut/mulut7.png')">
-                            <img src="image/aetherplay/mulut/mulut8.png" onclick="changeMouth('image/aetherplay/mulut/mulut8.png')">
-                        </div>
-
-                        <h3>Left Blush</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/blush/blush1.png" onclick="changeBlush('image/aetherplay/blush/blush1.png')">
-                            <img src="image/aetherplay/blush/blush2.png" onclick="changeBlush('image/aetherplay/blush/blush2.png')">
-                            <img src="image/aetherplay/blush/blush3.png" onclick="changeBlush('image/aetherplay/blush/blush3.png')">
-                            <img src="image/aetherplay/blush/blush4.png" onclick="changeBlush('image/aetherplay/blush/blush4.png')">
-                            <img src="image/aetherplay/blush/blush5.png" onclick="changeBlush('image/aetherplay/blush/blush5.png')">
-                        </div>
-
-                        <h3>Right Blush</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/blush/blush1.png" onclick="changeBlush2('image/aetherplay/blush/blush1.png')">
-                            <img src="image/aetherplay/blush/blush2.png" onclick="changeBlush2('image/aetherplay/blush/blush2.png')">
-                            <img src="image/aetherplay/blush/blush3.png" onclick="changeBlush2('image/aetherplay/blush/blush3.png')">
-                            <img src="image/aetherplay/blush/blush4.png" onclick="changeBlush2('image/aetherplay/blush/blush4.png')">
-                            <img src="image/aetherplay/blush/blush5.png" onclick="changeBlush2('image/aetherplay/blush/blush5.png')">
-                        </div>
+                    <div class="tabs" style="display: flex; gap: 8px; overflow-x: auto; white-space: nowrap; padding-bottom: 8px; border-bottom: 2px solid #eef2f5;">
+                        <button class="tab-btn active" onclick="switchShopTab('tshirt', 'shop-tshirt', this)">T-Shirt</button>
+                        <button class="tab-btn" onclick="switchShopTab('dress', 'shop-dress', this)">Dress</button>
+                        <button class="tab-btn" onclick="switchShopTab('sweater', 'shop-sweater', this)">Sweater</button>
+                        <button class="tab-btn" onclick="switchShopTab('crop_top', 'shop-croptop', this)">Crop-Top</button>
+                        <button class="tab-btn" onclick="switchShopTab('long_sleeve', 'shop-longsleeve', this)">Long Sleeve</button>
+                        <button class="tab-btn" onclick="switchShopTab('puffy_sleeve', 'shop-puffysleeve', this)">Puffy Sleeve</button>
+                        <button class="tab-btn" onclick="switchShopTab('sleeveless', 'shop-sleeveless', this)">Sleeveless</button>
+                        <button class="tab-btn" onclick="switchShopTab('hair', 'shop-hair', this)">Hair</button>
+                        <button class="tab-btn" onclick="switchShopTab('eyes', 'shop-eyes', this)">Eyes</button>
+                        <button class="tab-btn" onclick="switchShopTab('nose', 'shop-nose', this)">Nose</button>
+                        <button class="tab-btn" onclick="switchShopTab('mouth', 'shop-mouth', this)">Mouth</button>
+                        <button class="tab-btn" onclick="switchShopTab('left_blush', 'shop-lblush', this)">Left Blush</button>
+                        <button class="tab-btn" onclick="switchShopTab('right_blush', 'shop-rblush', this)">Right Blush</button>
                     </div>
 
-                    <div id="tab-rambut" class="category-content" style="display: none;">
-                        <h3>Hair Styles</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/rambut/Hair1.png" onclick="changeHair('image/aetherplay/rambut/Hair1.png')">
-                            <img src="image/aetherplay/rambut/Hair2.png" onclick="changeHair('image/aetherplay/rambut/Hair2.png')">
-                            <img src="image/aetherplay/rambut/Hair3.png" onclick="changeHair('image/aetherplay/rambut/Hair3.png')">                      
-                            <img src="image/aetherplay/rambut/Hair5.png" onclick="changeHair('image/aetherplay/rambut/Hair5.png')">
-                            <img src="image/aetherplay/rambut/Hair6.png" onclick="changeHair('image/aetherplay/rambut/Hair6.png')">
-                            <img src="image/aetherplay/rambut/Hair7.png" onclick="changeHair('image/aetherplay/rambut/Hair7.png')">
-                            <img src="image/aetherplay/rambut/Hair8.png" onclick="changeHair('image/aetherplay/rambut/Hair8.png')">
-                            <img src="image/aetherplay/rambut/Hair9.png" onclick="changeHair('image/aetherplay/rambut/Hair9.png')">
-                            <img src="image/aetherplay/rambut/Hair10.png" onclick="changeHair('image/aetherplay/rambut/Hair10.png')">
-                            <img src="image/aetherplay/rambut/Hair11.png" onclick="changeHair('image/aetherplay/rambut/Hair11.png')">
-                            <img src="image/aetherplay/rambut/Hair12.png" onclick="changeHair('image/aetherplay/rambut/Hair12.png')">
-                            <img src="image/aetherplay/rambut/Hair13.png" onclick="changeHair('image/aetherplay/rambut/Hair13.png')">
-                            <img src="image/aetherplay/rambut/Hair14.png" onclick="changeHair('image/aetherplay/rambut/Hair14.png')">
-                            <img src="image/aetherplay/rambut/Hair16.png" onclick="changeHair('image/aetherplay/rambut/Hair16.png')">
-                            <img src="image/aetherplay/rambut/Hair18.png" onclick="changeHair('image/aetherplay/rambut/Hair18.png')">
-                        </div>
+                    <div class="tab-content" style="margin-top: 15px; max-height: 300px; overflow-y: auto; padding-right: 5px;">
+                        <div id="shop-tshirt" class="shop-grid-panel" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-dress" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-sweater" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-croptop" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-longsleeve" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-puffysleeve" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-sleeveless" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-hair" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-eyes" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-nose" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-mouth" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-lblush" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+                        <div id="shop-rblush" class="shop-grid-panel" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
                     </div>
 
-                    <div id="tab-baju" class="category-content" style="display: none;">
-
-                        <h3>T-Shirt</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/baju/Kaos1.png" onclick="changeBaju('image/aetherplay/baju/Kaos1.png')">
-                            <img src="image/aetherplay/baju/Kaos2.png" onclick="changeBaju('image/aetherplay/baju/Kaos2.png')">
-                            <img src="image/aetherplay/baju/Kaos3.png" onclick="changeBaju('image/aetherplay/baju/Kaos3.png')">
-                            <img src="image/aetherplay/baju/Kaos4.png" onclick="changeBaju('image/aetherplay/baju/Kaos4.png')">
-                            <img src="image/aetherplay/baju/Kaos5.png" onclick="changeBaju('image/aetherplay/baju/Kaos5.png')">
-                            <img src="image/aetherplay/baju/Kaos6.png" onclick="changeBaju('image/aetherplay/baju/Kaos6.png')">
-                            <img src="image/aetherplay/baju/Kaos7.png" onclick="changeBaju('image/aetherplay/baju/Kaos7.png')">
-                            <img src="image/aetherplay/baju/Kaos8.png" onclick="changeBaju('image/aetherplay/baju/Kaos8.png')">
-                            <img src="image/aetherplay/baju/Kaos9.png" onclick="changeBaju('image/aetherplay/baju/Kaos9.png')">
-                            <img src="image/aetherplay/baju/Kaos10.png" onclick="changeBaju('image/aetherplay/baju/Kaos10.png')">
-                        </div>
-
-                        <h3>Puffy Sleeve</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/baju/Kaos-2.1.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.1.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.2.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.2.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.3.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.3.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.4.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.4.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.5.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.5.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.6.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.6.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.7.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.7.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.8.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.8.png')">
-                            <img src="image/aetherplay/baju/Kaos-2.9.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.9.png')">
-                             <img src="image/aetherplay/baju/Kaos-2.10.png" onclick="changeBaju('image/aetherplay/baju/Kaos-2.10.png')">
-                        </div>
-                        
-                        <h3>Crop-Top</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/baju/Crop-top1.png" onclick="changeBaju('image/aetherplay/baju/Crop-top1.png')">
-                            <img src="image/aetherplay/baju/Crop-top2.png" onclick="changeBaju('image/aetherplay/baju/Crop-top2.png')">
-                            <img src="image/aetherplay/baju/Crop-top3.png" onclick="changeBaju('image/aetherplay/baju/Crop-top3.png')">
-                            <img src="image/aetherplay/baju/Crop-top4.png" onclick="changeBaju('image/aetherplay/baju/Crop-top4.png')">
-                            <img src="image/aetherplay/baju/Crop-top5.png" onclick="changeBaju('image/aetherplay/baju/Crop-top5.png')">
-                            <img src="image/aetherplay/baju/Crop-top6.png" onclick="changeBaju('image/aetherplay/baju/Crop-top6.png')">
-                            <img src="image/aetherplay/baju/Crop-top7.png" onclick="changeBaju('image/aetherplay/baju/Crop-top7.png')">
-                            <img src="image/aetherplay/baju/Crop-top8.png" onclick="changeBaju('image/aetherplay/baju/Crop-top8.png')">
-                            <img src="image/aetherplay/baju/Crop-top9.png" onclick="changeBaju('image/aetherplay/baju/Crop-top9.png')">
-                            <img src="image/aetherplay/baju/Crop-top10.png" onclick="changeBaju('image/aetherplay/baju/Crop-top10.png')">
-                        </div>
-
-                        <h3>Sleeveless</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/baju/Sleeveless1.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless1.png')">
-                            <img src="image/aetherplay/baju/Sleeveless2.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless2.png')">
-                            <img src="image/aetherplay/baju/Sleeveless3.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless3.png')">
-                            <img src="image/aetherplay/baju/Sleeveless4.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless4.png')">
-                            <img src="image/aetherplay/baju/Sleeveless5.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless5.png')">
-                            <img src="image/aetherplay/baju/Sleeveless6.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless6.png')">
-                            <img src="image/aetherplay/baju/Sleeveless7.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless7.png')">
-                            <img src="image/aetherplay/baju/Sleeveless8.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless8.png')">
-                            <img src="image/aetherplay/baju/Sleeveless9.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless9.png')">
-                            <img src="image/aetherplay/baju/Sleeveless10.png" onclick="changeBaju('image/aetherplay/baju/Sleeveless10.png')">
-                        </div>
-
-                        <h3>Sleeveless</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/baju/Sweater1.png" onclick="changeBaju('image/aetherplay/baju/Sweater1.png')">
-                            <img src="image/aetherplay/baju/Sweater2.png" onclick="changeBaju('image/aetherplay/baju/Sweater2.png')">
-                            <img src="image/aetherplay/baju/Sweater3.png" onclick="changeBaju('image/aetherplay/baju/Sweater3.png')">
-                            <img src="image/aetherplay/baju/Sweater4.png" onclick="changeBaju('image/aetherplay/baju/Sweater4.png')">
-                            <img src="image/aetherplay/baju/Sweater5.png" onclick="changeBaju('image/aetherplay/baju/Sweater5.png')">
-                            <img src="image/aetherplay/baju/Sweater6.png" onclick="changeBaju('image/aetherplay/baju/Sweater6.png')">
-                            <img src="image/aetherplay/baju/Sweater7.png" onclick="changeBaju('image/aetherplay/baju/Sweater7.png')">
-                            <img src="image/aetherplay/baju/Sweater8.png" onclick="changeBaju('image/aetherplay/baju/Sweater8.png')">
-                            <img src="image/aetherplay/baju/Sweater9.png" onclick="changeBaju('image/aetherplay/baju/Sweater9.png')">
-                            <img src="image/aetherplay/baju/Sweater10.png" onclick="changeBaju('image/aetherplay/baju/Sweater10.png')">
-                        </div>
-
-                        <h3>Long Sleeve</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/baju/Lengan-Panjang1.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang1.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang2.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang2.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang3.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang3.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang4.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang4.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang5.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang5.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang6.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang6.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang7.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang7.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang8.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang8.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang9.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang9.png')">
-                            <img src="image/aetherplay/baju/Lengan-Panjang10.png" onclick="changeBaju('image/aetherplay/baju/Lengan-Panjang10.png')">
-                        </div>
-
-                        <h3>Dress</h3>
-                        <div class="options">
-                            <img src="image/aetherplay/baju/Dress1.png" onclick="changeBaju('image/aetherplay/baju/Dress1.png')">
-                            <img src="image/aetherplay/baju/Dress2.png" onclick="changeBaju('image/aetherplay/baju/Dress2.png')">
-                            <img src="image/aetherplay/baju/Dress3.png" onclick="changeBaju('image/aetherplay/baju/Dress3.png')">
-                            <img src="image/aetherplay/baju/Dress4.png" onclick="changeBaju('image/aetherplay/baju/Dress4.png')">
-                            <img src="image/aetherplay/baju/Dress5.png" onclick="changeBaju('image/aetherplay/baju/Dress5.png')">
-                            <img src="image/aetherplay/baju/Dress6.png" onclick="changeBaju('image/aetherplay/baju/Dress6.png')">
-                        </div>
-                    </div>
-                
-                    <!-- 1. Tambahkan tombol ini di dalam <div class="custom-panel"> paling bawah (setelah penutup tab-baju) -->
                     <button id="save-avatar-btn" style="width: 100%; padding: 12px; background: #6c5ce7; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">
                         💾 Simpan Avatar
                     </button>
-
                 </div>
 
             </div>
@@ -304,8 +162,21 @@
     </main>
 </div>
 
-<script type="module" src="aetherplay.js"></script>
+<div id="aether-confirm-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 100000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.2s ease;">
+    <div style="background: #fff; width: 360px; padding: 24px; border-radius: 16px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.25); transform: scale(0.8); transition: transform 0.2s ease;" id="confirm-modal-box">
+        <div style="font-size: 40px; margin-bottom: 12px;">🪙</div>
+        <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; color: #333; margin-bottom: 8px;">Konfirmasi Pembelian</h3>
+        <p id="confirm-modal-text" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #666; margin-bottom: 24px; line-height: 1.5;">Apakah kamu yakin ingin membeli item ini?</p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+            <button id="confirm-cancel-btn" style="flex: 1; padding: 10px; background: #f1f5f9; color: #64748b; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: 0.2s;">Batal</button>
+            <button id="confirm-accept-btn" style="flex: 1; padding: 10px; background: #6c5ce7; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: 0.2s;">Beli</button>
+        </div>
+    </div>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script type="module" src="aetherplay.js"></script>
 <script type="module" src="shared-header.js"></script>
 
 </body>

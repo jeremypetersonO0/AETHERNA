@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Task</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* MODAL */
+.modal {
+    background:#fff;
+    width:480px;
+    border-radius:18px;
+    overflow:hidden;
+    text-align:center;
+}
+
+/* HEADER */
+.modal-header {
+    padding:20px;
+    font-size:22px;
+    font-weight:800;
+    border-bottom:1px solid #eee;
+}
+
+/* BODY */
+.modal-body {
+    padding:30px 25px;
+}
+
+.modal-body p {
+    font-size:15px;
+    color:#444;
+    margin-bottom:15px;
+}
+
+.task-name {
+    font-weight:700;
+    font-size:18px;
+}
+
+.warning {
+    font-weight:800;
+    margin-top:10px;
+}
+
+/* BUTTON */
+.modal-footer {
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    padding:20px;
+}
+
+button {
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* COLORS */
+.btn-cancel {
+    background:#3b82f6;
+    color:#fff;
+}
+
+.btn-delete {
+    background:#84cc16;
+    color:#fff;
+}
+
+/* HOVER */
+.btn-cancel:hover {
+    background:#2563eb;
+}
+
+.btn-delete:hover {
+    background:#65a30d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal">
+
+    <div class="modal-header">
+        Delete Item?
+    </div>
+
+    <div class="modal-body">
+        <p>Are You Sure You Want To Delete</p>
+        <p class="task-name">"Advanture Awaits"?</p>
+
+        <p class="warning">This Action Cannot Be Undone.</p>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn-cancel" onclick="goBack()">Cancel</button>
+        <button class="btn-delete">Delete</button>
+    </div>
+
+</div>
+
+<script>
+function goBack(){
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

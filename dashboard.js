@@ -1,6 +1,6 @@
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { doc, getDoc, updateDoc, setDoc, collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 console.log("AETHERNA JS LOADED")
 
@@ -58,6 +58,13 @@ if (user) {
         exp: exp,
         coins: coins
     }).catch(err => console.error("Gagal simpan progress level:", err));
+
+    // 🔥 Kalau level naik hari ini, catat snapshot level & coin ke history harian.
+    // Ini yang dipakai nanti buat ngitung "level up berapa kali minggu ini" di Wrapped.
+    if (leveledUp) {
+        await logDailyHistory("level", level);
+        await logDailyHistory("coins", coins);
+    }
 }
 }
 
@@ -290,12 +297,13 @@ document.querySelectorAll(".plus").forEach(btn => {
                 }).catch(err => console.error("Gagal sinkronisasi habit:", err));
             }
 
-            // 3. 🔥 PENTING: Jika yang diklik adalah air minum, langsung tembak ke sub-koleksi history harian!
-            if (dbField === "water_intake") {
-                await addWater(current); 
+            // 3. 🔥 Semua habit (bukan cuma air) sekarang ikut ke-log ke sub-koleksi
+            //    history harian, biar Wrapped mingguan punya data lengkap buat direkap.
+            if (dbField) {
+                await logDailyHistory(dbField, current);
             }
 
-            // 4. Jalankan sistem bonus EXP di paling akhir agar tidak memblokir fungsi addWater()
+            // 4. Jalankan sistem bonus EXP di paling akhir
             if (current === max && !item.dataset.done) {
                 item.dataset.done = "true"
                 await addExp(60)
@@ -327,38 +335,124 @@ await updateDoc(doc(db, "daily_activities", user.uid), {
     meal_tags: activeTags
 }).catch(err => console.error("Gagal simpan tag makanan:", err));
 
+// 🔥 Catat juga ke history harian biar Wrapped bisa tahu makanan apa
+// yang paling sering dipilih user dalam seminggu.
+await logDailyHistory("meal_tags", activeTags);
+
 })
 })
 
 
 /* =========================
-   WRAPPED SYSTEM
+   WRAPPED SYSTEM (sekarang berbasis data asli user, bukan gambar statis)
 ========================= */
 const modal = document.getElementById("wrappedModal")
-const img = document.getElementById("wrappedImage")
-const bars = document.querySelectorAll(".bar")
+const slideContainer = document.getElementById("wrappedSlide")
 const playBtn = document.querySelector(".play-btn")
 const closeBtn = document.querySelector(".close-btn")
 
 let index = 1
-const max = 6
+let wrappedSlides = [] // diisi setelah data mingguan diambil & dirangkum
 let timer = null
 
+// Bangun konten tiap slide (HTML string) dari hasil rangkuman mingguan.
+// Tiap fungsi di sini ganti satu "kartu" gambar statis yang dulu ada.
+function buildWrappedSlides(stats) {
+const slides = []
+
+slides.push(`
+    <div class="wrap-slide-content">
+        <h2>This Week in Aetherna 🌿</h2>
+        <p>You showed up ${stats.activeDays} out of 7 days. Let's see your recap!</p>
+    </div>
+`)
+
+slides.push(`
+    <div class="wrap-slide-content">
+        <h2>🛏️ ${stats.totalSleep} hours</h2>
+        <p>Total sleep logged this week</p>
+    </div>
+`)
+
+slides.push(`
+    <div class="wrap-slide-content">
+        <h2>🏃 ${stats.totalExercise} minutes</h2>
+        <p>Total exercise this week</p>
+    </div>
+`)
+
+slides.push(`
+    <div class="wrap-slide-content">
+        <h2>💧 ${stats.totalWater} glasses</h2>
+        <p>Water you drank this week</p>
+    </div>
+`)
+
+slides.push(`
+    <div class="wrap-slide-content">
+        <h2>🍽️ ${stats.topMealTag ? stats.topMealTag : "No meals logged yet"}</h2>
+        <p>${stats.topMealTag ? "Your most logged food this week" : "Start tagging your meals to see this here"}</p>
+    </div>
+`)
+
+slides.push(
+    stats.levelUps > 0
+    ? `<div class="wrap-slide-content">
+            <h2>🎉 Leveled up x${stats.levelUps}</h2>
+            <p>Great progress this week, keep it up!</p>
+       </div>`
+    : `<div class="wrap-slide-content">
+            <h2>💪 Keep going</h2>
+            <p>No level up yet this week — you're close!</p>
+       </div>`
+)
+
+return slides
+}
+
+// Bikin ulang jumlah "bar" indikator di atas modal sesuai jumlah slide,
+// karena sekarang jumlah slide bisa berubah tergantung data (dulu selalu 6).
+function renderIndicatorBars(count) {
+const indicator = document.querySelector(".indicator")
+if (!indicator) return
+indicator.innerHTML = ""
+for (let i = 0; i < count; i++) {
+const bar = document.createElement("div")
+bar.className = "bar"
+indicator.appendChild(bar)
+}
+}
+
 function updateWrappedUI() {
-if (!img) return
-img.src = `wrapped_${index}.png`
+if (!slideContainer || !wrappedSlides.length) return
+slideContainer.innerHTML = wrappedSlides[index - 1]
+
+const bars = document.querySelectorAll(".bar")
 bars.forEach((b, i) => {
 b.classList.toggle("active", i === index - 1)
 })
 }
 
-function startWrapped() {
+async function startWrapped() {
+const user = auth.currentUser
+if (!user || !slideContainer) return
+
+// Tampilkan status loading dulu selagi data diambil & dirangkum
+slideContainer.innerHTML = `<div class="wrap-slide-content"><p>Loading your week...</p></div>`
+
+const days = await getWeeklyHistory(user.uid)
+const stats = aggregateWeeklyData(days)
+wrappedSlides = buildWrappedSlides(stats)
+
+renderIndicatorBars(wrappedSlides.length)
+
 index = 1
 updateWrappedUI()
+
 clearInterval(timer)
 timer = setInterval(() => {
 index++
-if (index > max) {
+if (index > wrappedSlides.length) {
 clearInterval(timer)
 if (modal) modal.style.display = "none"
 return
@@ -368,9 +462,9 @@ updateWrappedUI()
 }
 
 if (playBtn && modal) {
-playBtn.addEventListener("click", () => {
+playBtn.addEventListener("click", async () => {
 modal.style.display = "flex"
-startWrapped()
+await startWrapped()
 })
 }
 
@@ -408,34 +502,93 @@ float.classList.remove("show")
 },1200)
 }
 
-let totalWater = localStorage.getItem("totalWater") || 0;
-
-// Mengganti fungsi localStorage air minum lama di dashboard.js agar menembak ke sub-koleksi histori tanggal hari ini
 // =============================================================================
-// FUNGSI AKHIR FILE: MANAGEMENT SINKRONISASI AIR KE FIRESTORE HISTORY
+// LOGGING HARIAN — GENERIC UNTUK SEMUA HABIT (bukan cuma air lagi)
 // =============================================================================
-
-async function addWater(currentWaterValue) { 
+// Setiap kali habit di-update, field-nya ditulis ke sub-koleksi
+// daily_activities/{uid}/history/{tanggal} pakai merge, jadi tiap hari
+// punya satu dokumen berisi semua habit yang di-log hari itu.
+// Field "date" sengaja disimpan eksplisit (bukan cuma jadi ID dokumen) supaya
+// bisa di-query pakai where("date", ">=", ...) saat ambil rekap mingguan.
+async function logDailyHistory(field, value) {
     const user = auth.currentUser;
     if (!user) return;
 
     const todayStr = getTodayDateString();
+    const historyDocRef = doc(db, "daily_activities", user.uid, "history", todayStr);
 
-    // Jika fungsi dipanggil tanpa parameter (misalnya saat load awal), baru baca dari UI
-    if (currentWaterValue === undefined) {
-        const habitItem = document.querySelector('[data-db="water_intake"]');
-        if (!habitItem) return;
-        currentWaterValue = Number(habitItem.querySelector(".number").textContent) || 0;
+    await setDoc(historyDocRef, {
+        date: todayStr,
+        [field]: value
+    }, { merge: true }).then(() => {
+        console.log(`🚀 History tersimpan: ${field} = ${JSON.stringify(value)} (${todayStr})`);
+    }).catch(err => console.error(`Gagal simpan ${field} ke history:`, err));
+}
+
+// =============================================================================
+// REKAP MINGGUAN — dipakai buat Wrapped
+// =============================================================================
+// Ambil semua dokumen history 7 hari terakhir (termasuk hari ini).
+async function getWeeklyHistory(uid) {
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // 6 hari lalu + hari ini = 7 hari
+    const sevenDaysAgoStr = sevenDaysAgo.toISOString().split("T")[0];
+
+    const historyRef = collection(db, "daily_activities", uid, "history");
+    const q = query(historyRef, where("date", ">=", sevenDaysAgoStr), orderBy("date", "asc"));
+
+    const days = [];
+    try {
+        const snap = await getDocs(q);
+        snap.forEach(docSnap => days.push(docSnap.data()));
+    } catch (err) {
+        console.error("Gagal ambil history mingguan:", err);
+    }
+    return days;
+}
+
+// Ubah kumpulan dokumen harian jadi angka rekap yang siap ditampilkan.
+function aggregateWeeklyData(days) {
+    let totalSleep = 0;
+    let totalExercise = 0;
+    let totalWater = 0;
+    let totalBreaks = 0;
+    const mealTagCount = {};
+    const levelsSeen = [];
+
+    days.forEach(day => {
+        totalSleep += day.sleep_duration || 0;
+        totalExercise += day.exercise_duration || 0;
+        totalWater += day.water_intake || 0;
+        totalBreaks += day.break_count || 0;
+
+        (day.meal_tags || []).forEach(tag => {
+            mealTagCount[tag] = (mealTagCount[tag] || 0) + 1;
+        });
+
+        if (day.level) levelsSeen.push(day.level);
+    });
+
+    let topMealTag = null;
+    let topCount = 0;
+    for (const tag in mealTagCount) {
+        if (mealTagCount[tag] > topCount) {
+            topCount = mealTagCount[tag];
+            topMealTag = tag;
+        }
     }
 
-    // Masuk ke sub-koleksi history harian
-    const historyDocRef = doc(db, "daily_activities", user.uid, "history", todayStr);
-    
-    await setDoc(historyDocRef, {
-        water_intake: currentWaterValue
-    }, { merge: true }).then(() => {
-        console.log(`🚀 DATA MASUK: Berhasil mencatat ${currentWaterValue} gelas ke history.`);
-    }).catch(err => console.error("Gagal simpan akumulasi air ke history:", err));
+    const levelUps = levelsSeen.length > 0 ? (levelsSeen[levelsSeen.length - 1] - levelsSeen[0]) : 0;
+
+    return {
+        activeDays: days.length,
+        totalSleep,
+        totalExercise,
+        totalWater,
+        totalBreaks,
+        topMealTag,
+        levelUps
+    };
 }
 
 // Penutup DOMContentLoaded pembungkus utama file dashboard.js

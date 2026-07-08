@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Video</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 540px;
+    border-radius: 18px;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* CLOSE */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: #333;
+}
+
+/* HEADER */
+h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.desc {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* SECTION */
+.section-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    font-size: 12px;
+}
+
+/* ROW */
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+/* TAGS */
+.tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #3b82f6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+}
+
+/* VIDEO BOX */
+.video-box {
+    border: 2px dashed #e5e7eb;
+    border-radius: 14px;
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* BUTTON FILE */
+.file-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.file-actions button {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #f9fafb;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* IMAGE PREVIEW */
+.image-preview {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+/* FOOTER BUTTON */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: #3b82f6;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-save {
+    flex: 1;
+    background: #2563eb;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-delete {
+    flex: 1;
+    background: #84cc16;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+
+    <i class="fa-solid fa-xmark close-btn" onclick="goBack()"></i>
+
+    <h2>Edit Content</h2>
+    <p class="desc">Update And Manage Existing Content</p>
+
+    <div class="section-title">Content Information</div>
+
+    <!-- GENERAL -->
+    <div class="form-group">
+        <label>Content Type</label>
+        <input type="text" id="contentType" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="title">
+    </div>
+
+    <div class="form-group">
+        <label>Subtitle</label>
+        <input type="text" id="subtitle">
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" id="author">
+        </div>
+
+        <div class="form-group">
+            <label>Tags</label>
+            <input type="text" id="tags">
+        </div>
+    </div>
+
+    <!-- ARTICLE ONLY -->
+    <div id="articleSection">
+
+        <div class="form-group">
+            <label>Current Image</label>
+
+            <img
+                id="articleImagePreview"
+                class="image-preview"
+            >
+
+            <div class="image-actions">
+                <input
+                    type="file"
+                    id="articleImage"
+                    accept="image/*"
+                >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Article Content</label>
+            <textarea id="articleContent"></textarea>
+        </div>
+
+    </div>
+
+    <!-- VIDEO ONLY -->
+    <div id="videoSection">
+
+        <div class="form-group">
+            <label>Current Video</label>
+
+            <div class="video-box">
+                <span id="currentVideoName"></span>
+            </div>
+
+            <div class="file-actions">
+                <input
+                    type="file"
+                    id="videoFile"
+                    accept="video/*"
+                >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Thumbnail</label>
+
+            <img
+                id="thumbnailPreview"
+                class="image-preview"
+            >
+
+            <div class="file-actions">
+                <input
+                    type="file"
+                    id="thumbnailFile"
+                    accept="image/*"
+                >
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label>Last Updated</label>
+
+        <p
+            id="lastUpdated"
+            style="font-size:12px;color:#777;"
+        >
+        </p>
+    </div>
+
+    <div class="actions">
+        <button class="btn-cancel" onclick="goBack()">
+            Cancel
+        </button>
+
+        <button class="btn-save" id="saveBtn">
+            Save Changes
+        </button>
+
+        <button class="btn-delete" id="deleteBtn">
+            Delete Content
+        </button>
+    </div>
+
+</div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<script type="module" src="editcontent.js"></script>
+
+</body>
+</html>

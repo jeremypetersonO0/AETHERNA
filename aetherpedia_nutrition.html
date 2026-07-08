@@ -175,23 +175,102 @@ const articles = [
 ];
 </script>
 
-<script>
-const CURRENT_PAGE = "nutrition";
+<script type="module">
+// 1. IMPORT SEMUA CONTEXT FIREBASE YANG DIBUTUHKAN
+import { db } from "../Firebase/Firebase-config.js"; // 💡 Sesuaikan path config firebase kamu jika berbeda folder
+import { 
+    collection, 
+    getDocs, 
+    query, 
+    orderBy, 
+    doc, 
+    updateDoc, 
+    increment 
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+const CURRENT_PAGE = "Nutrition";
+
+const highlightContainer = document.getElementById("highlightContainer");
+const gridContainer = document.getElementById("gridContainer");
+const popularContainer = document.getElementById("popularContainer");
+
+// 2. Fungsi Utama Mengambil Data dari Firestore
+async function loadArticlesFromFirestore() {
+    try {
+        if(highlightContainer) highlightContainer.innerHTML = "";
+        if(gridContainer) gridContainer.innerHTML = "";
+        if(popularContainer) popularContainer.innerHTML = "";
+
+        const contentRef = collection(db, "contents");
+        
+        // Query: Ambil semua artikel, urutkan dari yang PALING BARU
+        const q = query(contentRef, orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        let allArticles = [];
+        querySnapshot.forEach((doc) => {
+            allArticles.push({ id: doc.id, ...doc.data() });
+        });
+
+        // !!! FILTER LOGIKA BERDASARKAN KATEGORI AMAN KAPITAL & SPASI !!!
+        let filteredArticles = allArticles.filter(article => {
+            return article.category && article.category.toLowerCase().trim() === CURRENT_PAGE.toLowerCase().trim();
+        });
+
+        if (filteredArticles.length === 0) {
+            console.log("Tidak ada artikel yang cocok dengan kategori: " + CURRENT_PAGE);
+            return;
+        }
+
+        // --- DISTRIBUSI LOGIKA KE DISPLAY ---
+
+        // A. HIGHLIGHT: Artikel paling baru masuk ke banner besar
+        if (highlightContainer && filteredArticles.length > 0) {
+            highlightContainer.appendChild(buildHighlight(filteredArticles[0]));
+        }
+
+        // B. GRID: Sisa artikel dengan kategori yang sama masuk ke grid bawah
+        if (gridContainer && filteredArticles.length > 1) {
+            for (let i = 1; i < filteredArticles.length; i++) {
+                gridContainer.appendChild(buildCard(filteredArticles[i]));
+            }
+        }
+
+        // C. MOST POPULAR: Urutkan otomatis berdasarkan 'views' terbanyak dari kategori ini
+        if (popularContainer) {
+            let popularArticles = [...filteredArticles]
+                .sort((a, b) => (b.views || 0) - (a.views || 0))
+                .slice(0, 4);
+
+            popularArticles.forEach(article => {
+                popularContainer.appendChild(buildPopular(article));
+            });
+        }
+
+        setupSearch(); 
+
+    } catch (error) {
+        console.error("Gagal memuat artikel dari database:", error);
+    }
+}
+
+// Fungsi Pembuat Struktur Elemen Tampilan
 function buildHighlight(article) {
   const div = document.createElement("div");
   div.className = "highlight";
   div.innerHTML = `
-    <img src="${article.image}" class="highlight-img">
+    <img src="${article.thumbnail_url || 'image/default.png'}" class="highlight-img">
     <h3>${article.title}</h3>
-    <p>${article.excerpt}</p>
+    <p>${article.body_content ? article.body_content.substring(0, 120) : ''}...</p>
     <div class="meta">
-      <span class="category-tag">${article.category}</span>
+      <span class="category-tag">${article.category || 'General'}</span>
       <span class="dot">•</span>
       <span class="author-name">${article.author}</span>
+      <span class="dot">•</span>
+      <span>👁️ ${article.views || 0} views</span>
     </div>
   `;
-  div.addEventListener("click", () => openArticleById(article.id));
+  div.addEventListener("click", () => openAndCountView(article));
   return div;
 }
 
@@ -199,16 +278,16 @@ function buildCard(article) {
   const div = document.createElement("div");
   div.className = "card";
   div.innerHTML = `
-    <img src="${article.image}">
+    <img src="${article.thumbnail_url || 'image/default.png'}">
     <h4>${article.title}</h4>
-    <p>${article.excerpt}</p>
+    <p>${article.body_content ? article.body_content.substring(0, 80) : ''}...</p>
     <div class="card-meta">
-      <span class="card-category">${article.category}</span>
+      <span class="card-category">${article.category || 'General'}</span>
       <span class="dot">•</span>
       <span class="card-author">${article.author}</span>
     </div>
   `;
-  div.addEventListener("click", () => openArticleById(article.id));
+  div.addEventListener("click", () => openAndCountView(article));
   return div;
 }
 
@@ -219,65 +298,69 @@ function buildPopular(article) {
     <div class="popular-text">
       <h4>${article.title}</h4>
       <div class="meta">
-        <span class="category-tag">${article.category}</span>
-        <span class="dot">•</span>
-        <span class="author-name">${article.author}</span>
+        <span class="category-tag">${article.category || 'General'}</span>
+        <span style="font-size:11px; color:#888; margin-left: 8px;">👁️ ${article.views || 0} views</span>
       </div>
     </div>
-    <img src="${article.image}" class="popular-img">
+    <img src="${article.thumbnail_url || 'image/default.png'}" class="popular-img">
   `;
-  div.addEventListener("click", () => openArticleById(article.id));
+  div.addEventListener("click", () => openAndCountView(article));
   return div;
 }
 
-function renderArticles() {
-  const pageArticles = articles.filter(a => a.page === CURRENT_PAGE);
-  const highlightContainer = document.getElementById("highlightContainer");
-  const gridContainer = document.getElementById("gridContainer");
-  const popularContainer = document.getElementById("popularContainer");
+// Fungsi Menampilkan Popup & Otomatis Tambah View +1 ke Firestore
+async function openAndCountView(article) {
+  // Memanggil fungsi global openArticle
+  window.openArticle(article.title, article.author, article.category || "General", article.body_content, article.thumbnail_url || 'image/default.png');
 
-  pageArticles.forEach(article => {
-    if (article.section === "highlight") highlightContainer.appendChild(buildHighlight(article));
-    else if (article.section === "grid") gridContainer.appendChild(buildCard(article));
-    else if (article.section === "popular") popularContainer.appendChild(buildPopular(article));
-  });
+  try {
+      const docRef = doc(db, "contents", article.id);
+      await updateDoc(docRef, {
+          views: increment(1)
+      });
+  } catch (err) {
+      console.error("Gagal menambah jumlah views:", err);
+  }
 }
 
-function openArticleById(id) {
-  const article = articles.find(a => a.id === id);
-  if (!article) return;
-  openArticle(article.title, article.author, article.category, article.text, article.image);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  renderArticles();
-  setupSearch();
-});
-
+// Fungsi Pencarian Artikel
 function setupSearch() {
   const searchInput = document.getElementById("search");
+  if(!searchInput) return;
+
   searchInput.addEventListener("input", (e) => {
     const value = e.target.value.toLowerCase().trim();
     const cards = document.querySelectorAll(".card");
+
     cards.forEach((card) => {
       const title = card.querySelector("h4").textContent.toLowerCase();
-      const desc = card.querySelector("p").textContent.toLowerCase();
+      const pTag = card.querySelector("p");
+      const desc = pTag ? pTag.textContent.toLowerCase() : "";
       const match = title.includes(value) || desc.includes(value);
       card.classList.toggle("hidden", !match);
     });
   });
 }
+
+// Jalankan load data setelah DOM siap
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadArticlesFromFirestore);
+} else {
+    loadArticlesFromFirestore();
+}
 </script>
 
 <script>
 function openArticle(title, author, category, text, image){
-  document.getElementById("popupTitle").textContent = title;
-  document.getElementById("popupAuthor").textContent = author;
-  document.getElementById("popupCategory").textContent = category;
-  document.getElementById("popupText").textContent = text;
-  document.getElementById("popupImage").src = image;
-  document.getElementById("articlePopup").style.display = "flex";
-  document.body.classList.add("modal-open");
+  window.openArticle = function(title, author, category, text, image){
+    document.getElementById("popupTitle").textContent = title;
+    document.getElementById("popupAuthor").textContent = author;
+    document.getElementById("popupCategory").textContent = category;
+    document.getElementById("popupText").textContent = text;
+    document.getElementById("popupImage").src = image;
+    document.getElementById("articlePopup").style.display = "flex";
+    document.body.classList.add("modal-open");
+}
 }
 function closeArticle(){
   document.getElementById("articlePopup").style.display = "none";
