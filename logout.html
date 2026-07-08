@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Logout</title>
+
+<link rel="stylesheet" href="logout.css">
+
+</head>
+<body>
+
+<div class="logout-card">
+
+<div class="logout-icon">
+⚠️
+</div>
+
+<h2>Apakah kamu yakin mau logout?</h2>
+
+<p>
+Kamu akan keluar dari akun dan harus login kembali
+untuk mengakses AETHERNA.
+</p>
+
+<div class="logout-buttons">
+
+<button class="btn-no" onclick="kembali()">
+Tidak
+</button>
+
+<button class="btn-yes" onclick="logout()">
+Ya
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function kembali(){
+window.location.href = "dashborad.html";
+}
+
+function logout(){
+window.location.href = "login.html";
+}
+
+</script>
+
+</body>
+</html>

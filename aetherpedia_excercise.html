@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aetherna - AetherPedia Exercise</title>
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherpedia2.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+<p class="menu-title">General</p>
+<ul class="menu">
+<li class="menu-item"><a href="logout.html"><span>⏻</span> Log Out</a></li>
+</ul>
+</nav>
+</aside>
+
+<main class="main-content">
+
+<header class="header">
+<h1>AetherPedia</h1>
+<div class="header-right">
+<div class="search-box">
+<input type="text" id="search" placeholder="Search articles..." />
+</div>
+<a href="profile.html" class="user-badge-link">
+<div class="user-badge">
+<div class="user-info">
+<span class="name">Username</span>
+<span class="level">Level 01</span>
+</div>
+<div class="user-avatar"></div>
+</div>
+</a>
+</div>
+</header>
+
+<section class="category">
+<span onclick="location.href='aetherpedia2.html'">All</span>
+<span onclick="location.href='aetherpedia_rest.html'">Rest</span>
+<span class="active">Exercise</span>
+<span onclick="location.href='aetherpedia_nutrition.html'">Nutrition</span>
+<span onclick="location.href='aetherpedia_movement.html'">Health</span>
+<span onclick="location.href='aetherpedia_mindset.html'">Mental Wellness</span>
+</section>
+
+<section class="content">
+
+<div class="left">
+<h2 class="highlight-title">- Recomended For You -</h2>
+<div id="highlightContainer"></div>
+<div class="grid" id="gridContainer"></div>
+</div>
+
+<div class="right">
+<h3 class="popular-title">Most Popular</h3>
+<div id="popularContainer"></div>
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+const articles = [
+  {
+    id: "exercise-highlight-01",
+    section: "highlight",
+    page: "exercise",
+    title: "Start Exercising Without Burning Out",
+    author: "Chen Yi",
+    category: "Exercise",
+    image: "image/aetherpedia_excercise/7a.jpg",
+    excerpt: "Starting exercise doesn't mean pushing too hard. Build sustainable habits, avoid burnout, and make movement part of your daily routine.",
+    text: "Starting exercise doesn't mean pushing too hard. Many people think they need intense workouts from the beginning, but this often leads to burnout, soreness, and losing motivation quickly. The most important thing is to start at a comfortable level so your body can gradually adapt without feeling overwhelmed. Building sustainable habits is more effective than doing everything at once. Simple activities like walking, light stretching, or short workout sessions are enough to begin with. When exercise fits naturally into your daily routine, it becomes easier to stay consistent without feeling pressured. Over time, these small and steady efforts will make a big difference. Instead of forcing extreme routines, focus on making movement a regular part of your lifestyle. This way, exercise supports your health in a long-term and balanced way."
+  },
+  {
+    id: "exercise-grid-01",
+    section: "grid",
+    page: "exercise",
+    title: "Start Small With Exercise",
+    author: "Yuan Ge",
+    category: "Beginner",
+    image: "image/aetherpedia_excercise/1a.jpg",
+    excerpt: "You don't need intense workouts to get started. Small and consistent movements can help build long-term exercise habits.",
+    text: "You don't need intense workouts to get started. Small and consistent movements, like a short daily walk or a few stretches, can help build long-term exercise habits without overwhelming your schedule or your body."
+  },
+  {
+    id: "exercise-grid-02",
+    section: "grid",
+    page: "exercise",
+    title: "How Much Exercise Do You Need",
+    author: "Dinda K.",
+    category: "Basics",
+    image: "image/aetherpedia_excercise/2a.jpg",
+    excerpt: "Not sure how often you should work out? Learn how much exercise your body needs to stay healthy and energized.",
+    text: "Not sure how often you should work out? Most health guidelines suggest at least 150 minutes of moderate activity a week, but starting with just a few short sessions and building up gradually is a healthy way to get there."
+  },
+  {
+    id: "exercise-grid-03",
+    section: "grid",
+    page: "exercise",
+    title: "Build A Simple Workout Routine",
+    author: "Sofia",
+    category: "Workout Routine",
+    image: "image/aetherpedia_excercise/3a.jpg",
+    excerpt: "Creating a simple workout routine makes exercise easier to maintain. Start with realistic goals and build gradually.",
+    text: "Creating a simple workout routine makes exercise easier to maintain. Start with realistic goals, pick a few exercises you enjoy, and build gradually so the routine fits your life instead of fighting against it."
+  },
+  {
+    id: "exercise-grid-04",
+    section: "grid",
+    page: "exercise",
+    title: "Exercise Without Going To Gym",
+    author: "Patel",
+    category: "Home Workout",
+    image: "image/aetherpedia_excercise/4a.jpg",
+    excerpt: "You don't need a gym to stay active. Try simple exercises you can do at home without special equipment.",
+    text: "You don't need a gym to stay active. Bodyweight exercises like squats, push-ups, and stretching routines done at home can be just as effective for building strength and staying consistent."
+  },
+  {
+    id: "exercise-popular-01",
+    section: "popular",
+    page: "exercise",
+    title: "Why Exercise Boosts Energy ???",
+    author: "Ian Scaffer",
+    category: "Excercise",
+    image: "image/aetherpedia_excercise/5a.jpg",
+    excerpt: "",
+    text: "Exercise increases blood flow and triggers the release of endorphins, which is why even a short workout can leave you feeling more alert and energized afterward."
+  },
+  {
+    id: "exercise-popular-02",
+    section: "popular",
+    page: "exercise",
+    title: "Beginner Friendly Workouts",
+    author: "Carmen L.",
+    category: "Beginner",
+    image: "image/aetherpedia_excercise/6a.jpg",
+    excerpt: "",
+    text: "Beginner friendly workouts focus on proper form and manageable intensity, helping you build confidence and strength without risking injury."
+  },
+  {
+    id: "exercise-popular-03",
+    section: "popular",
+    page: "exercise",
+    title: "Exercise and Sports For Busy People",
+    author: "Banana Kim",
+    category: "Lifestyle",
+    image: "image/aetherpedia_excercise/8a.jpg",
+    excerpt: "",
+    text: "Busy schedules don't have to mean skipping exercise entirely. Short, focused sessions or active commutes can help you stay active even on packed days."
+  }
+];
+</script>
+
+<script type="module">
+// 1. IMPORT SEMUA CONTEXT FIREBASE YANG DIBUTUHKAN
+import { db } from "../Firebase/Firebase-config.js"; // 💡 Sesuaikan path config firebase kamu jika berbeda folder
+import { 
+    collection, 
+    getDocs, 
+    query, 
+    orderBy, 
+    doc, 
+    updateDoc, 
+    increment 
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const CURRENT_PAGE = "Nutrition";
+
+const highlightContainer = document.getElementById("highlightContainer");
+const gridContainer = document.getElementById("gridContainer");
+const popularContainer = document.getElementById("popularContainer");
+
+// 2. Fungsi Utama Mengambil Data dari Firestore
+async function loadArticlesFromFirestore() {
+    try {
+        if(highlightContainer) highlightContainer.innerHTML = "";
+        if(gridContainer) gridContainer.innerHTML = "";
+        if(popularContainer) popularContainer.innerHTML = "";
+
+        const contentRef = collection(db, "contents");
+        
+        // Query: Ambil semua artikel, urutkan dari yang PALING BARU
+        const q = query(contentRef, orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        let allArticles = [];
+        querySnapshot.forEach((doc) => {
+            allArticles.push({ id: doc.id, ...doc.data() });
+        });
+
+        // !!! FILTER LOGIKA BERDASARKAN KATEGORI AMAN KAPITAL & SPASI !!!
+        let filteredArticles = allArticles.filter(article => {
+            return article.category && article.category.toLowerCase().trim() === CURRENT_PAGE.toLowerCase().trim();
+        });
+
+        if (filteredArticles.length === 0) {
+            console.log("Tidak ada artikel yang cocok dengan kategori: " + CURRENT_PAGE);
+            return;
+        }
+
+        // --- DISTRIBUSI LOGIKA KE DISPLAY ---
+
+        // A. HIGHLIGHT: Artikel paling baru masuk ke banner besar
+        if (highlightContainer && filteredArticles.length > 0) {
+            highlightContainer.appendChild(buildHighlight(filteredArticles[0]));
+        }
+
+        // B. GRID: Sisa artikel dengan kategori yang sama masuk ke grid bawah
+        if (gridContainer && filteredArticles.length > 1) {
+            for (let i = 1; i < filteredArticles.length; i++) {
+                gridContainer.appendChild(buildCard(filteredArticles[i]));
+            }
+        }
+
+        // C. MOST POPULAR: Urutkan otomatis berdasarkan 'views' terbanyak dari kategori ini
+        if (popularContainer) {
+            let popularArticles = [...filteredArticles]
+                .sort((a, b) => (b.views || 0) - (a.views || 0))
+                .slice(0, 4);
+
+            popularArticles.forEach(article => {
+                popularContainer.appendChild(buildPopular(article));
+            });
+        }
+
+        setupSearch(); 
+
+    } catch (error) {
+        console.error("Gagal memuat artikel dari database:", error);
+    }
+}
+
+// Fungsi Pembuat Struktur Elemen Tampilan
+function buildHighlight(article) {
+  const div = document.createElement("div");
+  div.className = "highlight";
+  div.innerHTML = `
+    <img src="${article.thumbnail_url || 'image/default.png'}" class="highlight-img">
+    <h3>${article.title}</h3>
+    <p>${article.body_content ? article.body_content.substring(0, 120) : ''}...</p>
+    <div class="meta">
+      <span class="category-tag">${article.category || 'General'}</span>
+      <span class="dot">•</span>
+      <span class="author-name">${article.author}</span>
+      <span class="dot">•</span>
+      <span>👁️ ${article.views || 0} views</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openAndCountView(article));
+  return div;
+}
+
+function buildCard(article) {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <img src="${article.thumbnail_url || 'image/default.png'}">
+    <h4>${article.title}</h4>
+    <p>${article.body_content ? article.body_content.substring(0, 80) : ''}...</p>
+    <div class="card-meta">
+      <span class="card-category">${article.category || 'General'}</span>
+      <span class="dot">•</span>
+      <span class="card-author">${article.author}</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openAndCountView(article));
+  return div;
+}
+
+function buildPopular(article) {
+  const div = document.createElement("div");
+  div.className = "popular";
+  div.innerHTML = `
+    <div class="popular-text">
+      <h4>${article.title}</h4>
+      <div class="meta">
+        <span class="category-tag">${article.category || 'General'}</span>
+        <span style="font-size:11px; color:#888; margin-left: 8px;">👁️ ${article.views || 0} views</span>
+      </div>
+    </div>
+    <img src="${article.thumbnail_url || 'image/default.png'}" class="popular-img">
+  `;
+  div.addEventListener("click", () => openAndCountView(article));
+  return div;
+}
+
+// Fungsi Menampilkan Popup & Otomatis Tambah View +1 ke Firestore
+async function openAndCountView(article) {
+  // Memanggil fungsi global openArticle
+  window.openArticle(article.title, article.author, article.category || "General", article.body_content, article.thumbnail_url || 'image/default.png');
+
+  try {
+      const docRef = doc(db, "contents", article.id);
+      await updateDoc(docRef, {
+          views: increment(1)
+      });
+  } catch (err) {
+      console.error("Gagal menambah jumlah views:", err);
+  }
+}
+
+// Fungsi Pencarian Artikel
+function setupSearch() {
+  const searchInput = document.getElementById("search");
+  if(!searchInput) return;
+
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+      const title = card.querySelector("h4").textContent.toLowerCase();
+      const pTag = card.querySelector("p");
+      const desc = pTag ? pTag.textContent.toLowerCase() : "";
+      const match = title.includes(value) || desc.includes(value);
+      card.classList.toggle("hidden", !match);
+    });
+  });
+}
+
+// Jalankan load data setelah DOM siap
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadArticlesFromFirestore);
+} else {
+    loadArticlesFromFirestore();
+}
+</script>
+
+<script>
+function openArticle(title, author, category, text, image){
+  window.openArticle = function(title, author, category, text, image){
+    document.getElementById("popupTitle").textContent = title;
+    document.getElementById("popupAuthor").textContent = author;
+    document.getElementById("popupCategory").textContent = category;
+    document.getElementById("popupText").textContent = text;
+    document.getElementById("popupImage").src = image;
+    document.getElementById("articlePopup").style.display = "flex";
+    document.body.classList.add("modal-open");
+  }
+}
+function closeArticle(){
+  document.getElementById("articlePopup").style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+function shareArticle(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied!");
+}
+</script>
+
+<div id="articlePopup" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeArticle()">&times;</span>
+        <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
+        <div class="modal-body">
+            <span id="popupCategory" class="category-tag"></span>
+            <h2 id="popupTitle"></h2>
+            <p class="author">By <span id="popupAuthor"></span></p>
+            <hr>
+            <p id="popupText"></p>
+        </div>
+        <div class="modal-footer">
+            <button onclick="shareArticle()" class="share-btn">🔗 Share Link</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="shared-header.js"></script>
+
+</body>
+</html>

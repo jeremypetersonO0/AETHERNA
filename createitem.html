@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Item</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* RESET */
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background: rgba(0,0,0,0.5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* MODAL */
+.modal-box {
+    background: #fff;
+    width: 600px;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.half {
+    width: calc(50% - 8px);
+    display: inline-block;
+}
+
+.form-group.half:nth-of-type(odd) {
+    margin-right: 12px;
+}
+
+label {
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:6px;
+    text-transform:uppercase;
+    color:#64748b;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width:100%;
+    padding:12px;
+    border:2px solid #e2e8f0;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    outline:none;
+}
+
+input:focus {
+    border-color:#3b82f6;
+}
+
+/* BUTTONS */
+.btn-box {
+    margin-top:20px;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+button {
+    padding:12px 24px;
+    border:none;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn-cancel {
+    background:#3b82f6;
+    color:#fff;
+}
+
+.btn-create {
+    background:#84cc16;
+    color:#fff;
+}
+
+/* HOVER */
+.btn-cancel:hover {
+    background:#2563eb;
+}
+
+.btn-create:hover {
+    background:#65a30d;
+}
+</style>
+</head>
+
+<body>
+
+<div class="modal-box">
+    <h2>Create Item</h2>
+    
+    <div class="form-group">
+        <label>Item Name</label>
+        <input type="text" id="itemName" placeholder="Masukkan nama item...">
+    </div>
+
+    <div class="form-group">
+        <label>Rarity</label>
+        <input type="text" id="rarity" placeholder="common / rare / epic">
+    </div>
+
+    <div class="form-group">
+        <label>Upload Item Image</label>
+        <input type="file" id="itemImage" accept=".png,.jpg,.jpeg">
+    </div>
+
+    <div class="form-group half">
+        <label>Category</label>
+        <select id="category" style="width:100%; padding:12px; border:2px solid #e2e8f0; border-radius:8px; font-size:14px; font-weight:600; outline:none; background-color: #fff;">
+            <option value="" disabled selected>-- Pilih Kategori Item --</option>
+            <option value="tshirt">👕 T-Shirt</option>
+            <option value="dress">👗 Dress</option>
+            <option value="sweater">🧥 Sweater</option>
+            <option value="crop_top">👚 Crop-Top</option>
+            <option value="long_sleeve">👔 Long Sleeve</option>
+            <option value="puffy_sleeve">💃 Puffy Sleeve</option>
+            <option value="sleeveless">🎽 Sleeveless</option>
+            <option value="hair">💇 Hair (Rambut)</option>
+            <option value="eyes">👁️ Eyes (Mata)</option>
+            <option value="nose">👃 Nose (Hidung)</option>
+            <option value="mouth">👄 Mouth (Mulut)</option>
+            <option value="left_blush">😊 Left Blush (Pipi Kiri)</option>
+            <option value="right_blush">😊 Right Blush (Pipi Kanan)</option>
+        </select>
+    </div>
+
+    <div class="form-group half">
+        <label>Minimum Level</label>
+        <input type="number" id="level" value="1">
+    </div>
+
+    <div class="form-group half">
+        <label>Price (Coins)</label>
+        <input type="number" id="price" value="100">
+    </div>
+
+    <div class="btn-box">
+        <button class="btn-cancel" type="button" onclick="window.location.href='play_admin.html'">Cancel</button>
+        <button class="btn-create" type="button">Create Item</button>
+    </div>
+</div>
+
+<script type="module" src="createitem.js"></script>
+
+</body>
+</html>

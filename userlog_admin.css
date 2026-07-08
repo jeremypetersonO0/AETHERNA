@@ -1,0 +1,94 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+body { background-color: #f4f6f8; color: #333; }
+
+.dashboard-container { display: flex; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar { width: 250px; background: #fff; padding: 30px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; }
+.logo-box { text-align: center; margin-bottom: 40px; }
+.logo-box img { width: 45px; }
+.logo-box h3 { font-size: 13px; letter-spacing: 2px; margin-top: 10px; font-weight: 800; }
+
+.section-label { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; margin-bottom: 15px; padding-left: 10px; }
+.sidebar-nav ul { list-style: none; }
+.nav-item a { display: flex; align-items: center; gap: 15px; padding: 12px 15px; text-decoration: none; color: #888; font-weight: 600; font-size: 14px; transition: 0.3s; }
+.nav-item.active a { background: #f0f7ff; color: #3b82f6; border-radius: 12px; }
+.nav-item a:hover { color: #3b82f6; }
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.main-content h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* SEARCH BAR */
+.top-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.top-bar input,
+.top-bar select {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    font-size: 13px;
+}
+
+/* TABLE CONTAINER */
+.table-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #f0f0f0;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f3f4f6;
+}
+
+th {
+    text-align: left;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+td {
+    padding: 14px 12px;
+    font-size: 14px;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+/* STATUS */
+.good {
+    color: #16a34a;
+    font-weight: 700;
+}
+
+.moderate {
+    color: #f59e0b;
+    font-weight: 700;
+}
+
+.low {
+    color: #ef4444;
+    font-weight: 700;
+}

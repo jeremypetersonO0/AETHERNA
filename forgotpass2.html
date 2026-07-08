@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Your Inbox - AETHERNA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="forgotpass2.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <img src="Group 39.png" alt="Aetherna Logo">
+    </div>
+
+    <h1>Check your inbox!</h1>
+    
+    <p class="desc">
+        We've sent a reset link to:<br>
+        <span class="user-email">your.email@example.com</span>
+    </p>
+
+    <div class="email-app-box">
+        <a href="mailto:">Open your email app</a>
+    </div>
+
+    <button id="resendBtn" class="resend-btn" disabled>
+        Resend link in 60s
+    </button>
+
+    <button class="back-btn" onclick="window.location.href='login.html'">
+        Back to login
+    </button>
+</div>
+
+<script>
+  const email = localStorage.getItem("resetEmail");
+
+  if (email) {
+    document.querySelector(".user-email").textContent = email;
+  }
+</script>
+
+<script type="module" src="forgotpass2.js"></script>
+
+</body>
+</html>

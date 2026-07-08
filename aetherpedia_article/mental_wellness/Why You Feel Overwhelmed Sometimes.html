@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Why You Feel Overwhelmed</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="article.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="article-container">
+
+<!-- Back Button -->
+<button class="back-btn" onclick="history.back()">
+← Back
+</button>
+
+
+<!-- Title -->
+<h1>Why You Feel Overwhelmed Sometimes</h1>
+
+<!-- Author -->
+<div class="article-meta">
+<span>By Yuan Ge</span>
+<span class="dot">•</span>
+<span>Mental Health</span>
+</div>
+
+
+<!-- Image -->
+<img src="" class="article-image">
+
+
+<!-- Content -->
+<p>
+Feeling overwhelmed is common, especially for teenagers and young adults. 
+School pressure, social expectations, and daily responsibilities can build 
+mental fatigue over time.
+</p>
+
+<p>
+When everything piles up, your brain becomes overloaded. This can lead to 
+stress, anxiety, and difficulty focusing on tasks.
+</p>
+
+<p>
+Taking small breaks, organizing your tasks, and maintaining healthy habits 
+like sleep and exercise can help reduce mental overload.
+</p>
+
+
+<!-- Share -->
+<div class="share">
+
+<h3>Share</h3>
+
+<button onclick="copyLink()">Copy Link</button>
+<button onclick="shareTwitter()">Twitter</button>
+<button onclick="shareWhatsapp()">WhatsApp</button>
+
+</div>
+
+
+<!-- Author Box -->
+<div class="author-box">
+
+<div class="author-avatar"></div>
+
+<div>
+<h4>Yuan Ge</h4>
+<p>Health and wellness writer focusing on mental health and daily wellbeing.</p>
+</div>
+
+</div>
+
+
+<!-- Related Articles -->
+<h3 class="related-title">Related Articles</h3>
+
+<div class="related">
+
+<div class="related-card" onclick="location.href='article_overthinking.html'">
+<img src="image/aetherpedia_mental/2.jpg">
+<h4>Overthinking And How To Stop</h4>
+</div>
+
+<div class="related-card" onclick="location.href='article_stress.html'">
+<img src="image/aetherpedia_mental/3.jpg">
+<h4>Stress From Daily Life</h4>
+</div>
+
+<div class="related-card" onclick="location.href='article_motivation.html'">
+<img src="image/aetherpedia_mental/4.jpg">
+<h4>Why You Feel Unmotivated</h4>
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function copyLink(){
+navigator.clipboard.writeText(window.location.href);
+alert("Link copied!");
+}
+
+function shareTwitter(){
+window.open(
+"https://twitter.com/intent/tweet?url=" + window.location.href
+);
+}
+
+function shareWhatsapp(){
+window.open(
+"https://wa.me/?text=" + window.location.href
+);
+}
+
+</script>
+
+</body>
+</html>

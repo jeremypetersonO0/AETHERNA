@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aetherna - AetherPedia Nutrition</title>
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="aetherpedia2.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+<aside class="sidebar">
+<div class="logo-box">
+<img src="Group 39.png" class="logo-img" alt="logo">
+<h3>AETHERNA</h3>
+</div>
+<nav>
+<p class="menu-title">Feature</p>
+<ul class="menu">
+<li class="menu-item"><a href="dashborad.html">🏠 Dashboard</a></li>
+<li class="menu-item"><a href="aetherlog.html">📄 aetherlog</a></li>
+<li class="menu-item"><a href="aetherpedia2.html">📘 aetherpedia</a></li>
+<li class="menu-item"><a href="aetherflow.html">🏃 aetherflow</a></li>
+<li class="menu-item"><a href="aetherassist.html">🧠 aetherassist</a></li>
+<li class="menu-item"><a href="aetherplay.html">🎮 aetherplay</a></li>
+</ul>
+<p class="menu-title">General</p>
+<ul class="menu">
+<li class="menu-item"><a href="logout.html"><span>⏻</span> Log Out</a></li>
+</ul>
+</nav>
+</aside>
+
+<main class="main-content">
+
+<header class="header">
+<h1>AetherPedia</h1>
+<div class="header-right">
+<div class="search-box">
+<input type="text" id="search" placeholder="Search articles..." />
+</div>
+<a href="profile.html" class="user-badge-link">
+<div class="user-badge">
+<div class="user-info">
+<span class="name">Username</span>
+<span class="level">Level 01</span>
+</div>
+<div class="user-avatar"></div>
+</div>
+</a>
+</div>
+</header>
+
+<section class="category">
+<span onclick="location.href='aetherpedia2.html'">All</span>
+<span onclick="location.href='aetherpedia_rest.html'">Rest</span>
+<span onclick="location.href='aetherpedia_excercise.html'">Exercise</span>
+<span class="active">Nutrition</span>
+<span onclick="location.href='aetherpedia_movement.html'">Health</span>
+<span onclick="location.href='aetherpedia_mindset.html'">Mental Wellness</span>
+</section>
+
+<section class="content">
+
+<div class="left">
+<h2 class="highlight-title">- Recomended For You -</h2>
+<div id="highlightContainer"></div>
+<div class="grid" id="gridContainer"></div>
+</div>
+
+<div class="right">
+<h3 class="popular-title">Most Popular</h3>
+<div id="popularContainer"></div>
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+const articles = [
+  {
+    id: "nutrition-highlight-01",
+    section: "highlight",
+    page: "nutrition",
+    title: "Understanding Nutrients In Your Food",
+    author: "Yuan Ge",
+    category: "Nutrition Basics",
+    image: "image/aetherpedia_nutrition/1aa.jpg",
+    excerpt: "Food is more than just calories. Learn about essential nutrients and how they help your body stay energized and healthy.",
+    text: "Food is more than just calories because every meal you eat contains different nutrients that your body needs to function properly. These nutrients, such as carbohydrates, proteins, fats, vitamins, and minerals, all play important roles in keeping your body active, growing, and healthy. Without a balanced intake of these nutrients, your body may feel weak or lack energy even if you are eating enough food. Each type of nutrient has a specific function. Carbohydrates are the main source of energy, proteins help build and repair muscles, and fats support brain function and long-term energy storage. Meanwhile, vitamins and minerals help regulate body processes like immunity, digestion, and bone health. When these nutrients work together, your body becomes more efficient and energized. Understanding what you eat can help you make better food choices every day. Instead of focusing only on eating a lot, it is more important to eat balanced meals that include different food groups. This helps your body stay energized, improves focus, and supports long-term health."
+  },
+  {
+    id: "nutrition-grid-01",
+    section: "grid",
+    page: "nutrition",
+    title: "Protein, Carbs, And Fats Explained",
+    author: "Li",
+    category: "Nutrition Basics",
+    image: "image/aetherpedia_nutrition/2.jpg",
+    excerpt: "Understanding macronutrients helps you make better food choices. Learn how protein, carbs, and fats support your body.",
+    text: "Understanding macronutrients helps you make better food choices. Protein supports muscle repair, carbs give you quick and steady energy, and fats support hormone production and long-term energy storage — all three work together to keep your body functioning well."
+  },
+  {
+    id: "nutrition-grid-02",
+    section: "grid",
+    page: "nutrition",
+    title: "Foods That Boost Your Energy",
+    author: "Dinda",
+    category: "Energy Nutrition",
+    image: "image/aetherpedia_nutrition/3.jpg",
+    excerpt: "Some foods help maintain stable energy levels throughout the day. Discover what to eat for better productivity.",
+    text: "Some foods help maintain stable energy levels throughout the day. Whole grains, nuts, and fruits release energy more gradually than sugary snacks, helping you avoid the energy crash that comes after a quick sugar spike."
+  },
+  {
+    id: "nutrition-grid-03",
+    section: "grid",
+    page: "nutrition",
+    title: "Healthy Eating Made Simple",
+    author: "Gege",
+    category: "Healthy Eating",
+    image: "image/aetherpedia_nutrition/7.jpg",
+    excerpt: "Healthy eating doesn't need to be complicated. Learn simple ways to improve your daily meals.",
+    text: "Healthy eating doesn't need to be complicated. Small changes like adding more vegetables, choosing water over sugary drinks, and eating regular meals can make a real difference without requiring a complete diet overhaul."
+  },
+  {
+    id: "nutrition-grid-04",
+    section: "grid",
+    page: "nutrition",
+    title: "Understanding Food Labels",
+    author: "Tania",
+    category: "Nutrition Basics",
+    image: "image/aetherpedia_nutrition/5.jpg",
+    excerpt: "Food labels contain important nutrition information. Learn how to read them and make smarter choices.",
+    text: "Food labels contain important nutrition information like serving size, calories, and nutrient content. Learning to read them helps you compare products and make smarter choices instead of relying on packaging claims alone."
+  },
+  {
+    id: "nutrition-popular-01",
+    section: "popular",
+    page: "nutrition",
+    title: "What Makes A Balanced Meal",
+    author: "Matt Scaffer",
+    category: "Healthy Eating",
+    image: "image/aetherpedia_nutrition/6.jpg",
+    excerpt: "",
+    text: "A balanced meal typically includes a source of protein, complex carbohydrates, healthy fats, and vegetables, giving your body a well-rounded mix of nutrients in a single sitting."
+  },
+  {
+    id: "nutrition-popular-02",
+    section: "popular",
+    page: "nutrition",
+    title: "Foods That Keep You Full Longer",
+    author: "Aelita S.",
+    category: "Nutrition",
+    image: "image/aetherpedia_nutrition/7a.jpg",
+    excerpt: "",
+    text: "Foods high in fiber and protein, like beans, eggs, and whole grains, digest more slowly and help you feel full longer, reducing the urge to snack frequently."
+  },
+  {
+    id: "nutrition-popular-03",
+    section: "popular",
+    page: "nutrition",
+    title: "Simple and Healthy Food Choices",
+    author: "Andre B.",
+    category: "Healthy Eating",
+    image: "image/aetherpedia_nutrition/8.jpg",
+    excerpt: "",
+    text: "Simple swaps, like choosing whole fruit over juice or grilled over fried, can add up to meaningfully healthier eating without needing a strict diet plan."
+  }
+];
+</script>
+
+<script type="module">
+// 1. IMPORT SEMUA CONTEXT FIREBASE YANG DIBUTUHKAN
+import { db } from "../Firebase/Firebase-config.js"; // 💡 Sesuaikan path config firebase kamu jika berbeda folder
+import { 
+    collection, 
+    getDocs, 
+    query, 
+    orderBy, 
+    doc, 
+    updateDoc, 
+    increment 
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const CURRENT_PAGE = "Nutrition";
+
+const highlightContainer = document.getElementById("highlightContainer");
+const gridContainer = document.getElementById("gridContainer");
+const popularContainer = document.getElementById("popularContainer");
+
+// 2. Fungsi Utama Mengambil Data dari Firestore
+async function loadArticlesFromFirestore() {
+    try {
+        if(highlightContainer) highlightContainer.innerHTML = "";
+        if(gridContainer) gridContainer.innerHTML = "";
+        if(popularContainer) popularContainer.innerHTML = "";
+
+        const contentRef = collection(db, "contents");
+        
+        // Query: Ambil semua artikel, urutkan dari yang PALING BARU
+        const q = query(contentRef, orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        let allArticles = [];
+        querySnapshot.forEach((doc) => {
+            allArticles.push({ id: doc.id, ...doc.data() });
+        });
+
+        // !!! FILTER LOGIKA BERDASARKAN KATEGORI AMAN KAPITAL & SPASI !!!
+        let filteredArticles = allArticles.filter(article => {
+            return article.category && article.category.toLowerCase().trim() === CURRENT_PAGE.toLowerCase().trim();
+        });
+
+        if (filteredArticles.length === 0) {
+            console.log("Tidak ada artikel yang cocok dengan kategori: " + CURRENT_PAGE);
+            return;
+        }
+
+        // --- DISTRIBUSI LOGIKA KE DISPLAY ---
+
+        // A. HIGHLIGHT: Artikel paling baru masuk ke banner besar
+        if (highlightContainer && filteredArticles.length > 0) {
+            highlightContainer.appendChild(buildHighlight(filteredArticles[0]));
+        }
+
+        // B. GRID: Sisa artikel dengan kategori yang sama masuk ke grid bawah
+        if (gridContainer && filteredArticles.length > 1) {
+            for (let i = 1; i < filteredArticles.length; i++) {
+                gridContainer.appendChild(buildCard(filteredArticles[i]));
+            }
+        }
+
+        // C. MOST POPULAR: Urutkan otomatis berdasarkan 'views' terbanyak dari kategori ini
+        if (popularContainer) {
+            let popularArticles = [...filteredArticles]
+                .sort((a, b) => (b.views || 0) - (a.views || 0))
+                .slice(0, 4);
+
+            popularArticles.forEach(article => {
+                popularContainer.appendChild(buildPopular(article));
+            });
+        }
+
+        setupSearch(); 
+
+    } catch (error) {
+        console.error("Gagal memuat artikel dari database:", error);
+    }
+}
+
+// Fungsi Pembuat Struktur Elemen Tampilan
+function buildHighlight(article) {
+  const div = document.createElement("div");
+  div.className = "highlight";
+  div.innerHTML = `
+    <img src="${article.thumbnail_url || 'image/default.png'}" class="highlight-img">
+    <h3>${article.title}</h3>
+    <p>${article.body_content ? article.body_content.substring(0, 120) : ''}...</p>
+    <div class="meta">
+      <span class="category-tag">${article.category || 'General'}</span>
+      <span class="dot">•</span>
+      <span class="author-name">${article.author}</span>
+      <span class="dot">•</span>
+      <span>👁️ ${article.views || 0} views</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openAndCountView(article));
+  return div;
+}
+
+function buildCard(article) {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <img src="${article.thumbnail_url || 'image/default.png'}">
+    <h4>${article.title}</h4>
+    <p>${article.body_content ? article.body_content.substring(0, 80) : ''}...</p>
+    <div class="card-meta">
+      <span class="card-category">${article.category || 'General'}</span>
+      <span class="dot">•</span>
+      <span class="card-author">${article.author}</span>
+    </div>
+  `;
+  div.addEventListener("click", () => openAndCountView(article));
+  return div;
+}
+
+function buildPopular(article) {
+  const div = document.createElement("div");
+  div.className = "popular";
+  div.innerHTML = `
+    <div class="popular-text">
+      <h4>${article.title}</h4>
+      <div class="meta">
+        <span class="category-tag">${article.category || 'General'}</span>
+        <span style="font-size:11px; color:#888; margin-left: 8px;">👁️ ${article.views || 0} views</span>
+      </div>
+    </div>
+    <img src="${article.thumbnail_url || 'image/default.png'}" class="popular-img">
+  `;
+  div.addEventListener("click", () => openAndCountView(article));
+  return div;
+}
+
+// Fungsi Menampilkan Popup & Otomatis Tambah View +1 ke Firestore
+async function openAndCountView(article) {
+  // Memanggil fungsi global openArticle
+  window.openArticle(article.title, article.author, article.category || "General", article.body_content, article.thumbnail_url || 'image/default.png');
+
+  try {
+      const docRef = doc(db, "contents", article.id);
+      await updateDoc(docRef, {
+          views: increment(1)
+      });
+  } catch (err) {
+      console.error("Gagal menambah jumlah views:", err);
+  }
+}
+
+// Fungsi Pencarian Artikel
+function setupSearch() {
+  const searchInput = document.getElementById("search");
+  if(!searchInput) return;
+
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+      const title = card.querySelector("h4").textContent.toLowerCase();
+      const pTag = card.querySelector("p");
+      const desc = pTag ? pTag.textContent.toLowerCase() : "";
+      const match = title.includes(value) || desc.includes(value);
+      card.classList.toggle("hidden", !match);
+    });
+  });
+}
+
+// Jalankan load data setelah DOM siap
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadArticlesFromFirestore);
+} else {
+    loadArticlesFromFirestore();
+}
+</script>
+
+<script>
+function openArticle(title, author, category, text, image){
+  window.openArticle = function(title, author, category, text, image){
+    document.getElementById("popupTitle").textContent = title;
+    document.getElementById("popupAuthor").textContent = author;
+    document.getElementById("popupCategory").textContent = category;
+    document.getElementById("popupText").textContent = text;
+    document.getElementById("popupImage").src = image;
+    document.getElementById("articlePopup").style.display = "flex";
+    document.body.classList.add("modal-open");
+}
+}
+function closeArticle(){
+  document.getElementById("articlePopup").style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+function shareArticle(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied!");
+}
+</script>
+
+<div id="articlePopup" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeArticle()">&times;</span>
+        <img id="popupImage" src="" alt="Article Image" style="width:100%; border-radius: 10px;">
+        <div class="modal-body">
+            <span id="popupCategory" class="category-tag"></span>
+            <h2 id="popupTitle"></h2>
+            <p class="author">By <span id="popupAuthor"></span></p>
+            <hr>
+            <p id="popupText"></p>
+        </div>
+        <div class="modal-footer">
+            <button onclick="shareArticle()" class="share-btn">🔗 Share Link</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="shared-header.js"></script>
+
+</body>
+</html>

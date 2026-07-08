@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh; 
+    padding: 50px 0; 
+    
+    background: linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-color: #ffffff;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    overflow-y: auto; 
+    background:
+        url("backgroundfinal.png") no-repeat center,
+        linear-gradient(135deg, #9FBEED 25%, #93C001 100%);
+    background-size: 1270px, cover;
+}
+
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #555;
+    font-size: 18px;
+    z-index: 100
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+    color: #93C001;
+}
+
+/* --- 3. CONTAINER (LEBIH RAMPING & COMPACT) --- */
+.container {
+    width: 90%;
+    max-width: 420px; 
+    background: #ffffff;
+    padding: 30px 25px; 
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 15px 15px 40px rgba(0,0,0,0.05);
+    margin: auto; 
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.subtitle {
+    margin: 15px 0 8px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #666;
+    text-align: center;
+    padding-left: 5px;
+}
+
+/* --- 4. OPTION BOX (KOTAK PILIHAN) --- */
+.option {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px 15px; 
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 8px #777e86, -4px -4px 8px #ffffff;
+}
+
+.options:first-of-type {
+    display: flex;
+    flex-direction: row; 
+    gap: 12px;           
+    margin-bottom: 20px;
+}
+
+.options:first-of-type .option {
+    flex: 1;             
+    flex-direction: column;
+    justify-content: center;
+    min-height: 75px; 
+    text-align: center;
+}
+
+.options:first-of-type .option input {
+    margin-right: 0;
+    margin-bottom: 8px;
+}
+
+
+.options:last-of-type {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.options:last-of-type .option input {
+    margin-right: 12px;
+}
+
+.option input {
+    accent-color: #333333;
+    transform: scale(0.9);
+}
+
+/* Efek Inset saat dipilih */
+.option:has(input:checked) {
+    box-shadow: inset 3px 3px 6px #d1d1d1, inset -3px -3px 6px #ffffff;
+    background: #ececec;
+    color: #333333;
+    transform: scale(0.97);
+}
+
+.option:hover {
+    background: #f5f5f5;
+}
+
+/* --- 6. TOMBOL UTAMA (LEBIH MUNGIL) --- */
+.main-btn {
+    display: block;      
+    margin: 20px auto 0; 
+    width: 85%;       
+    
+    background: #93C001;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px #c5c5c5, -4px -4px 10px #ffffff;
+    transition: 0.3s;
+}
+
+.main-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 12px #bababa, -6px -6px 12px #ffffff;
+}
+
+.main-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 4px 4px 8px #82ab01, inset -4px -4px 8px #ffffff;
+}
+
+.note {
+    margin-top: 15px;
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+}
+
+/* --- 7. RESPONSIVE MOBILE --- */
+@media (max-width: 400px) {
+    .container {
+        padding: 25px 20px;
+    }
+    h1 { font-size: 22px; }
+}
+
+.main-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 30px;
+    background: #a3d944;
+    color: white;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-left: 25px;
+}
+
+.main-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
