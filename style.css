@@ -858,11 +858,167 @@ html {
 
 .nav-pill:active {
     transform: translateY(1px);
-
     box-shadow: 
         inset 3px 3px 6px rgba(0,0,0,0.3),
         inset -1px -1px 3px rgba(255,255,255,0.1);
 }
 
 
+/* ==========================================
+   AETHERASSIST MODERN CHAT STYLING
+   ========================================== */
+.aether-chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 330px; /* Diperkecil dari 340px */
+    height: 230px; /* Diperkecil dari 450px */
+    background: #ffffff;
+    border-radius: 12px; /* Lebih proporsional */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif; /* tetap pakai font utama */
+    overflow: hidden;
+    z-index: 9999;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    animation: slideUpUp 0.4s ease-out;
+}
 
+@keyframes slideUpUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.aether-chat-header {
+    background: linear-gradient(135deg, #2b5876, #4e4376); /* Gradasi warna gelap modern */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chat-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.header-info h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.status-badge {
+    font-size: 11px;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #2ecc71;
+    border-radius: 50%;
+}
+
+.aether-chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Bubble Chat Styling */
+.chat-msg {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.chat-msg.user {
+    background: #2b5876;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-msg.bot {
+    background: white;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.system-msg {
+    background: #eef2f5;
+    color: #555;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Footer & Input */
+.aether-chat-footer {
+    padding: 12px 15px;
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid #eee;
+}
+
+.aether-chat-footer input {
+    flex: 1;
+    border: 1px solid #e1e1e1;
+    padding: 10px 14px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.aether-chat-footer input:focus {
+    border-color: #2b5876;
+}
+
+.chat-send-btn {
+    background: #2b5876;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chat-send-btn:hover {
+    background: #4e4376;
+}
