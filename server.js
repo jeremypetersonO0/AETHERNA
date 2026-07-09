@@ -63,6 +63,13 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
     }
 });
 
+app.get('/', (req, res) => {
+    res.json({
+        status: 'OK',
+        message: 'Aetherna Backend is running'
+    });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('Server Aetherna Backend berjalan di port ' + PORT);
