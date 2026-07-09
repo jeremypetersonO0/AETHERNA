@@ -24,11 +24,11 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
     try {
         const { message } = req.body;
         
-        // Buat sesi chat baru
+        // Buat sesi chat baru dengan konfigurasi camelCase yang benar untuk SDK baru
         const chat = ai.chats.create({
             model: 'gemini-2.5-flash',
             config: {
-                system_instruction: "Kamu adalah AetherAssist, asisten AI dari platform Aetherna. Jawablah dengan ramah, suportif, informatif, dan santai. Jika pengguna mengunggah file atau gambar, analisis dan berikan penjelasan atau bantuan terkait file tersebut."
+                systemInstruction: "Kamu adalah AetherAssist, asisten AI dari platform Aetherna. Jawablah dengan ramah, suportif, informatif, dan santai. Jika pengguna mengunggah file atau gambar, analisis dan berikan penjelasan atau bantuan terkait file tersebut."
             }
         });
 
@@ -45,15 +45,23 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
 
             const userPrompt = message || "Tolong analisis file atau gambar ini.";
 
-            // Perbaikan parameter sendMessage untuk SDK @google/genai terbaru
-            response = await chat.sendMessage([userPrompt, fileAttachment]);
+            // STRUKTUR YANG BENAR: Bungkus teks dan file ke dalam objek parts
+            response = await chat.sendMessage({
+                message: [
+                    { text: userPrompt },
+                    fileAttachment
+                ]
+            });
 
         } else {
             // JIKA USER HANYA MENGIRIM TEKS BIASA
-            response = await chat.sendMessage(message);
+            // STRUKTUR YANG BENAR: Bungkus teks ke dalam format object message yang dikenali ContentUnion
+            response = await chat.sendMessage({
+                message: message
+            });
         }
         
-        // Kirim jawaban sukses kembali ke frontend
+        // Kirim jawaban sukses kembali ke frontend HTML kamu
         res.json({ reply: response.text });
 
     } catch (error) {
