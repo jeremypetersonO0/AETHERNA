@@ -63,6 +63,7 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('Server Aetherna Backend berjalan di http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log('Server Aetherna Backend berjalan di port ' + PORT);
 });
