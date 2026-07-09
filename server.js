@@ -5,15 +5,16 @@ const multer = require('multer');
 const path = require("path");
 
 const app = express();
-app.use(express.static(__dirname));
 
+// Aktifkan CORS agar frontend kamu dari hosting lain bisa mendeteksi API ini
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
-// Konfigurasi penyimpanan file sementara di memori laptop
+// Konfigurasi penyimpanan file sementara di memori
 const upload = multer({ storage: multer.memoryStorage() });
 
-// 1. Inisialisasi Gemini API
+// 1. Inisialisasi Gemini API (Pastikan GEMINI_API_KEY sudah diset di Variables Railway)
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
 });
@@ -23,7 +24,7 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
     try {
         const { message } = req.body;
         
-        // Selalu buat sesi chat baru di dalam endpoint agar session tetap segar dan aman dari crash global
+        // Buat sesi chat baru
         const chat = ai.chats.create({
             model: 'gemini-2.5-flash',
             config: {
@@ -35,7 +36,6 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
 
         // JIKA USER MENGUNGGAH FILE/GAMBAR
         if (req.file) {
-            // Struktur data file attachment yang benar untuk SDK @google/genai terbaru
             const fileAttachment = {
                 inlineData: {
                     data: req.file.buffer.toString("base64"),
@@ -45,19 +45,15 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
 
             const userPrompt = message || "Tolong analisis file atau gambar ini.";
 
-            // Untuk kombinasi File + Teks di SDK baru, kita kirim lewat struktur objek message yang rapi
-            response = await chat.sendMessage({
-                message: [userPrompt, fileAttachment]
-            });
+            // Perbaikan parameter sendMessage untuk SDK @google/genai terbaru
+            response = await chat.sendMessage([userPrompt, fileAttachment]);
 
         } else {
             // JIKA USER HANYA MENGIRIM TEKS BIASA
-            response = await chat.sendMessage({
-                message: message
-            });
+            response = await chat.sendMessage(message);
         }
         
-        // Kirim jawaban sukses kembali ke frontend HTML kamu
+        // Kirim jawaban sukses kembali ke frontend
         res.json({ reply: response.text });
 
     } catch (error) {
