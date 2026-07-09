@@ -2,8 +2,11 @@ const { GoogleGenAI } = require('@google/genai');
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
+const path = require("path");
 
 const app = express();
+app.use(express.static(__dirname));
+
 app.use(cors());
 app.use(express.json());
 
@@ -63,11 +66,8 @@ app.post('/api/chat', upload.single('file'), async (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
-    res.json({
-        status: 'OK',
-        message: 'Aetherna Backend is running'
-    });
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
