@@ -1,5 +1,5 @@
 import { db } from "../Firebase/Firebase-config.js";
-import { supabase } from "../Supabase/supabase-config.js";
+import { supabase } from "../Supabase/Supabase-config.js";
 
 import {
     collection,
