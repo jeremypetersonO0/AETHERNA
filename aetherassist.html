@@ -219,7 +219,7 @@ window.sendMessage = async function() {
 
     /* 4. HUBUNGKAN KE BACKEND */
     try {
-        const response = await fetch('http://localhost:3000/api/chat', {
+        const response = await fetch('https://aetherna-production.up.railway.app/api/chat', {
             method: 'POST',
             body: formData 
         });
