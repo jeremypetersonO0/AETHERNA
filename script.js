@@ -72,3 +72,38 @@ prevBtn.addEventListener('click', () => {
 // Jalankan saat awal
 updateActiveCard();
 window.addEventListener('resize', updateActiveCard);
+
+// Fungsi untuk menembak API Chat di Server Railway kamu
+async function kirimChat() {
+    const inputElement = document.getElementById('chat-input');
+    const chatBox = document.getElementById('chat-box');
+    const pesan = inputElement.value;
+
+    if (!pesan) return;
+
+    // Tampilkan pesan kamu di kotak chat
+    chatBox.innerHTML += `<div><b>Kamu:</b> ${pesan}</div>`;
+    inputElement.value = '';
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
+        // Alamat server Railway kamu yang baru sukses di-deploy!
+        const response = await fetch('https://aetherna-production.up.railway.app/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: pesan })
+        });
+
+        const data = await response.json();
+        
+        // Tampilkan balasan dari AI Gemini
+        chatBox.innerHTML += `<div style="color: blue;"><b>AetherAssist:</b> ${data.reply}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    } catch (error) {
+        console.error(error);
+        chatBox.innerHTML += `<div style="color: red;"><b>System:</b> Gagal terhubung ke server.</div>`;
+    }
+}
